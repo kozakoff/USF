@@ -47,4 +47,5 @@ public class MaxOnes extends Problem implements SimpleProblemForm {
 				sum == ind2.genome.length);
 		ind2.evaluated = true;
 	}
+	
 }
