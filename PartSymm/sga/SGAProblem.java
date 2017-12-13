@@ -5,7 +5,7 @@ import ec.simple.*;
 //import ec.util.*;
 import ec.vector.*;
 
-public class Problem extends ec.Problem implements SimpleProblemForm 
+public class SGAProblem extends ec.Problem implements SimpleProblemForm 
 {
 	// ind is the individual to be evaluated.
 	// We're given state and threadnum primarily so we
