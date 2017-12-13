@@ -1,11 +1,11 @@
 package sga;
 
-import ec.*;
+//import ec.*;
 import ec.simple.*;
 //import ec.util.*;
 import ec.vector.*;
 
-public class SGA extends Problem implements SimpleProblemForm 
+public class Problem extends ec.Problem implements SimpleProblemForm 
 {
 	// ind is the individual to be evaluated.
 	// We're given state and threadnum primarily so we
@@ -15,7 +15,7 @@ public class SGA extends Problem implements SimpleProblemForm
 
 	private static final long serialVersionUID = 1L;
 	
-	public void evaluate(final EvolutionState state, final Individual ind, final int subpopulation, final int threadnum) 
+	public void evaluate(final ec.EvolutionState state, final ec.Individual ind, final int subpopulation, final int threadnum) 
 	{
 		if (ind.evaluated)
 		{
