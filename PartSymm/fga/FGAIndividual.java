@@ -4,7 +4,7 @@ import ec.*;
 import ec.vector.*;
 import ec.util.*;
 
-public class SGAIndividual extends BitVectorIndividual {
+public class FGAIndividual extends BitVectorIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	public static final String P_BITVECTORINDIVIDUAL = "bit-vect-ind";
@@ -25,7 +25,7 @@ public class SGAIndividual extends BitVectorIndividual {
 	 
 	public Object clone()
     {
-		SGAIndividual myobj = (SGAIndividual) (super.clone());
+		FGAIndividual myobj = (FGAIndividual) (super.clone());
     
 		// must clone the genome
 		myobj.genome = (boolean[])(genome.clone());
