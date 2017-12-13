@@ -3,11 +3,10 @@ package sga;
 import ec.*;
 import ec.vector.*;
 import ec.util.*;
-import java.io.*;
-import java.util.*;
 
 public class SGAIndividual extends BitVectorIndividual {
 	
+	private static final long serialVersionUID = 1L;
 	public static final String P_BITVECTORINDIVIDUAL = "bit-vect-ind";
 	public boolean[] genome;
 	
@@ -19,7 +18,7 @@ public class SGAIndividual extends BitVectorIndividual {
 	public void setup(final EvolutionState state, final Parameter base)
     {
 		super.setup(state,base);  // actually unnecessary (Individual.setup() is empty)
-		state.output.systemMessage("Parameter: " + base);
+		//state.output.systemMessage("Parameter: " + base);
 		BitVectorSpecies s = (BitVectorSpecies)species;  // where my default info is stored
 		genome = new boolean[s.genomeSize];
     }
