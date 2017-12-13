@@ -1,11 +1,11 @@
-package sga;
+package fga;
 
 import ec.*;
 import ec.simple.*;
 //import ec.util.*;
 import ec.vector.*;
 
-public class SGA extends Problem implements SimpleProblemForm 
+public class FGA extends Problem implements SimpleProblemForm 
 {
 	// ind is the individual to be evaluated.
 	// We're given state and threadnum primarily so we
