@@ -1,4 +1,4 @@
-package sga;
+package fga;
 
 //import ec.*;
 import ec.simple.*;
