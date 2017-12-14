@@ -22,17 +22,17 @@ public class FGAProblem extends ec.Problem implements SimpleProblemForm
 			return; // don't evaluate the individual if it's already evaluated
 		}
 
-		if (!(ind instanceof BitVectorIndividual))
+		if (!(ind instanceof IntegerVectorIndividual))
 		{
-			state.output.fatal("Whoa!  It's not a BitVectorIndividual!!!", null);
+			state.output.fatal("Whoa!  It's not a IntegerVectorIndividual!!!", null);
 		}
 
-		BitVectorIndividual ind2 = (BitVectorIndividual) ind;
+		IntegerVectorIndividual ind2 = (IntegerVectorIndividual) ind;
 
 		int sum = 0;
 		for (int x = 0; x < ind2.genome.length; x++)
 		{
-			sum += (ind2.genome[x] ? 1 : 0);
+			sum += ((ind2.genome[x])==1 ? 1 : 0);
 		}
 
 		if (!(ind2.fitness instanceof SimpleFitness))
