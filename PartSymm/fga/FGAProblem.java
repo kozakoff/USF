@@ -1,9 +1,6 @@
 package fga;
 
-//import ec.*;
 import ec.simple.*;
-//import ec.util.*;
-import ec.vector.*;
 
 public class FGAProblem extends ec.Problem implements SimpleProblemForm 
 {
