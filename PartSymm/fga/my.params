@@ -31,10 +31,13 @@ pop.subpop.0		= ec.Subpopulation
 
 pop.subpop.0.size 				= 100
 pop.subpop.0.duplicate-retries 	= 0
-pop.subpop.0.species 			= ec.vector.IntegerVectorSpecies
+pop.subpop.0.species 			= fga.FGASpecies
 
 vector.species.min-gene = 0
 vector.species.max-gene = 1
+
+vector.species.min-meta-gene = 0
+vector.species.max-meta-gene = 2
 
 pop.subpop.0.species.fitness 		= ec.simple.SimpleFitness
 pop.subpop.0.species.ind			= fga.FGAIndividual

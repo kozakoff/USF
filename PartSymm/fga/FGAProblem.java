@@ -22,12 +22,12 @@ public class FGAProblem extends ec.Problem implements SimpleProblemForm
 			return; // don't evaluate the individual if it's already evaluated
 		}
 
-		if (!(ind instanceof IntegerVectorIndividual))
+		if (!(ind instanceof FGAIndividual))
 		{
-			state.output.fatal("Whoa!  It's not a IntegerVectorIndividual!!!", null);
+			state.output.fatal("Whoa!  It's not a FGAIndividual!!!", null);
 		}
 
-		IntegerVectorIndividual ind2 = (IntegerVectorIndividual) ind;
+		FGAIndividual ind2 = (FGAIndividual) ind;
 
 		int sum = 0;
 		for (int x = 0; x < ind2.genome.length; x++)
