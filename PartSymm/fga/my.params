@@ -38,7 +38,6 @@ vector.species.max-gene = 1
 
 pop.subpop.0.species.fitness 		= ec.simple.SimpleFitness
 pop.subpop.0.species.ind			= fga.FGAIndividual
-#pop.subpop.0.species.ind			= ec.vector.BitVectorIndividual
 
 pop.subpop.0.species.genome-size	= 100
 pop.subpop.0.species.crossover-type	= one
