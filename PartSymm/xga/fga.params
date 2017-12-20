@@ -24,14 +24,14 @@ checkpoint				= false
 checkpoint-prefix		= ec
 checkpoint-modulo		= 1
 
-stat.file				= $out.stat
+stat.file				= $fga.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 
 pop.subpop.0.size 				= 100
 pop.subpop.0.duplicate-retries 	= 0
-pop.subpop.0.species 			= fga.FGASpecies
+pop.subpop.0.species 			= xga.XGASpecies
 
 vector.species.min-gene = 0
 vector.species.max-gene = 1
@@ -40,7 +40,7 @@ vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 2
 
 pop.subpop.0.species.fitness 		= ec.simple.SimpleFitness
-pop.subpop.0.species.ind			= fga.FGAIndividual
+pop.subpop.0.species.ind			= xga.XGAIndividual
 
 pop.subpop.0.species.genome-size	= 100
 pop.subpop.0.species.crossover-type	= one
@@ -54,4 +54,4 @@ pop.subpop.0.species.pipe.source.0.source.1	= ec.select.TournamentSelection
 
 select.tournament.size		= 2
 
-eval.problem		= fga.FGAProblem
+eval.problem		= xga.FGAProblem
