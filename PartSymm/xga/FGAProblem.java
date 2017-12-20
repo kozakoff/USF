@@ -19,12 +19,12 @@ public class FGAProblem extends ec.Problem implements SimpleProblemForm
 			return; // don't evaluate the individual if it's already evaluated
 		}
 
-		if (!(ind instanceof XGAIndividual))
+		if (!(ind instanceof FGAIndividual))
 		{
 			state.output.fatal("Whoa!  It's not a FGAIndividual!!!", null);
 		}
 
-		XGAIndividual ind2 = (XGAIndividual) ind;
+		FGAIndividual ind2 = (FGAIndividual) ind;
 		int lastMetaGene = 0;
 
 		double sum = 0.0;

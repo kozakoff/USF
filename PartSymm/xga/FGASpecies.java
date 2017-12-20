@@ -4,7 +4,7 @@ import ec.*;
 import ec.util.*;
 import ec.vector.IntegerVectorSpecies;
 
-public class XGASpecies extends IntegerVectorSpecies 
+public class FGASpecies extends IntegerVectorSpecies 
 {
 	private static final long serialVersionUID = 1L;
 	public final static String P_MINMETAGENE = "min-meta-gene";
@@ -14,17 +14,22 @@ public class XGASpecies extends IntegerVectorSpecies
 
 	protected long[] maxMetaGene;
 
-	public long maxMetaGene(int gene) {
+	public long maxMetaGene(int gene) 
+	{
 		long[] m = maxMetaGene;
 		if (m.length <= gene)
+		{
 			gene = m.length - 1;
+		}
 		return m[gene];
 	}
 
 	public long minMetaGene(int gene) {
 		long[] m = minMetaGene;
 		if (m.length <= gene)
+		{
 			gene = m.length - 1;
+		}
 		return m[gene];
 	}
 
@@ -33,8 +38,6 @@ public class XGASpecies extends IntegerVectorSpecies
 		super.setup(state, base);
 		
 		Parameter def = defaultBase();
-
-		setupGenome(state, base);
 
 		// create the arrays
 		minMetaGene = new long[genomeSize + 1];
@@ -64,16 +67,12 @@ public class XGASpecies extends IntegerVectorSpecies
 			// individual
 			if (!inNumericalTypeRange(minMetaGene[x]))
 			{
-				state.output.fatal("This FGASpecies has a prototype of the kind: "
-						+ i_prototype.getClass().getName() + ", but doesn't have a min-meta-gene[" + x
-						+ "] value within the range of this prototype's genome's data types");
+				state.output.fatal("This FGASpecies has a prototype of the kind: " + i_prototype.getClass().getName() + ", but doesn't have a min-meta-gene[" + x + "] value within the range of this prototype's genome's data types");
 			}
 			
 			if (!inNumericalTypeRange(maxMetaGene[x]))
 			{
-				state.output.fatal("This FGASpecies has a prototype of the kind: "
-						+ i_prototype.getClass().getName() + ", but doesn't have a max-meta-gene[" + x
-						+ "] value within the range of this prototype's genome's data types");
+				state.output.fatal("This FGASpecies has a prototype of the kind: " + i_prototype.getClass().getName() + ", but doesn't have a max-meta-gene[" + x + "] value within the range of this prototype's genome's data types");
 			}
 		}
 	}
