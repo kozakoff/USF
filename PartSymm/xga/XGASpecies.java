@@ -1,10 +1,10 @@
-package fga;
+package xga;
 
 import ec.*;
 import ec.util.*;
 import ec.vector.IntegerVectorSpecies;
 
-public class FGASpecies extends IntegerVectorSpecies 
+public class XGASpecies extends IntegerVectorSpecies 
 {
 	private static final long serialVersionUID = 1L;
 	public final static String P_MINMETAGENE = "min-meta-gene";
