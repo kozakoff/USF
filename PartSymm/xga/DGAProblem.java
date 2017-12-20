@@ -1,6 +1,7 @@
 package xga;
 
 import ec.simple.*;
+import ec.vector.*;
 
 public class DGAProblem extends ec.Problem implements SimpleProblemForm 
 {
@@ -19,34 +20,27 @@ public class DGAProblem extends ec.Problem implements SimpleProblemForm
 			return; // don't evaluate the individual if it's already evaluated
 		}
 
-		if (!(ind instanceof FGAIndividual))
+		if (!(ind instanceof BitVectorIndividual))
 		{
-			state.output.fatal("Whoa!  It's not a FGAIndividual!!!", null);
+			state.output.fatal("Whoa!  It's not a BitVectorIndividual!!!", null);
 		}
 
-		FGAIndividual ind2 = (FGAIndividual) ind;
-		int lastMetaGene = 0;
+		BitVectorIndividual ind2 = (BitVectorIndividual) ind;
 
 		double sum = 0.0;
-		for (int x = 0; x < ind2.genome.length; x+=2)
+		
+		if(ind2.genome[0])
 		{
-			//In this loop x eq the meta gene and x+1 eq the actual gene 
-			if(ind2.genome[x] != 2)
+			for (int x = 1; x < ind2.genome.length; x++)
 			{
-				lastMetaGene = ind2.genome[x];
-			}
-			
-			switch(lastMetaGene)
+				sum += (ind2.genome[x] ? 0 : 1); //Flip all of the bits
+			}	
+		}
+		else
+		{
+			for (int x = 1; x < ind2.genome.length; x++)
 			{
-			case 0: //Inactive meta gene, use the bit as-is for fitness calculation
-				sum += ((ind2.genome[x+1])==1 ? 1 : 0);
-				break;
-			case 1: //Active meta gene, flip the bit for fitness calculation
-				sum += ((ind2.genome[x+1])==1 ? 0 : 1);
-				break;
-			case 2: //No meta gene
-				//This never happens
-				break;
+				sum += (ind2.genome[x] ? 1 : 0); //Use bits as they are stored
 			}
 		}
 
@@ -55,7 +49,7 @@ public class DGAProblem extends ec.Problem implements SimpleProblemForm
 			state.output.fatal("Whoa!  It's not a SimpleFitness!!!", null);
 		}
 		
-		double genomeLength = ((double) ind2.genome.length / 2.0);
+		double genomeLength = (double) ind2.genome.length-1;
 		double fitnessValue = sum / genomeLength; //The fitness value
 		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?  
 
