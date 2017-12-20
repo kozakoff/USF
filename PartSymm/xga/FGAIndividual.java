@@ -93,4 +93,46 @@ public class FGAIndividual extends IntegerVectorIndividual {
 			}
 		}
 	}
+	
+	public String genotypeToStringForHumans() 
+	{
+		StringBuilder m = new StringBuilder();
+		StringBuilder s = new StringBuilder();
+		StringBuilder p = new StringBuilder();
+		
+		m.append("Meta: ");
+		s.append("Geno: ");
+		p.append("Phen: ");
+		
+		int currMetaGene, lastMetaGene = 0;
+		
+		for (int i = 0; i < genome.length; i+=2) 
+		{
+			m.append(genome[i]);
+			s.append(genome[i+1]);
+			
+			//In this loop i eq the meta gene and i+1 eq the actual gene 
+			currMetaGene = genome[i];
+			if(currMetaGene != 2)
+			{
+				lastMetaGene = genome[i];
+			}
+		
+			if(lastMetaGene == 0)
+			{
+				p.append(genome[i+1]==1 ? "1" : "0");
+			}
+			else
+			{
+				p.append(genome[i+1]==1 ? "0" : "1");
+			}
+		}
+		
+		m.append("\r\n");
+		m.append(s);
+		m.append("\r\n");
+		m.append(p);
+		
+		return m.toString();
+	}
 }

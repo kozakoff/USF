@@ -25,28 +25,29 @@ public class FGAProblem extends ec.Problem implements SimpleProblemForm
 		}
 
 		FGAIndividual ind2 = (FGAIndividual) ind;
-		int lastMetaGene = 0;
+		int currMetaGene, lastMetaGene = 0;// ind2.genome[0];
 
 		double sum = 0.0;
 		for (int x = 0; x < ind2.genome.length; x+=2)
 		{
 			//In this loop x eq the meta gene and x+1 eq the actual gene 
-			if(ind2.genome[x] != 2)
+			currMetaGene = ind2.genome[x];
+			if(currMetaGene != 2)
 			{
 				lastMetaGene = ind2.genome[x];
 			}
-			
-			switch(lastMetaGene)
+			else
 			{
-			case 0: //Inactive meta gene, use the bit as-is for fitness calculation
-				sum += ((ind2.genome[x+1])==1 ? 1 : 0);
-				break;
-			case 1: //Active meta gene, flip the bit for fitness calculation
-				sum += ((ind2.genome[x+1])==1 ? 0 : 1);
-				break;
-			case 2: //No meta gene
-				//This never happens
-				break;
+				//No meta gene so keep lastMetaGene
+			}
+			
+			if(lastMetaGene == 0)
+			{
+				sum += (ind2.genome[x+1]==1 ? 1 : 0);
+			}
+			else
+			{
+				sum += (ind2.genome[x+1]==1 ? 0 : 1);
 			}
 		}
 

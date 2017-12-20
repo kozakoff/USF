@@ -29,16 +29,16 @@ public class DGAProblem extends ec.Problem implements SimpleProblemForm
 
 		double sum = 0.0;
 		
-		if(ind2.genome[0])
+		if(ind2.genome[ind2.genome.length-1])
 		{
-			for (int x = 1; x < ind2.genome.length; x++)
+			for (int x = 0; x < ind2.genome.length-1; x++)
 			{
 				sum += (ind2.genome[x] ? 0 : 1); //Flip all of the bits
 			}	
 		}
 		else
 		{
-			for (int x = 1; x < ind2.genome.length; x++)
+			for (int x = 0; x < ind2.genome.length-1; x++)
 			{
 				sum += (ind2.genome[x] ? 1 : 0); //Use bits as they are stored
 			}
