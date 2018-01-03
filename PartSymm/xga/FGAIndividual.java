@@ -108,7 +108,7 @@ public class FGAIndividual extends IntegerVectorIndividual {
 		
 		for (int i = 0; i < genome.length; i+=2) 
 		{
-			m.append(genome[i]);
+			m.append(geno-me[i]);
 			s.append(genome[i+1]);
 			
 			//In this loop i eq the meta gene and i+1 eq the actual gene 
