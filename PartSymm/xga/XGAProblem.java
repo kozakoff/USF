@@ -1,8 +1,9 @@
 package xga;
 
 import ec.simple.*;
+import ec.vector.*;
 
-public class FGAProblem extends ec.Problem implements SimpleProblemForm 
+public class XGAProblem extends ec.Problem implements SimpleProblemForm 
 {
 	// ind is the individual to be evaluated.
 	// We're given state and threadnum primarily so we
@@ -19,44 +20,27 @@ public class FGAProblem extends ec.Problem implements SimpleProblemForm
 			return; // don't evaluate the individual if it's already evaluated
 		}
 
-		if (!(ind instanceof FGAIndividual))
+		if (!(ind instanceof XGAIndividual))
 		{
-			state.output.fatal("Whoa!  It's not a FGAIndividual!!!", null);
+			state.output.fatal("Whoa!  It's not a XGAIndividual!!!", null);
 		}
 
-		FGAIndividual ind2 = (FGAIndividual) ind;
-		int currMetaGene, lastMetaGene = 0;// ind2.genome[0];
+		XGAIndividual ind2 = (XGAIndividual) ind;
 
 		double sum = 0.0;
-		for (int x = 0; x < ind2.genome.length; x+=2)
+		int[] genome = ind2.getGenome();
+		
+		for (int x = 0; x < genome.length-1; x++)
 		{
-			//In this loop x eq the meta gene and x+1 eq the actual gene 
-			currMetaGene = ind2.genome[x];
-			if(currMetaGene != 2)
-			{
-				lastMetaGene = ind2.genome[x];
-			}
-			else
-			{
-				//No meta gene so keep lastMetaGene
-			}
-			
-			if(lastMetaGene == 0)
-			{
-				sum += (ind2.genome[x+1]==1 ? 1 : 0);
-			}
-			else
-			{
-				sum += (ind2.genome[x+1]==1 ? 0 : 1);
-			}
-		}
+			sum += genome[x];
+		}	
 
 		if (!(ind2.fitness instanceof SimpleFitness))
 		{
 			state.output.fatal("Whoa!  It's not a SimpleFitness!!!", null);
 		}
 		
-		double genomeLength = ((double) ind2.genome.length / 2.0);
+		double genomeLength = (double) genome.length-1;
 		double fitnessValue = sum / genomeLength; //The fitness value
 		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?  
 

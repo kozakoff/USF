@@ -2,12 +2,28 @@ package xga;
 
 import ec.*;
 import ec.vector.*;
-//import ec.util.*;
+import ec.util.*;
 //import java.io.*;
 
-public class FGAIndividual extends IntegerVectorIndividual {
+public class FGAIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
+ 
+	public void setup(final EvolutionState state, final Parameter base)
+    {
+		super.setup(state,base);  // actually unnecessary (Individual.setup() is empty)
+
+		Parameter def = defaultBase();
+    
+		if (!(species instanceof FGASpecies))
+		{
+			state.output.fatal("FGAIndividual requires an FGASpecies", base, def);
+		}
+        
+		FGASpecies s = (FGASpecies) species;
+    
+		genome = new int[s.genomeSize*2];
+    }
 	
 	/**
 	 * Initializes the individual by randomly choosing Integers uniformly from
@@ -94,45 +110,66 @@ public class FGAIndividual extends IntegerVectorIndividual {
 		}
 	}
 	
+	public void mirror(EvolutionState state, int thread)
+	{
+		int currMetaGene, lastMetaGene = 0;
+
+		for (int x = 0; x < genome.length; x+=2)
+		{
+			//In this loop x eq the meta gene and x+1 eq the actual gene 
+			currMetaGene = genome[x];
+			if(currMetaGene != 2)
+			{
+				lastMetaGene = genome[x];
+			}
+			else
+			{
+				//No meta gene so keep lastMetaGene
+			}
+			
+			if(lastMetaGene == 0)
+			{
+				genome[x] = (genome[x+1]==1 ? 1 : 0);
+			}
+			else
+			{
+				genome[x] = (genome[x+1]==1 ? 0 : 1);
+			}
+		}
+	}
+	
 	public String genotypeToStringForHumans() 
 	{
 		StringBuilder m = new StringBuilder();
 		StringBuilder s = new StringBuilder();
-		StringBuilder p = new StringBuilder();
 		
 		m.append("Meta: ");
 		s.append("Geno: ");
-		p.append("Phen: ");
-		
-		int currMetaGene, lastMetaGene = 0;
 		
 		for (int i = 0; i < genome.length; i+=2) 
 		{
-			m.append(geno-me[i]);
+			m.append(genome[i]);
 			s.append(genome[i+1]);
-			
-			//In this loop i eq the meta gene and i+1 eq the actual gene 
-			currMetaGene = genome[i];
-			if(currMetaGene != 2)
-			{
-				lastMetaGene = genome[i];
-			}
-		
-			if(lastMetaGene == 0)
-			{
-				p.append(genome[i+1]==1 ? "1" : "0");
-			}
-			else
-			{
-				p.append(genome[i+1]==1 ? "0" : "1");
-			}
 		}
-		
+			
 		m.append("\r\n");
 		m.append(s);
-		m.append("\r\n");
-		m.append(p);
+		//m.append("\r\n");
 		
 		return m.toString();
 	}
+
+	
+	public int[] getGenome() 
+	{
+		int[] thisGenome = new int[genome.length/2];
+
+		for (int x = 0; x < thisGenome.length; x++)
+		{
+			thisGenome[x] = genome[(x*2)+1];
+		}
+		
+		return thisGenome;
+	}
 }
+
