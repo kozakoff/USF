@@ -112,6 +112,9 @@ public class FGAIndividual extends XGAIndividual {
 	
 	public void mirror(EvolutionState state, int thread)
 	{
+		
+		//Probability, then,  
+		
 		int currMetaGene, lastMetaGene = 0;
 
 		for (int x = 0; x < genome.length; x+=2)

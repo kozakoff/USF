@@ -61,6 +61,7 @@ public class DGAIndividual extends XGAIndividual {
 
 	public void mirror(EvolutionState state, int thread)
 	{
+		//Probability, then, flip everything to opposite including meta gene.
 		if(genome[0]==1)
 		{
 			for (int x = 1; x < genome.length; x++)

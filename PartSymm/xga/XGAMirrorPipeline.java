@@ -43,7 +43,7 @@ public class XGAMirrorPipeline extends BreedingPipeline
 		// mirror 'em
 		for (int q = start; q < n + start; q++) 
 		{
-			((VectorIndividual) inds[q]).defaultMutate(state, thread);
+			((XGAIndividual) inds[q]).mirror(state, thread);
 			((VectorIndividual) inds[q]).evaluated = false;
 		}
 
