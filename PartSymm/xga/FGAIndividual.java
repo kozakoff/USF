@@ -1,13 +1,12 @@
 package xga;
 
 import ec.*;
-import ec.vector.*;
 import ec.util.*;
-//import java.io.*;
 
 public class FGAIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
+	private StringBuilder mirrorString = new StringBuilder();
  
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -114,8 +113,16 @@ public class FGAIndividual extends XGAIndividual {
 	{
 		
 		//Probability, then,  
+		//Meta gene values
+		//2 - No meta gene present
+		//1 - Flip meta
+		//0 - Do not flip
 		
+		FGASpecies s = (FGASpecies) species;
 		int currMetaGene, lastMetaGene = 0;
+		boolean yesMirror = false;
+		
+		mirrorString.setLength(0);
 
 		for (int x = 0; x < genome.length; x+=2)
 		{
@@ -124,19 +131,25 @@ public class FGAIndividual extends XGAIndividual {
 			if(currMetaGene != 2)
 			{
 				lastMetaGene = genome[x];
+				yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
+				mirrorString.append(yesMirror);
+				mirrorString.append(",");
 			}
 			else
 			{
 				//No meta gene so keep lastMetaGene
 			}
 			
-			if(lastMetaGene == 0)
+			if(yesMirror) 
 			{
-				genome[x] = (genome[x+1]==1 ? 1 : 0);
-			}
-			else
-			{
-				genome[x] = (genome[x+1]==1 ? 0 : 1);
+				if(lastMetaGene == 0)
+				{
+					genome[x] = (genome[x+1]==1 ? 1 : 0);
+				}
+				else
+				{
+					genome[x] = (genome[x+1]==1 ? 0 : 1);
+				}
 			}
 		}
 	}
@@ -157,7 +170,12 @@ public class FGAIndividual extends XGAIndividual {
 			
 		m.append("\r\n");
 		m.append(s);
-		//m.append("\r\n");
+		m.append("\r\nMirror Prob String: ");
+		
+		if(mirrorString.length() > 0)
+		{
+			m.append(mirrorString.substring(0,mirrorString.length()-1));	
+		}
 		
 		return m.toString();
 	}
@@ -173,6 +191,12 @@ public class FGAIndividual extends XGAIndividual {
 		}
 		
 		return thisGenome;
+	}
+
+	@Override
+	public int[] getPhenome() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

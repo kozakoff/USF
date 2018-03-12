@@ -1,0 +1,134 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7368421052631579
+Meta: 1
+Geno: 11100110111101011110
+Mirror Prob String: 
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7894736842105263
+Meta: 1
+Geno: 11101110111101011110
+Mirror Prob String: false
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7368421052631579
+Meta: 1
+Geno: 11100111011111110101
+Mirror Prob String: false
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7894736842105263
+Meta: 1
+Geno: 10111111011011011110
+Mirror Prob String: false
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 1
+Geno: 10111111011111111010
+Mirror Prob String: false
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 1
+Geno: 11111111011111111010
+Mirror Prob String: false
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 1
+Geno: 11111111011111111010
+Mirror Prob String: false
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 1
+Geno: 11111111011111111010
+Mirror Prob String: false
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 1
+Geno: 11111111011111111010
+Mirror Prob String: false
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 1
+Geno: 11111111011111011110
+Mirror Prob String: false
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 1
+Geno: 11111111111111011110
+Mirror Prob String: false
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 1
+Geno: 11111111111111011110
+Mirror Prob String: false
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 1
+Geno: 11111111111111011110
+Mirror Prob String: false
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 1.0
+Meta: 1
+Geno: 11111111111111111110
+Mirror Prob String: false
+
+Best Individual of Run:
+Subpopulation 0:
+Evaluated: T
+Fitness: 1.0
+Meta: 1
+Geno: 11111111111111111110
+Mirror Prob String: false

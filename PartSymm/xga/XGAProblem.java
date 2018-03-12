@@ -1,7 +1,6 @@
 package xga;
 
 import ec.simple.*;
-import ec.vector.*;
 
 public class XGAProblem extends ec.Problem implements SimpleProblemForm 
 {

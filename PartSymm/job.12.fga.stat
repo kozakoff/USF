@@ -1,0 +1,1808 @@
+
+Generation: 0
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.6842105263157895
+Meta: 22021201221010120001
+Geno: 11101111001110101100
+Mirror Prob String: 
+
+Generation: 1
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7368421052631579
+Meta: 01002001120121221001
+Geno: 10011111101101110111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false
+
+Generation: 2
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7368421052631579
+Meta: 02221102200121221001
+Geno: 11010011111101110111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false
+
+Generation: 3
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7368421052631579
+Meta: 02221102200121221001
+Geno: 11010011111101110111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 4
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7368421052631579
+Meta: 01002001121110200001
+Geno: 10011111101010111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 5
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.7894736842105263
+Meta: 01002002201111221001
+Geno: 10011111111011110111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 6
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 7
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 8
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 9
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 10
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 11
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 12
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 13
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 14
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 15
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 16
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 17
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 18
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 19
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 20
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01202002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 21
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 22
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 23
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002002201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 24
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 25
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 26
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 27
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 28
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8421052631578947
+Meta: 01002001201111221001
+Geno: 10011111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 29
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 30
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 31
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 32
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111201021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 33
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 34
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 35
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 36
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 37
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 01002001201111221021
+Geno: 10111111111111111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 38
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 01002001201111221021
+Geno: 10111111111111111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 39
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 01002001201111221021
+Geno: 10111111111111111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 40
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 01002001201111221021
+Geno: 10111111111111111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 41
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 01002001201111221021
+Geno: 10111111111111111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 42
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 43
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 44
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01000001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 45
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 46
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 47
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01000001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 48
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01000001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 49
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 50
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01000001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 51
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01000001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 52
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 53
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 54
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01000001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 55
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001001111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 56
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 57
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 58
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 59
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 60
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 61
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 62
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 63
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 64
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 65
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 66
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 67
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 68
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 69
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 70
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 71
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 72
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 73
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 74
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 75
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 76
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 77
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 78
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 79
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 80
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 81
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 82
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 83
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 84
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 85
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 86
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 87
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 88
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 89
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 90
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 91
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 92
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 93
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 94
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 95
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 96
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 97
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 98
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 99
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 100
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 101
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 102
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 103
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 104
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 105
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 106
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 107
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 108
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 109
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 110
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 111
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 112
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 113
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 114
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 115
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 116
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 117
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 118
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 119
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 120
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 121
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 122
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 02002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 123
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 124
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 125
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 126
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 127
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 128
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 129
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 130
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 131
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001221111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 132
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 133
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 134
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 135
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 136
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 137
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 138
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 139
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 140
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 141
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 142
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 143
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 144
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 145
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 146
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112121021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 147
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 148
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 149
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 150
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 151
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 152
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 153
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 154
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 155
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 156
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 157
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201111221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 158
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 159
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 160
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 161
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 162
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 01002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 163
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 164
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 165
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 166
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 167
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 168
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 169
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 170
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 171
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221221
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 172
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221221
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 173
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221221
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 174
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221221
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 175
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 176
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221221
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 177
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 178
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 179
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 180
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 181
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 182
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 183
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 184
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 185
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 186
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 187
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 188
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 189
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221020
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 190
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 191
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 192
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 193
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 194
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112201021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 195
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112201021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 196
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 197
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 198
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Generation: 199
+Best Individual:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.8947368421052632
+Meta: 11002001201112221021
+Geno: 10111111111011111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false
+
+Best Individual of Run:
+Subpopulation 0:
+Evaluated: T
+Fitness: 0.9473684210526315
+Meta: 01002001201111221021
+Geno: 10111111111111111111
+Mirror Prob String: false,false,false,false,false,false,false,false,false,false,false,false,false,false

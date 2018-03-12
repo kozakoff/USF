@@ -14,7 +14,9 @@ import ec.vector.*;
 
 public class MaxOnes extends Problem implements SimpleProblemForm
     {
-    public void evaluate(final EvolutionState state,
+	private static final long serialVersionUID = 1L;
+
+	public void evaluate(final EvolutionState state,
         final Individual ind,
         final int subpopulation,
         final int threadnum)

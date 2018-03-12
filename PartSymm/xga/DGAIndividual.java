@@ -2,11 +2,11 @@ package xga;
 
 import ec.EvolutionState;
 import ec.util.Parameter;
-import ec.vector.*;
 
 public class DGAIndividual extends XGAIndividual {
 
 	private static final long serialVersionUID = 1L;
+	private StringBuilder mirrorString = new StringBuilder();
 
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -14,12 +14,12 @@ public class DGAIndividual extends XGAIndividual {
 
 		Parameter def = defaultBase();
     
-		if (!(species instanceof IntegerVectorSpecies))
+		if (!(species instanceof XGASpecies))
 		{
-			state.output.fatal("DGAIndividual requires an IntegerVectorSpecies", base, def);
+			state.output.fatal("DGAIndividual requires an XGASpecies", base, def);
 		}
         
-		IntegerVectorSpecies s = (IntegerVectorSpecies) species;
+		XGASpecies s = (XGASpecies) species;
     
 		genome = new int[s.genomeSize+1];
     }
@@ -41,8 +41,9 @@ public class DGAIndividual extends XGAIndividual {
 			
 		m.append("\r\n");
 		m.append(s);
-		//m.append("\r\n");
-		
+		m.append("\r\nMirror Prob String: ");
+		m.append(mirrorString);
+				
 		return m.toString();
 	}
 	
@@ -53,7 +54,7 @@ public class DGAIndividual extends XGAIndividual {
 		
 		for (int x = 1; x < genome.length; x++)
 		{
-			thisGenome[x-1] = genome[x]; //Use bits as they are stored
+			thisGenome[x-1] = genome[x];
 		}
 		
 		return thisGenome;
@@ -62,17 +63,32 @@ public class DGAIndividual extends XGAIndividual {
 	public void mirror(EvolutionState state, int thread)
 	{
 		//Probability, then, flip everything to opposite including meta gene.
-		if(genome[0]==1)
+		XGASpecies s = (XGASpecies) species;
+		boolean yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
+		
+		mirrorString.setLength(0);
+		mirrorString.append(yesMirror);
+		
+		if(yesMirror) 
 		{
-			for (int x = 1; x < genome.length; x++)
+			if(genome[0]==1)
 			{
-				genome[x] = (genome[x]==1 ? 0 : 1); //Flip all of the bits
-			}	
+				for (int x = 1; x < genome.length; x++)
+				{
+					genome[x] = (genome[x]==1 ? 0 : 1); //Flip all of the bits
+				}	
+			}
+			else
+			{
+				//Use bits as they are stored
+			}
 		}
-		else
-		{
-			//Use bits as they are stored
-		}
+	}
+
+	@Override
+	public int[] getPhenome() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

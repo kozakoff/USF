@@ -4,9 +4,10 @@
 
 # The parameters that were laid out in Tutorial 1 (see the documentation)
 
-breedthreads	= 1
+breedthreads= 1
 evalthreads	= 1
-seed.0		= 4357
+seed.0		= time
+jobs		= 15
 
 state		= ec.simple.SimpleEvolutionState
 
@@ -46,15 +47,11 @@ pop.subpop.0.species.genome-size	= 20
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
 pop.subpop.0.species.mutation-prob	= 0.001
-
-#pop.subpop.0.species.pipe					= ec.vector.breed.VectorMutationPipeline
-#pop.subpop.0.species.pipe.source.0			= ec.vector.breed.VectorCrossoverPipeline
-#pop.subpop.0.species.pipe.source.0.source.0	= ec.select.TournamentSelection
-#pop.subpop.0.species.pipe.source.0.source.1	= ec.select.TournamentSelection
+pop.subpop.0.species.mirror-prob	= .8
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
-pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.source.0							= ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.sourpipe.sce.0		= ec.vector.breed.VectorCrossoverPipeline
 pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
 pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
