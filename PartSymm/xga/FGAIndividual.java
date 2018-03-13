@@ -111,7 +111,6 @@ public class FGAIndividual extends XGAIndividual {
 	
 	public void mirror(EvolutionState state, int thread)
 	{
-		
 		//Probability, then,  
 		//Meta gene values
 		//2 - No meta gene present
@@ -175,6 +174,10 @@ public class FGAIndividual extends XGAIndividual {
 		if(mirrorString.length() > 0)
 		{
 			m.append(mirrorString.substring(0,mirrorString.length()-1));	
+		}
+		else
+		{
+			m.append(mirrorString);
 		}
 		
 		return m.toString();
