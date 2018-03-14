@@ -19,7 +19,7 @@ eval		= ec.simple.SimpleEvaluator
 stat		= ec.simple.SimpleStatistics
 exch		= ec.simple.SimpleExchanger
 
-generations				= 200
+generations				= 2000
 quit-on-run-complete	= true
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -30,7 +30,7 @@ stat.file				= $fga.stat
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 
-pop.subpop.0.size 				= 200
+pop.subpop.0.size 				= 128
 pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= xga.FGASpecies
 
@@ -43,10 +43,11 @@ vector.species.max-meta-gene = 2
 pop.subpop.0.species.fitness 		= ec.simple.SimpleFitness
 pop.subpop.0.species.ind			= xga.FGAIndividual
 
-pop.subpop.0.species.genome-size	= 128
+pop.subpop.0.species.genome-size	= 64
 pop.subpop.0.species.crossover-type	= one
+pop.subpop.0.species.crossover-rate	= .7
 pop.subpop.0.species.mutation-type  = reset
-pop.subpop.0.species.mutation-prob	= 0.001
+pop.subpop.0.species.mutation-prob	= 0.005
 pop.subpop.0.species.mirror-prob	= .8
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
