@@ -14,10 +14,10 @@ state		= ec.simple.SimpleEvolutionState
 pop			= ec.Population
 init		= ec.simple.SimpleInitializer
 finish		= ec.simple.SimpleFinisher
-breed		= ec.simple.SimpleBreeder
-eval		= ec.simple.SimpleEvaluator
-stat		= ec.simple.SimpleStatistics
-exch		= ec.simple.SimpleExchanger
+breed		= xga.XGABreeder
+eval		= xga.XGAEvaluator
+stat		= xga.XGAStatistics
+exch		= xga.XGAExchanger
 
 generations				= 400
 quit-on-run-complete	= false

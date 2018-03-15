@@ -29,7 +29,7 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		double sum = 0.0;
 		int[] genome = ind2.getGenome();
 		
-		for (int x = 0; x < genome.length-1; x++)
+		for (int x = 0; x < genome.length; x++)
 		{
 			sum += genome[x];
 		}	
@@ -39,7 +39,7 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 			state.output.fatal("Whoa!  It's not a SimpleFitness!!!", null);
 		}
 		
-		double genomeLength = (double) genome.length-1;
+		double genomeLength = (double) genome.length;
 		double fitnessValue = sum / genomeLength; //The fitness value
 		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?  
 

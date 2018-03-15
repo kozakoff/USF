@@ -8,6 +8,7 @@ package xga;
 
 import ec.*;
 import ec.util.*;
+import ec.simple.SimpleProblemForm;
 
 /* 
  * SimpleEvaluator.java

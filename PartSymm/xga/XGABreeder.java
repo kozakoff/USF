@@ -545,7 +545,7 @@ class SimpleBreederThread implements Runnable
 	Population newpop;
 	public int[] numinds;
 	public int[] from;
-	public SimpleBreeder me;
+	public XGABreeder me;
 	public EvolutionState state;
 	public int threadnum;
 

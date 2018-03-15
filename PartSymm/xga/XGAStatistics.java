@@ -11,6 +11,7 @@ import ec.steadystate.*;
 import java.io.IOException;
 import ec.util.*;
 import java.io.File;
+import ec.simple.SimpleProblemForm;
 
 /* 
  * SimpleStatistics.java

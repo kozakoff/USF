@@ -157,18 +157,29 @@ public class FGAIndividual extends XGAIndividual {
 	{
 		StringBuilder m = new StringBuilder();
 		StringBuilder s = new StringBuilder();
+		StringBuilder t = new StringBuilder();
 		
 		m.append("Meta: ");
-		s.append("Geno: ");
+		s.append("Gen1: ");
+		t.append("Gen2: ");
 		
 		for (int i = 0; i < genome.length; i+=2) 
 		{
 			m.append(genome[i]);
 			s.append(genome[i+1]);
 		}
+		
+		int[] thisGenome = getGenome();
+		
+		for (int i = 0; i < thisGenome.length; i++) 
+		{
+			t.append(thisGenome[i]);
+		}
 			
 		m.append("\r\n");
 		m.append(s);
+		m.append("\r\n");
+		m.append(t);
 		m.append("\r\nMirror Prob String: ");
 		
 		if(mirrorString.length() > 0)
