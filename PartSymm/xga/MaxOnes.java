@@ -32,9 +32,9 @@ public class MaxOnes extends Problem implements SimpleProblemForm
         for(int x=0; x<ind2.genome.length; x++)
             sum += (ind2.genome[x]==1 ? 1 : 0);
         
-        if (!(ind2.fitness instanceof SimpleFitness))
+        if (!(ind2.fitness instanceof XGAFitness))
             state.output.fatal("Whoa!  It's not a SimpleFitness!!!",null);
-        ((SimpleFitness)ind2.fitness).setFitness(state,
+        ((XGAFitness)ind2.fitness).setFitness(state,
             /// ...the fitness...
             sum/(double)ind2.genome.length,
             ///... is the individual ideal?  Indicate here...

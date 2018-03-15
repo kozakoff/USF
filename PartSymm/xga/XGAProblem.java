@@ -34,16 +34,16 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 			sum += genome[x];
 		}	
 
-		if (!(ind2.fitness instanceof SimpleFitness))
+		if (!(ind2.fitness instanceof XGAFitness))
 		{
-			state.output.fatal("Whoa!  It's not a SimpleFitness!!!", null);
+			state.output.fatal("Whoa!  It's not a XGAFitness!!!", null);
 		}
 		
 		double genomeLength = (double) genome.length;
 		double fitnessValue = sum / genomeLength; //The fitness value
 		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?  
 
-		((SimpleFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
+		((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
 		ind2.evaluated = true;
 	}
 	
