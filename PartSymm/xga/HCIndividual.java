@@ -2,22 +2,27 @@ package xga;
 
 import ec.EvolutionState;
 
-public class HCIndividual extends XGAIndividual {
+public class HCIndividual extends XGAIndividual
+{
+	private static final long serialVersionUID = 1L;
 
 	@Override
-	public int[] getGenome() {
+	public int[] getGenome()
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int[] getPhenome() {
+	public int[] getPhenome()
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void mirror(EvolutionState state, int thread) {
+	public void mirror(EvolutionState state, int thread)
+	{
 		// TODO Auto-generated method stub
 
 	}
