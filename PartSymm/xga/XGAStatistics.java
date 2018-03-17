@@ -84,6 +84,7 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 
 	/** The best individual we've found so far */
 	public Individual[] best_of_run = null;
+	public double[] average_fitness_of_run; 
 
 	/** Should we compress the file? */
 	public boolean compress;
@@ -132,6 +133,7 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 		// set up our best_of_run array -- can't do this in setup, because
 		// we don't know if the number of subpopulations has been determined yet
 		best_of_run = new Individual[state.population.subpops.length];
+		average_fitness_of_run = new double[state.population.subpops.length];
 	}
 
 	/** Logs the best individual of the generation. */
@@ -147,6 +149,8 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 		
 		for (int x = 0; x < state.population.subpops.length; x++)
 		{
+			double sum_of_fitness_subpop = state.population.subpops[x].individuals[0].fitness.fitness();
+			
 			best_i[x] = state.population.subpops[x].individuals[0];
 			
 			for (int y = 1; y < state.population.subpops[x].individuals.length; y++)
@@ -165,6 +169,11 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 					best_ind_idx = y;
 				}
 				
+				if(state.population.subpops[x].individuals[y] != null)
+				{
+					sum_of_fitness_subpop += state.population.subpops[x].individuals[y].fitness.fitness();
+				}
+				
 				if (best_i[x] == null)
 				{
 					if (!warned)
@@ -173,6 +182,11 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 						warned = true; // we do this rather than relying on warnOnce because it is much faster in a tight loop
 					}
 				}
+			}
+			
+			if(state.population.subpops[x].individuals.length > 0)
+			{
+				average_fitness_of_run[x] = sum_of_fitness_subpop / (double)state.population.subpops[x].individuals.length;
 			}
 
 			// now test to see if it's the new best_of_run
@@ -198,6 +212,7 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 			if (doGeneration)
 			{
 				state.output.println("Subpopulation " + x + ":", statisticslog);
+				state.output.println(String.format("Average Fitness of Subpop %d: %f", x, average_fitness_of_run[x]), statisticslog);
 			}
 
 			if (doGeneration)
