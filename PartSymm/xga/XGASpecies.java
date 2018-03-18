@@ -22,7 +22,7 @@ public class XGASpecies extends IntegerVectorSpecies
         
 		if (mirrorProbability==-1.0)
 		{
-			state.output.fatal("If it's going to use mirroring, XGASpecies must have a mirror probability between 0.0 and 0.1 inclusive",base.push(P_MIRRORPROB),def.push(P_MIRRORPROB));
+			state.output.fatal("If it's going to use mirroring, XGASpecies must have a mirror probability between 0.0 and 1.0 inclusive",base.push(P_MIRRORPROB),def.push(P_MIRRORPROB));
 		}
 	}
 }
