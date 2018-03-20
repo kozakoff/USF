@@ -14,12 +14,12 @@ public class HCIndividual extends XGAIndividual {
 
 		Parameter def = defaultBase();
     
-		if (!(species instanceof FGASpecies))
+		if (!(species instanceof HCSpecies))
 		{
-			state.output.fatal("FGAIndividual requires an FGASpecies", base, def);
+			state.output.fatal("HCIndividual requires an HCSpecies", base, def);
 		}
         
-		FGASpecies s = (FGASpecies) species;
+		HCSpecies s = (HCSpecies) species;
     
 		genome = new int[s.genomeSize*2];
     }
@@ -30,7 +30,7 @@ public class HCIndividual extends XGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{
-		FGASpecies s = (FGASpecies) species;
+		HCSpecies s = (HCSpecies) species;
 		for (int x = 0; x < genome.length; x++)
 		{
 			if((x % 2) == 0)
@@ -46,7 +46,7 @@ public class HCIndividual extends XGAIndividual {
 	
 	public void defaultMutate(EvolutionState state, int thread) 
 	{
-		FGASpecies s = (FGASpecies) species;
+		HCSpecies s = (HCSpecies) species;
 		for (int x = 0; x < genome.length; x++)
 		{
 			if (state.random[thread].nextBoolean(s.mutationProbability(x))) 
@@ -56,7 +56,7 @@ public class HCIndividual extends XGAIndividual {
 				{
 					switch (s.mutationType(x)) 
 					{
-					case FGASpecies.C_RESET_MUTATION:
+					case HCSpecies.C_RESET_MUTATION:
 						if((x % 2) == 0)
 						{
 							genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
@@ -67,7 +67,7 @@ public class HCIndividual extends XGAIndividual {
 						}
 						
 						break;
-					case FGASpecies.C_RANDOM_WALK_MUTATION:
+					case HCSpecies.C_RANDOM_WALK_MUTATION:
 						int min, max;
 						
 						if((x % 2) == 0)
@@ -97,7 +97,7 @@ public class HCIndividual extends XGAIndividual {
 						} while (state.random[thread].nextBoolean(s.randomWalkProbability(x)));
 						break;
 					default:
-						state.output.fatal("In FGAIndividual.defaultMutate, default case occurred when it shouldn't have");
+						state.output.fatal("In HCIndividual.defaultMutate, default case occurred when it shouldn't have");
 						break;
 					}
 					if (genome[x] != old)
@@ -117,7 +117,7 @@ public class HCIndividual extends XGAIndividual {
 		//1 - Flip meta
 		//0 - Do not flip
 		
-		FGASpecies s = (FGASpecies) species;
+		HCSpecies s = (HCSpecies) species;
 		int currMetaGene, lastMetaGene = 0;
 		boolean yesMirror = false;
 		
