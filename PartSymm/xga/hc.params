@@ -35,6 +35,7 @@ pop.subpop.0.species 			= xga.HCSpecies
 
 vector.species.min-gene = 0
 vector.species.max-gene = 1
+vector.species.number-of-metamasks = 10
 
 vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 2

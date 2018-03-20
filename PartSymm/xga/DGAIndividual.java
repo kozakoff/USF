@@ -78,17 +78,27 @@ public class DGAIndividual extends XGAIndividual {
 					genome[x] = (genome[x]==1 ? 0 : 1); //Flip all of the bits
 				}	
 			}
-			else
-			{
-				//Use bits as they are stored
-			}
 		}
 	}
 
 	@Override
-	public int[] getPhenome() {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] getPhenome() 
+	{
+		int[] phenome = new int[genome.length-1];
+		
+		if(genome[0] == 1)
+		{
+			for (int x = 0; x < phenome.length; x++)
+			{
+				phenome[x] = (genome[x+1]==1 ? 0 : 1);
+			}
+		}
+		else
+		{
+			System.arraycopy(genome, 1, phenome, 0, genome.length-1);
+		}
+		
+		return phenome;
 	}
 	
 }

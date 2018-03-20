@@ -131,7 +131,7 @@ public class FGAIndividual extends XGAIndividual {
 			{
 				lastMetaGene = genome[x];
 				yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
-				mirrorString.append(yesMirror);
+				mirrorString.append((yesMirror ? "T" : "F"));
 				mirrorString.append(",");
 			}
 			else
@@ -160,8 +160,8 @@ public class FGAIndividual extends XGAIndividual {
 		StringBuilder t = new StringBuilder();
 		
 		m.append("Meta: ");
-		s.append("Gen1: ");
-		t.append("Gen2: ");
+		s.append("Geno: ");
+		t.append("Phen: ");
 		
 		for (int i = 0; i < genome.length; i+=2) 
 		{
@@ -169,11 +169,11 @@ public class FGAIndividual extends XGAIndividual {
 			s.append(genome[i+1]);
 		}
 		
-		int[] thisGenome = getGenome();
+		int[] thisPhenome = getPhenome();
 		
-		for (int i = 0; i < thisGenome.length; i++) 
+		for (int i = 0; i < thisPhenome.length; i++) 
 		{
-			t.append(thisGenome[i]);
+			t.append(thisPhenome[i]);
 		}
 			
 		m.append("\r\n");
@@ -208,9 +208,31 @@ public class FGAIndividual extends XGAIndividual {
 	}
 
 	@Override
-	public int[] getPhenome() {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] getPhenome() 
+	{
+		int currMetaGene, lastMetaGene = 0;
+		int[] phenome = new int[genome.length/2];
+		
+		for (int x = 0; x < genome.length; x+=2)
+		{
+			//In this loop x eq the meta gene and x+1 eq the actual gene 
+			currMetaGene = genome[x];
+			if(currMetaGene != 2)
+			{
+				lastMetaGene = genome[x];
+			}
+			
+			if (lastMetaGene == 0) 
+			{
+				phenome[x / 2] = (genome[x + 1] == 1 ? 1 : 0);
+			} 
+			else 
+			{
+				phenome[x / 2] = (genome[x + 1] == 1 ? 0 : 1);
+			}
+		}
+		
+		return phenome;
 	}
 }
 

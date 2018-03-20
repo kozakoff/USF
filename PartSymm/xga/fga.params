@@ -25,19 +25,17 @@ checkpoint				= false
 checkpoint-prefix		= ec
 checkpoint-modulo		= 1
 
-#stat.file				= $fga.stat
-stat.num-children 		= 2
-stat.child.0 			= xga.XGAStatistics
-stat.child.0.file 		= $fga.stat
-stat.child.1 			= ec.simple.SimpleShortStatistics
-stat.child.1.file 		= $fga.data
+stat.file				= $fga.stat
+stat.num-children 		= 1
+stat.child.0 			= xga.XGAShortStatistics
+stat.child.0.file 		= $fga_short.stat
 
 
-pop.subpops			= 1
-
-pop.subpop.0						= xga.HCSubpopulation
+pop.subpops							= 1
+pop.subpop.0						= ec.Subpopulation
 pop.subpop.0.size 					= 128
 pop.subpop.0.duplicate-retries 		= 0
+
 pop.subpop.0.species 				= xga.FGASpecies
 pop.subpop.0.species.min-gene 		= 0
 pop.subpop.0.species.max-gene 		= 1

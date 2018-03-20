@@ -27,7 +27,7 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		XGAIndividual ind2 = (XGAIndividual) ind;
 
 		double sum = 0.0;
-		int[] genome = ind2.getGenome();
+		int[] genome = ind2.getPhenome();
 		
 		for (int x = 0; x < genome.length; x++)
 		{

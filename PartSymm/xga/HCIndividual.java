@@ -21,7 +21,7 @@ public class HCIndividual extends XGAIndividual {
         
 		HCSpecies s = (HCSpecies) species;
     
-		genome = new int[s.genomeSize*2];
+		genome = new int[s.genomeSize];
     }
 	
 	/**
@@ -33,14 +33,7 @@ public class HCIndividual extends XGAIndividual {
 		HCSpecies s = (HCSpecies) species;
 		for (int x = 0; x < genome.length; x++)
 		{
-			if((x % 2) == 0)
-			{
-				genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-			}
-			else
-			{
-				genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-			}
+			genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 		}
 	}
 	
@@ -57,29 +50,13 @@ public class HCIndividual extends XGAIndividual {
 					switch (s.mutationType(x)) 
 					{
 					case HCSpecies.C_RESET_MUTATION:
-						if((x % 2) == 0)
-						{
-							genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-						}
-						else
-						{
-							genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-						}
-						
+						genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 						break;
 					case HCSpecies.C_RANDOM_WALK_MUTATION:
 						int min, max;
 						
-						if((x % 2) == 0)
-						{
-							min = (int)s.minMetaGene(x);
-							max = (int)s.maxMetaGene(x);
-						}
-						else
-						{
-							min = (int)s.minGene(x);
-							max = (int)s.maxGene(x);
-						}
+						min = (int)s.minGene(x);
+						max = (int)s.maxGene(x);
 						
 						if (!s.mutationIsBounded(x)) 
 						{
@@ -91,9 +68,13 @@ public class HCIndividual extends XGAIndividual {
 							int n = (int) (state.random[thread].nextBoolean() ? 1 : -1);
 							int g = genome[x];
 							if ((n == 1 && g < max) || (n == -1 && g > min))
+							{
 								genome[x] = g + n;
+							}
 							else if ((n == -1 && g < max) || (n == 1 && g > min))
+							{
 								genome[x] = g - n;
+							}
 						} while (state.random[thread].nextBoolean(s.randomWalkProbability(x)));
 						break;
 					default:
@@ -118,25 +99,22 @@ public class HCIndividual extends XGAIndividual {
 		//0 - Do not flip
 		
 		HCSpecies s = (HCSpecies) species;
+		
 		int currMetaGene, lastMetaGene = 0;
 		boolean yesMirror = false;
 		
 		mirrorString.setLength(0);
 
-		for (int x = 0; x < genome.length; x+=2)
+		for (int x = 0; x < genome.length; x++)
 		{
-			//In this loop x eq the meta gene and x+1 eq the actual gene 
-			currMetaGene = genome[x];
+			//In this loop x eq the actual gene and meta gene is in a separate array 
+			currMetaGene = s.currentMetaMask[x];
 			if(currMetaGene != 2)
 			{
-				lastMetaGene = genome[x];
+				lastMetaGene = s.currentMetaMask[x];
 				yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
 				mirrorString.append(yesMirror);
 				mirrorString.append(",");
-			}
-			else
-			{
-				//No meta gene so keep lastMetaGene
 			}
 			
 			if(yesMirror) 
