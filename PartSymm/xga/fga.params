@@ -55,6 +55,6 @@ pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossover
 pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
 pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
-select.tournament.size		= 1.5
+select.tournament.size		= 2
 
 eval.problem		= xga.XGAProblem
