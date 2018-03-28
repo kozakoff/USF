@@ -21,7 +21,9 @@ public class HCIndividual extends XGAIndividual {
         
 		HCSpecies s = (HCSpecies) species;
     
-		genome = new int[s.genomeSize];
+		genome = new int[s.genomeSize*2];
+		
+		state.output.println(String.format("Generation from HCIndividual.setup: %d", state.generation),0);
     }
 	
 	/**
@@ -33,7 +35,14 @@ public class HCIndividual extends XGAIndividual {
 		HCSpecies s = (HCSpecies) species;
 		for (int x = 0; x < genome.length; x++)
 		{
-			genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+			if((x % 2) == 0)
+			{
+				genome[x] = 2;
+			}
+			else
+			{
+				genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+			}
 		}
 	}
 	
@@ -50,13 +59,29 @@ public class HCIndividual extends XGAIndividual {
 					switch (s.mutationType(x)) 
 					{
 					case HCSpecies.C_RESET_MUTATION:
-						genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+						if((x % 2) == 0)
+						{
+							genome[x] = 2;
+						}
+						else
+						{
+							genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+						}
+						
 						break;
 					case HCSpecies.C_RANDOM_WALK_MUTATION:
 						int min, max;
 						
-						min = (int)s.minGene(x);
-						max = (int)s.maxGene(x);
+						if((x % 2) == 0)
+						{
+							min = (int)s.minMetaGene(x);
+							max = (int)s.maxMetaGene(x);
+						}
+						else
+						{
+							min = (int)s.minGene(x);
+							max = (int)s.maxGene(x);
+						}
 						
 						if (!s.mutationIsBounded(x)) 
 						{
@@ -68,13 +93,9 @@ public class HCIndividual extends XGAIndividual {
 							int n = (int) (state.random[thread].nextBoolean() ? 1 : -1);
 							int g = genome[x];
 							if ((n == 1 && g < max) || (n == -1 && g > min))
-							{
 								genome[x] = g + n;
-							}
 							else if ((n == -1 && g < max) || (n == 1 && g > min))
-							{
 								genome[x] = g - n;
-							}
 						} while (state.random[thread].nextBoolean(s.randomWalkProbability(x)));
 						break;
 					default:
@@ -100,21 +121,27 @@ public class HCIndividual extends XGAIndividual {
 		
 		HCSpecies s = (HCSpecies) species;
 		
+		s.resetMetaMask(state, thread, this);
+		
 		int currMetaGene, lastMetaGene = 0;
 		boolean yesMirror = false;
 		
 		mirrorString.setLength(0);
 
-		for (int x = 0; x < genome.length; x++)
+		for (int x = 0; x < genome.length; x+=2)
 		{
-			//In this loop x eq the actual gene and meta gene is in a separate array 
-			currMetaGene = s.currentMetaMask[x];
+			//In this loop x eq the meta gene and x+1 eq the actual gene 
+			currMetaGene = genome[x];
 			if(currMetaGene != 2)
 			{
-				lastMetaGene = s.currentMetaMask[x];
+				lastMetaGene = genome[x];
 				yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
-				mirrorString.append(yesMirror);
+				mirrorString.append((yesMirror ? "T" : "F"));
 				mirrorString.append(",");
+			}
+			else
+			{
+				//No meta gene so keep lastMetaGene
 			}
 			
 			if(yesMirror) 
@@ -138,8 +165,8 @@ public class HCIndividual extends XGAIndividual {
 		StringBuilder t = new StringBuilder();
 		
 		m.append("Meta: ");
-		s.append("Gen1: ");
-		t.append("Gen2: ");
+		s.append("Geno: ");
+		t.append("Phen: ");
 		
 		for (int i = 0; i < genome.length; i+=2) 
 		{
@@ -147,11 +174,11 @@ public class HCIndividual extends XGAIndividual {
 			s.append(genome[i+1]);
 		}
 		
-		int[] thisGenome = getGenome();
+		int[] thisPhenome = getPhenome();
 		
-		for (int i = 0; i < thisGenome.length; i++) 
+		for (int i = 0; i < thisPhenome.length; i++) 
 		{
-			t.append(thisGenome[i]);
+			t.append(thisPhenome[i]);
 		}
 			
 		m.append("\r\n");
@@ -186,9 +213,31 @@ public class HCIndividual extends XGAIndividual {
 	}
 
 	@Override
-	public int[] getPhenome() {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] getPhenome() 
+	{
+		int currMetaGene, lastMetaGene = 0;
+		int[] phenome = new int[genome.length/2];
+		
+		for (int x = 0; x < genome.length; x+=2)
+		{
+			//In this loop x eq the meta gene and x+1 eq the actual gene 
+			currMetaGene = genome[x];
+			if(currMetaGene != 2)
+			{
+				lastMetaGene = genome[x];
+			}
+			
+			if (lastMetaGene == 0) 
+			{
+				phenome[x / 2] = (genome[x + 1] == 1 ? 1 : 0);
+			} 
+			else 
+			{
+				phenome[x / 2] = (genome[x + 1] == 1 ? 0 : 1);
+			}
+		}
+		
+		return phenome;
 	}
 }
 

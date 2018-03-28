@@ -13,10 +13,10 @@ state		= ec.simple.SimpleEvolutionState
 pop			= ec.Population
 init		= ec.simple.SimpleInitializer
 finish		= ec.simple.SimpleFinisher
-breed		= ec.simple.SimpleBreeder
-eval		= ec.simple.SimpleEvaluator
-stat		= ec.simple.SimpleStatistics
-exch		= ec.simple.SimpleExchanger
+breed		= xga.XGABreeder
+eval		= xga.XGAEvaluator
+stat		= xga.XGAStatistics
+exch		= xga.XGAExchanger
 
 generations				= 300
 quit-on-run-complete	= true
@@ -40,7 +40,7 @@ vector.species.number-of-metamasks = 10
 vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 2
 
-pop.subpop.0.species.fitness 		= ec.simple.SimpleFitness
+pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
 
 pop.subpop.0.species.genome-size	= 20
