@@ -1,6 +1,7 @@
 package xga;
 
 import ec.EvolutionState;
+import ec.util.MersenneTwisterFast;
 import ec.util.Parameter;
 
 public class HCSpecies extends XGASpecies
@@ -8,13 +9,15 @@ public class HCSpecies extends XGASpecies
 	private static final long serialVersionUID = 1L;
 	public final static String P_MINMETAGENE = "min-meta-gene";
     public final static String P_MAXMETAGENE = "max-meta-gene";
+    public final static String P_MINMETAMASKGENE = "min-metamask-gene";
+    public final static String P_MAXMETAMASKGENE = "max-metamask-gene";
     
 	protected long[] minMetaGene;
 	protected long[] maxMetaGene;
+	protected long minMetamaskGene;
+	protected long maxMetamaskGene;
+	protected int[] metamask;
 	
-	protected int[] metaMask;
-	private int lastGenThatResetMetaMask = -1;
-
 	public long maxMetaGene(int gene) 
 	{
 		long[] m = maxMetaGene;
@@ -43,7 +46,7 @@ public class HCSpecies extends XGASpecies
 		// create the arrays
 		minMetaGene = new long[genomeSize + 1];
 		maxMetaGene = new long[genomeSize + 1];
-		metaMask = new int[genomeSize / 2];
+		metamask = new int[genomeSize];
 
 		// LOADING GLOBAL MIN/MAX GENES
 		long _minMetaGene = state.parameters.getLongWithDefault(base.push(P_MINMETAGENE), def.push(P_MINMETAGENE), 0);
@@ -56,6 +59,10 @@ public class HCSpecies extends XGASpecies
 		
 		fill(minMetaGene, _minMetaGene);
 		fill(maxMetaGene, _maxMetaGene);
+		
+		// LOADING GLOBAL MIN/MAX GENES
+		minMetamaskGene = state.parameters.getLongWithDefault(base.push(P_MINMETAMASKGENE), def.push(P_MINMETAMASKGENE), 0);
+		maxMetamaskGene = state.parameters.getLong(base.push(P_MAXMETAMASKGENE), def.push(P_MAXMETAMASKGENE), minMetamaskGene);
 
 		// VERIFY
 		for (int x = 0; x < genomeSize + 1; x++) 
@@ -78,24 +85,35 @@ public class HCSpecies extends XGASpecies
 			}
 		}
 		
-		state.output.println(String.format("Generation from HCSpecies.setup: %d", state.generation),0);
-		
+		//state.output.println(String.format("Generation from HCSpecies.setup: %d", state.generation),0);
+		initMetamask(state, 0);
 	}
 	
-	public void resetMetaMask(EvolutionState state, int thread, HCIndividual ind)
+	private void initMetamask(EvolutionState state, int thread)
 	{
-		if(state.generation != lastGenThatResetMetaMask)
+		for(int x = 0; x < metamask.length; x++)
 		{
-			lastGenThatResetMetaMask = state.generation;
-			
-			if((state.generation % 5) == 0)
-			{
-				for (int x = 0; x < metaMask.length; x++)
-				{
-					metaMask[x] = ind.randomValueFromClosedInterval((int)minMetaGene(x), (int)maxMetaGene(x), state.random[thread]);
-				}
-				state.output.println(String.format("Reset meta mask at generation: %d", state.generation),0);				
-			}
+			metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
 		}
+		//state.output.println(String.format("Metamask initialized."),0);
 	}
+	
+	/**
+	 * Returns a random value from between min and max inclusive. This method
+	 * handles overflows that complicate this computation. Does NOT check that min
+	 * is less than or equal to max. You must check this yourself.
+	 */
+	public int randomValueFromClosedInterval(int min, int max, MersenneTwisterFast random)
+	{
+		if (max - min < 0) // we had an overflow
+		{
+			int l = 0;
+			do
+				l = random.nextInt();
+			while (l < min || l > max);
+			return l;
+		}
+		else return min + random.nextInt(max - min + 1);
+	}
+
 }

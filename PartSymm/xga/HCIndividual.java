@@ -7,7 +7,7 @@ public class HCIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
- 
+	
 	public void setup(final EvolutionState state, final Parameter base)
     {
 		super.setup(state,base);  // actually unnecessary (Individual.setup() is empty)
@@ -22,8 +22,6 @@ public class HCIndividual extends XGAIndividual {
 		HCSpecies s = (HCSpecies) species;
     
 		genome = new int[s.genomeSize*2];
-		
-		state.output.println(String.format("Generation from HCIndividual.setup: %d", state.generation),0);
     }
 	
 	/**
@@ -32,18 +30,84 @@ public class HCIndividual extends XGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{
+		
 		HCSpecies s = (HCSpecies) species;
+		StringBuilder m = new StringBuilder();
+		
+		for(int x = 0; x < genome.length; x+=2) { genome[x] = 2; }
+		
+		for(int x = 0; x < s.metamask.length; x++)
+		{
+			m.append(s.metamask[x]);
+		}
+		state.output.println(String.format("         Metamask: %s", m),0);
+		
+		m.setLength(0);
+		for(int x = 0; x < genome.length; x+=2)
+		{
+			m.append(genome[x]);
+		}
+		state.output.println(String.format("       Meta genes: %s", m),0);
+				
 		for (int x = 0; x < genome.length; x++)
 		{
 			if((x % 2) == 0)
 			{
-				genome[x] = 2;
+				if(s.metamask[x/2] == 1)
+				{
+					genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+				}
+				else
+				{
+					genome[x] = 2;
+				}
 			}
 			else
 			{
 				genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 			}
 		}
+		
+		m.setLength(0);
+		for(int x = 0; x < genome.length; x+=2)
+		{
+			m.append(genome[x]);
+		}
+		state.output.println(String.format("Masked Meta Genes: %s", m),0);
+		
+		StringBuilder g = new StringBuilder();
+		StringBuilder p = new StringBuilder();
+		
+		int[] gen = new int[s.genomeSize];
+		int[] phen = new int[s.genomeSize];
+		
+		gen = getGenome();
+		phen = getPhenome();
+		
+		for (int x = 0; x < gen.length; x++)
+		{
+			g.append(gen[x]);
+			if(gen[x] != phen[x])
+			{
+				genome[(x*2)+1] = (genome[(x*2)+1]==1 ? 0 : 1);
+			}
+		}
+		
+		state.output.println(String.format("    Original Geno: %s", g),0);
+	
+		gen = getGenome();
+		phen = getPhenome();
+		
+		g.setLength(0);
+		for (int x = 0; x < gen.length; x++)
+		{
+			g.append(gen[x]);
+			p.append(phen[x]);
+		}
+		
+		state.output.println(String.format("       Fixed Geno: %s", g),0);
+		state.output.println(String.format(" Phen eq Org Geno: %s\n\n", p),0);
+		
 	}
 	
 	public void defaultMutate(EvolutionState state, int thread) 
@@ -61,7 +125,10 @@ public class HCIndividual extends XGAIndividual {
 					case HCSpecies.C_RESET_MUTATION:
 						if((x % 2) == 0)
 						{
-							genome[x] = 2;
+							if(genome[x] != 2)
+							{
+								genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+							}
 						}
 						else
 						{
@@ -120,8 +187,6 @@ public class HCIndividual extends XGAIndividual {
 		//0 - Do not flip
 		
 		HCSpecies s = (HCSpecies) species;
-		
-		s.resetMetaMask(state, thread, this);
 		
 		int currMetaGene, lastMetaGene = 0;
 		boolean yesMirror = false;
