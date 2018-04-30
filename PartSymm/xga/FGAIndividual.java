@@ -30,6 +30,7 @@ public class FGAIndividual extends XGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{
+		state.output.println(String.format("In the FGAIndividual reset"),0);
 		FGASpecies s = (FGASpecies) species;
 		for (int x = 0; x < genome.length; x++)
 		{

@@ -11,7 +11,7 @@ public class HCIndividual extends XGAIndividual {
 	public void setup(final EvolutionState state, final Parameter base)
     {
 		super.setup(state,base);  // actually unnecessary (Individual.setup() is empty)
-
+		
 		Parameter def = defaultBase();
     
 		if (!(species instanceof HCSpecies))
@@ -30,15 +30,16 @@ public class HCIndividual extends XGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{
+		HCEvolutionState thisState = (HCEvolutionState)state;
 		
 		HCSpecies s = (HCSpecies) species;
 		StringBuilder m = new StringBuilder();
 		
 		for(int x = 0; x < genome.length; x+=2) { genome[x] = 2; }
 		
-		for(int x = 0; x < s.metamask.length; x++)
+		for(int x = 0; x < thisState.metamask.length; x++)
 		{
-			m.append(s.metamask[x]);
+			m.append(thisState.metamask[x]);
 		}
 		state.output.println(String.format("         Metamask: %s", m),0);
 		
@@ -49,23 +50,18 @@ public class HCIndividual extends XGAIndividual {
 		}
 		state.output.println(String.format("       Meta genes: %s", m),0);
 				
-		for (int x = 0; x < genome.length; x++)
+		for (int x = 0; x < genome.length; x+=2)
 		{
-			if((x % 2) == 0)
+			if(thisState.metamask[x/2] == 1)
 			{
-				if(s.metamask[x/2] == 1)
-				{
-					genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-				}
-				else
-				{
-					genome[x] = 2;
-				}
+				genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
 			}
 			else
 			{
-				genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+				genome[x] = 2;
 			}
+			
+			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 		}
 		
 		m.setLength(0);
@@ -107,6 +103,11 @@ public class HCIndividual extends XGAIndividual {
 		
 		state.output.println(String.format("       Fixed Geno: %s", g),0);
 		state.output.println(String.format(" Phen eq Org Geno: %s\n\n", p),0);
+		
+	}
+	
+	public void resetMetas(EvolutionState state, int thread)
+	{
 		
 	}
 	

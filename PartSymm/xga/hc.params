@@ -9,14 +9,16 @@ evalthreads	= 1
 seed.0		= time
 jobs		= 2
 
-state		= ec.simple.SimpleEvolutionState
+#state		= ec.simple.SimpleEvolutionState
+state		= xga.HCEvolutionState
 
 pop			= ec.Population
 init		= ec.simple.SimpleInitializer
 finish		= ec.simple.SimpleFinisher
 breed		= xga.XGABreeder
 eval		= xga.XGAEvaluator
-stat		= xga.XGAStatistics
+stat		= ec.simple.SimpleStatistics
+#xga.XGAStatistics
 exch		= xga.XGAExchanger
 
 generations				= 5
@@ -40,8 +42,9 @@ vector.species.max-gene = 1
 vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 1
 
-vector.species.min-metamask-gene = 0
-vector.species.max-metamask-gene = 1
+metamask-size = 20
+min-metamask-gene = 0
+max-metamask-gene = 1
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
