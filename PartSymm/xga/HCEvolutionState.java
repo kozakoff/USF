@@ -104,13 +104,12 @@ public class HCEvolutionState extends EvolutionState
 		{
 			resetMetas = true;
 			evolveMetamask(this,0);
+			output.println(String.format("resetMetas true at generation: %d", generation), 0);
 		}
 		else
 		{
 			resetMetas = false;
 		}
-		
-		output.println(String.format("resetMetas: %b", resetMetas), 0);
 		
 		if (resetMetas)
 		{

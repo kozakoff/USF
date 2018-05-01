@@ -7,7 +7,7 @@
 breedthreads	= 1
 evalthreads	= 1
 seed.0		= time
-jobs		= 2
+jobs		= 50
 
 #state		= ec.simple.SimpleEvolutionState
 state		= xga.HCEvolutionState
@@ -17,22 +17,24 @@ init		= ec.simple.SimpleInitializer
 finish		= ec.simple.SimpleFinisher
 breed		= xga.XGABreeder
 eval		= xga.XGAEvaluator
-stat		= ec.simple.SimpleStatistics
-#xga.XGAStatistics
+stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-generations				= 200
+generations				= 300
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
 checkpoint-modulo		= 1
 
 stat.file				= $hc.stat
+stat.num-children 		= 1
+stat.child.0 			= xga.XGAShortStatistics
+stat.child.0.file 		= $hc.out.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 
-pop.subpop.0.size 				= 10
+pop.subpop.0.size 				= 40
 pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= xga.HCSpecies
 
@@ -42,20 +44,20 @@ vector.species.max-gene = 1
 vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 1
 
-metamask-size 			= 20
+metamask-size 			= 200
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
 metamask-generations	= 50
-metamask-evolve-prob 	= .1
+metamask-evolve-prob 	= .5
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
 
-pop.subpop.0.species.genome-size	= 20
+pop.subpop.0.species.genome-size	= 200
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
 pop.subpop.0.species.mutation-prob	= 0.001
-pop.subpop.0.species.mirror-prob	= .9
+pop.subpop.0.species.mirror-prob	= 0.001
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
 pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
@@ -63,8 +65,7 @@ pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossover
 pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
 pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
-
-select.tournament.size		= 2
+select.tournament.size		= 5
 
 eval.problem		= xga.XGAProblem
 

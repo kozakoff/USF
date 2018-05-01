@@ -318,7 +318,7 @@ public class XGAShortStatistics extends Statistics
 																											// fitness
 																											// of pop
 																											// this gen
-			//state.output.print("" + (double) (popBestSoFar.fitness.fitness()) + " ", statisticslog); // best fitness of
+			state.output.print("" + (double) (popBestSoFar.fitness.fitness()) + " ", statisticslog); // best fitness of
 																										// pop so far
 		}
 

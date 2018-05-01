@@ -31,11 +31,15 @@ public class HCIndividual extends XGAIndividual {
 	public void reset(EvolutionState state, int thread) 
 	{
 		HCSpecies s = (HCSpecies) species;
+		StringBuilder g = new StringBuilder();
 		
 		for (int x = 0; x < genome.length; x+=2)
 		{
 			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+			g.append(genome[x+1]);
 		}
+		
+		//state.output.println(String.format("    Original Geno: %s", g),0);
 		
 		//resetMetas(state, thread);
 	}
@@ -52,14 +56,14 @@ public class HCIndividual extends XGAIndividual {
 		{
 			m.append(thisState.metamask[x]);
 		}
-		state.output.println(String.format("         Metamask: %s", m),0);
+		//state.output.println(String.format("         Metamask: %s", m),0);
 		
 		m.setLength(0);
 		for(int x = 0; x < genome.length; x+=2)
 		{
 			m.append(genome[x]);
 		}
-		state.output.println(String.format("       Meta genes: %s", m),0);
+		//state.output.println(String.format("       Meta genes: %s", m),0);
 		
 		for (int x = 0; x < genome.length; x+=2)
 		{
@@ -78,7 +82,7 @@ public class HCIndividual extends XGAIndividual {
 		{
 			m.append(genome[x]);
 		}
-		state.output.println(String.format("Masked Meta Genes: %s", m),0);
+		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
 		
 		StringBuilder g = new StringBuilder();
 		StringBuilder p = new StringBuilder();
@@ -98,7 +102,7 @@ public class HCIndividual extends XGAIndividual {
 			}
 		}
 		
-		state.output.println(String.format("    Original Geno: %s", g),0);
+		//state.output.println(String.format("    Original Geno: %s", g),0);
 	
 		gen = getGenome();
 		phen = getPhenome();
@@ -110,8 +114,8 @@ public class HCIndividual extends XGAIndividual {
 			p.append(phen[x]);
 		}
 		
-		state.output.println(String.format("       Fixed Geno: %s", g),0);
-		state.output.println(String.format(" Phen eq Org Geno: %s\n\n", p),0);
+		//state.output.println(String.format("       Fixed Geno: %s", g),0);
+		//state.output.println(String.format(" Phen eq Org Geno: %s\n\n", p),0);
 	}
 	
 	public void defaultMutate(EvolutionState state, int thread) 

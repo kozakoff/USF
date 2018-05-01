@@ -11,7 +11,7 @@ seed.0		= time
 
 state		= ec.simple.SimpleEvolutionState
 
-jobs 		= 15
+jobs 		= 50
 
 pop			= ec.Population
 init		= ec.simple.SimpleInitializer
@@ -21,7 +21,7 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-generations				= 400
+generations				= 300
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -30,12 +30,12 @@ checkpoint-modulo		= 1
 stat.file				= $dga.stat
 stat.num-children 		= 1
 stat.child.0 			= xga.XGAShortStatistics
-stat.child.0.file 		= $dga_short.stat
+stat.child.0.file 		= $dga.out.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 
-pop.subpop.0.size 				= 10
+pop.subpop.0.size 				= 40
 pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= xga.XGASpecies
 
@@ -45,11 +45,11 @@ vector.species.max-gene = 1
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.DGAIndividual
 
-pop.subpop.0.species.genome-size	= 20
+pop.subpop.0.species.genome-size	= 200
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
-pop.subpop.0.species.mutation-prob	= 0.01
-pop.subpop.0.species.mirror-prob	= 0
+pop.subpop.0.species.mutation-prob	= 0.001
+pop.subpop.0.species.mirror-prob	= 0.001
 
 #pop.subpop.0.species.pipe					= ec.vector.breed.VectorMutationPipeline
 #pop.subpop.0.species.pipe.source.0			= ec.vector.breed.VectorCrossoverPipeline
@@ -62,6 +62,6 @@ pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossover
 pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
 pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
-select.tournament.size		= 2
+select.tournament.size		= 5
 
 eval.problem		= xga.XGAProblem
