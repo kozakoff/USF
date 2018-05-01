@@ -21,7 +21,7 @@ stat		= ec.simple.SimpleStatistics
 #xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-generations				= 5
+generations				= 200
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -42,9 +42,11 @@ vector.species.max-gene = 1
 vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 1
 
-metamask-size = 20
-min-metamask-gene = 0
-max-metamask-gene = 1
+metamask-size 			= 20
+min-metamask-gene 		= 0
+max-metamask-gene 		= 1
+metamask-generations	= 50
+metamask-evolve-prob 	= .1
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
@@ -55,11 +57,13 @@ pop.subpop.0.species.mutation-type  = reset
 pop.subpop.0.species.mutation-prob	= 0.001
 pop.subpop.0.species.mirror-prob	= .9
 
-pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
-pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossoverPipeline
-pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe										= xga.XGAMetamaskPipeline
+pop.subpop.0.species.pipe.source.0								= xga.XGAMirrorPipeline
+pop.subpop.0.species.pipe.source.0.source.0						= ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0			= ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0.source.0	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.0.source.0.source.1	= ec.select.TournamentSelection
+
 
 select.tournament.size		= 2
 

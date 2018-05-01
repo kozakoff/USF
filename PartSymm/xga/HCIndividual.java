@@ -30,8 +30,19 @@ public class HCIndividual extends XGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{
-		HCEvolutionState thisState = (HCEvolutionState)state;
+		HCSpecies s = (HCSpecies) species;
 		
+		for (int x = 0; x < genome.length; x+=2)
+		{
+			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+		}
+		
+		//resetMetas(state, thread);
+	}
+	
+	public void resetMetas(EvolutionState state, int thread)
+	{
+		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
 		StringBuilder m = new StringBuilder();
 		
@@ -49,7 +60,7 @@ public class HCIndividual extends XGAIndividual {
 			m.append(genome[x]);
 		}
 		state.output.println(String.format("       Meta genes: %s", m),0);
-				
+		
 		for (int x = 0; x < genome.length; x+=2)
 		{
 			if(thisState.metamask[x/2] == 1)
@@ -60,8 +71,6 @@ public class HCIndividual extends XGAIndividual {
 			{
 				genome[x] = 2;
 			}
-			
-			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 		}
 		
 		m.setLength(0);
@@ -103,12 +112,6 @@ public class HCIndividual extends XGAIndividual {
 		
 		state.output.println(String.format("       Fixed Geno: %s", g),0);
 		state.output.println(String.format(" Phen eq Org Geno: %s\n\n", p),0);
-		
-	}
-	
-	public void resetMetas(EvolutionState state, int thread)
-	{
-		
 	}
 	
 	public void defaultMutate(EvolutionState state, int thread) 

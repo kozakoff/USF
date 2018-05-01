@@ -9,11 +9,16 @@ public class HCEvolutionState extends EvolutionState
     public final static String P_MINMETAMASKGENE = "min-metamask-gene";
     public final static String P_MAXMETAMASKGENE = "max-metamask-gene";
     public final static String P_METAMASKSIZE = "metamask-size";
+    public final static String P_METAMASKGENS = "metamask-generations";
+    public final static String P_METAMASKEVOLVEPROB = "metamask-evolve-prob";
     
 	protected long minMetamaskGene;
 	protected long maxMetamaskGene;
 	protected int[] metamask;
 	public int metamaskSize;
+	public int metamaskGenerations;
+	public double metamaskEvolveProb;
+	public boolean resetMetas = false;
 	
 	public void setup(final EvolutionState state, final Parameter base)
 	{
@@ -37,6 +42,12 @@ public class HCEvolutionState extends EvolutionState
 		minMetamaskGene = parameters.getLongWithDefault(p, null, 0);
 		p = new Parameter(P_MAXMETAMASKGENE);
 		maxMetamaskGene = parameters.getLong(p, null, minMetamaskGene);
+		p = new Parameter(P_METAMASKGENS);
+		metamaskGenerations = parameters.getInt(p, null, 0);
+		p = new Parameter(P_METAMASKEVOLVEPROB);
+		metamaskEvolveProb = parameters.getDouble(p, null, 0.0);
+		
+		state.output.println(String.format("metamaskGenerations: %d", metamaskGenerations), 0);
 		
 		initMetamask(state, 0);
 	}
@@ -89,6 +100,18 @@ public class HCEvolutionState extends EvolutionState
 	{
 		if (generation > 0) output.message("Generation " + generation);
 
+		if((generation % metamaskGenerations) == 0)
+		{
+			resetMetas = true;
+			evolveMetamask(this,0);
+		}
+		else
+		{
+			resetMetas = false;
+		}
+		
+		output.println(String.format("resetMetas: %b", resetMetas), 0);
+		
 		// EVALUATION
 		statistics.preEvaluationStatistics(this);
 		evaluator.evaluatePopulation(this);
@@ -140,15 +163,6 @@ public class HCEvolutionState extends EvolutionState
 			statistics.postCheckpointStatistics(this);
 		}
 		
-		for(int x = 0; x < population.subpops.length; x++)
-		{
-			for(int y = 0; y < population.subpops[x].individuals.length; x++)
-			{
-				HCIndividual ind = (HCIndividual)population.subpops[x].individuals[y];
-				ind.resetMetas(this, 0);
-			}
-		}
-
 		return R_NOTDONE;
 	}
 
@@ -163,6 +177,18 @@ public class HCEvolutionState extends EvolutionState
 		finisher.finishPopulation(this, result);
 		exchanger.closeContacts(this, result);
 		evaluator.closeContacts(this, result);
+	}
+	
+	private void evolveMetamask(EvolutionState state, int thread)
+	{
+		for(int x = 0; x < metamask.length; x++)
+		{
+			if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
+			{
+				metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+			}
+		}
+		//state.output.println(String.format("Metamask initialized."),0);
 	}
 	
 	private void initMetamask(EvolutionState state, int thread)
