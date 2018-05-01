@@ -112,6 +112,18 @@ public class HCEvolutionState extends EvolutionState
 		
 		output.println(String.format("resetMetas: %b", resetMetas), 0);
 		
+		if (resetMetas)
+		{
+			for (Subpopulation s : this.population.subpops)
+			{
+				for (Individual i : s.individuals)
+				{
+					HCIndividual thisInd = (HCIndividual) i;
+					thisInd.resetMetas(this, 0);
+				}
+			}
+		}
+				
 		// EVALUATION
 		statistics.preEvaluationStatistics(this);
 		evaluator.evaluatePopulation(this);

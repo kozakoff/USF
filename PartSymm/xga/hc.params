@@ -57,12 +57,11 @@ pop.subpop.0.species.mutation-type  = reset
 pop.subpop.0.species.mutation-prob	= 0.001
 pop.subpop.0.species.mirror-prob	= .9
 
-pop.subpop.0.species.pipe										= xga.XGAMetamaskPipeline
-pop.subpop.0.species.pipe.source.0								= xga.XGAMirrorPipeline
-pop.subpop.0.species.pipe.source.0.source.0						= ec.vector.breed.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.0.source.0.source.0			= ec.vector.breed.VectorCrossoverPipeline
-pop.subpop.0.species.pipe.source.0.source.0.source.0.source.0	= ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.0.source.0.source.0.source.1	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
+pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
 
 select.tournament.size		= 2
