@@ -1,5 +1,7 @@
 package xga;
 
+import java.util.Arrays;
+
 import ec.*;
 import ec.util.*;
 
@@ -30,92 +32,146 @@ public class HCIndividual extends XGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{
+		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
-		StringBuilder g = new StringBuilder();
+		String m = "";
+		int[] phenOld, phenNew;
 		
-		for (int x = 0; x < genome.length; x+=2)
+		setGenotypeMetasToTwos();
+		
+		m = getArrayString(thisState.metamask);
+		//state.output.println(String.format("         Metamask: %s", m),0);
+		
+		m = getArrayString(getMetas(state));
+		//state.output.println(String.format("       Meta genes: %s", m),0);
+		
+		phenOld = getPhenome();
+		
+		combineMetamaskAndGenotypeMetas(thisState,s);
+		
+		m = getArrayString(getMetas(state));
+		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
+		
+		m = getArrayString(phenOld);
+		//state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
+		
+		fixGenes(phenOld, thisState);
+		
+		phenNew = getPhenome();
+		
+		m = getArrayString(phenNew);
+		//state.output.println(String.format("    New Phenotype: %s", m),0);
+	}
+	
+	public String getArrayString(int[] a)
+	{
+		StringBuilder m = new StringBuilder();
+		for(int x = 0; x < a.length; x++)
 		{
-			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-			g.append(genome[x+1]);
+			m.append(a[x]);
 		}
-		
-		//state.output.println(String.format("    Original Geno: %s", g),0);
-		
-		//resetMetas(state, thread);
+		return m.toString();
 	}
 	
 	public void resetMetas(EvolutionState state, int thread)
 	{
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
-		StringBuilder m = new StringBuilder();
+		String m = "";
+		int[] phenOld, phenNew;
 		
-		for(int x = 0; x < genome.length; x+=2) { genome[x] = 2; }
+		phenOld = getPhenome();
 		
-		for(int x = 0; x < thisState.metamask.length; x++)
-		{
-			m.append(thisState.metamask[x]);
-		}
+		setGenotypeMetasToTwos();
+		
+		m = getArrayString(thisState.metamask);
 		//state.output.println(String.format("         Metamask: %s", m),0);
 		
-		m.setLength(0);
-		for(int x = 0; x < genome.length; x+=2)
-		{
-			m.append(genome[x]);
-		}
+		m = getArrayString(getMetas(state));
 		//state.output.println(String.format("       Meta genes: %s", m),0);
 		
+		m = getArrayString(getGenome());
+		//state.output.println(String.format("  Genotype B4 Rst: %s", m),0);
+		
+		m = getArrayString(phenOld);
+		//state.output.println(String.format(" Phenotype B4 Rst: %s", m),0);
+		
+		fixGenes(phenOld, thisState);
+		
+		phenNew = getPhenome();
+		m = getArrayString(phenNew);
+		//state.output.println(String.format("Phenotype Aft Rst: %s", m),0);
+		
+		m = getArrayString(getGenome());
+		//state.output.println(String.format(" Genotype Aft Rst: %s", m),0);
+		
+		phenOld = phenNew;
+		
+		m = getArrayString(phenOld);
+		//state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
+		
+		combineMetamaskAndGenotypeMetas(thisState,s);
+		
+		m = getArrayString(getMetas(state));
+		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
+		
+		fixGenes(phenOld, thisState);
+		
+		phenNew = getPhenome();
+		m = getArrayString(phenNew);
+		//state.output.println(String.format("    New Phenotype: %s", m),0);
+	}
+	
+	private void checkIfPhenotypesEq(int[] p1,int[] p2) throws Exception
+	{
+		if(!Arrays.equals(p1,p2))
+		{
+			throw new Exception("Phenotypes are not equal!!");
+		}
+	}
+	
+	private void setGenotypeMetasToTwos()
+	{
+		for(int x = 0; x < genome.length; x+=2) { genome[x] = 2; }
+	}
+	
+	private void fixGenes(int[] OriginalPhenotype, HCEvolutionState state)
+	{
+		int[] newPhenotype = getPhenome();
+ 
+		for (int x = 0; x < OriginalPhenotype.length; x++)
+		{
+			if(newPhenotype[x] != OriginalPhenotype[x])
+			{
+				genome[(x*2)+1] = (genome[(x*2)+1]==1 ? 0 : 1);
+			}
+		}
+		
+		try
+		{
+			checkIfPhenotypesEq(OriginalPhenotype, getPhenome());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			state.output.fatal(String.format("Org Phenotype: %s\r\nNew Phenotype: %s", getArrayString(OriginalPhenotype), getArrayString(getPhenome())));
+			System.exit(100);
+		}
+	}
+	
+	private void combineMetamaskAndGenotypeMetas(HCEvolutionState thisState, HCSpecies species)
+	{
 		for (int x = 0; x < genome.length; x+=2)
 		{
 			if(thisState.metamask[x/2] == 1)
 			{
-				genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+				genome[x] = randomValueFromClosedInterval((int)species.minMetaGene(x), (int)species.maxMetaGene(x), thisState.random[0]);
 			}
 			else
 			{
 				genome[x] = 2;
 			}
 		}
-		
-		m.setLength(0);
-		for(int x = 0; x < genome.length; x+=2)
-		{
-			m.append(genome[x]);
-		}
-		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
-		
-		StringBuilder g = new StringBuilder();
-		StringBuilder p = new StringBuilder();
-		
-		int[] gen = new int[s.genomeSize];
-		int[] phen = new int[s.genomeSize];
-		
-		gen = getGenome();
-		phen = getPhenome();
-		
-		for (int x = 0; x < gen.length; x++)
-		{
-			g.append(gen[x]);
-			if(gen[x] != phen[x])
-			{
-				genome[(x*2)+1] = (genome[(x*2)+1]==1 ? 0 : 1);
-			}
-		}
-		
-		//state.output.println(String.format("    Original Geno: %s", g),0);
-	
-		gen = getGenome();
-		phen = getPhenome();
-		
-		g.setLength(0);
-		for (int x = 0; x < gen.length; x++)
-		{
-			g.append(gen[x]);
-			p.append(phen[x]);
-		}
-		
-		//state.output.println(String.format("       Fixed Geno: %s", g),0);
-		//state.output.println(String.format(" Phen eq Org Geno: %s\n\n", p),0);
 	}
 	
 	public void defaultMutate(EvolutionState state, int thread) 
@@ -272,6 +328,17 @@ public class HCIndividual extends XGAIndividual {
 		return m.toString();
 	}
 
+	public int[] getMetas(EvolutionState state) 
+	{
+		int[] metas = new int[genome.length/2];
+
+		for (int x = 0; x < genome.length; x+=2)
+		{
+			metas[x/2] = genome[(x)];
+		}
+		
+		return metas;
+	}
 	
 	public int[] getGenome() 
 	{
