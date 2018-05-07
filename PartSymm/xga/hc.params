@@ -9,7 +9,6 @@ evalthreads	= 1
 seed.0		= time
 jobs		= 50
 
-#state		= ec.simple.SimpleEvolutionState
 state		= xga.HCEvolutionState
 
 pop			= ec.Population
