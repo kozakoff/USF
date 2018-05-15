@@ -2,8 +2,8 @@
 # Desc: Utilities for aggregating and evaluating ECJ Short Statistics output files.
 
 
-doAnalysis <- function(files) {
-  
+doAnalysis <- function(files) 
+{
   s <- strsplit(names(files)[1],".",fixed=TRUE)
   cols <- c("Gen",paste("Job",s[[1]][2]))
   
@@ -47,18 +47,44 @@ doPlots <- function(hc,fga,dga,sga,title="")
 {
   plot(hc[,"Gen"],hc[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
   at <- pretty(hc[,"rowMeans"])
-  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
+  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
   lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
   lines(dga[,"Gen"],dga[,"rowMeans"],col="green")
   lines(fga[,"Gen"],fga[,"rowMeans"],col="red")
   lines(sga[,"Gen"],sga[,"rowMeans"],col="black")
-  legend("bottomright",inset=0.05,legend=c("DGA","FGA","HC","SGA"),col=c("green", "red","blue","black"), lty=1:2, cex=0.8,box.lty=0)
+  legend("bottomright",inset=0.02,legend=c("DGA","FGA","HC","SGA"),col=c("green", "red","blue","black"), lty=1:2, cex=0.8,box.lty=0)
 }
 
 plotOne <- function(ecjstat,title="") 
 {
   plot(ecjstat[,"Gen"],ecjstat[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
   at <- pretty(ecjstat[,"rowMeans"])
-  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
+  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
   lines(ecjstat[,"Gen"],ecjstat[,"rowMeans"],col="blue")
 }
+
+plotTwo <- function(v1,v1Title="",v2,v2Title="",mainTitle="") 
+{
+  plot(v1[,"Gen"],v1[,"rowMeans"],main=mainTitle,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
+  at <- pretty(v1[,"rowMeans"])
+  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
+  lines(v1[,"Gen"],v1[,"rowMeans"],col="blue")
+  lines(v2[,"Gen"],v2[,"rowMeans"],col="red")
+  legend("bottomright",inset=0.02,legend=c(v1Title,v2Title),col=c("red","blue"), lty=1:2, cex=0.8,box.lty=0)
+}
+
+rerunStats <- function()
+{
+  hcFiles <- readFiles("~/git/USF/PartSymm/xga/exp/hc")
+  sgaFiles <- readFiles("~/git/USF/PartSymm/xga/exp/sga")
+  dgaFiles <- readFiles("~/git/USF/PartSymm/xga/exp/dga")
+  fgaFiles <- readFiles("~/git/USF/PartSymm/xga/exp/fga")
+  
+  hc <- doAnalysis(hcFiles)
+  sga <- doAnalysis(sgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  fga <- doAnalysis(fgaFiles)
+  
+  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,title="RR Fitness Over 4k Gens")
+}
+

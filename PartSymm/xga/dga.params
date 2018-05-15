@@ -21,7 +21,7 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-generations				= 300
+generations				= 4000
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
