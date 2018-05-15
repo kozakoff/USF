@@ -39,6 +39,11 @@ public class HCIndividual extends XGAIndividual {
 		
 		setGenotypeMetasToTwos();
 		
+		for(int x = 0; x < genome.length; x+=2)
+		{
+			genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+		}
+		
 		m = getArrayString(thisState.metamask);
 		//state.output.println(String.format("         Metamask: %s", m),0);
 		
