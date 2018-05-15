@@ -1,3 +1,6 @@
+# Auth: Stephen Kozakoff
+# Desc: Utilities for aggregating and evaluating ECJ Short Statistics output files.
+
 
 doAnalysis <- function(files) {
   
@@ -31,7 +34,7 @@ readFiles <- function(path)
   
   cat(paste("Found ",length(files)," files that match ",path,"/",pattern,". Begin processing...",sep=""))
   
-  ecjShortStatFiles <- lapply(X=files, FUN=read.delim, sep=" ", header=FALSE)
+  invisible(ecjShortStatFiles <- lapply(X=files, FUN=read.delim, sep=" ", header=FALSE))
   
   names(ecjShortStatFiles) <- gsub("^.*/","",files) 
   
@@ -40,9 +43,9 @@ readFiles <- function(path)
   return(ecjShortStatFiles)
 }
 
-doPlots <- function(hc,fga,dga,sga) 
+doPlots <- function(hc,fga,dga,sga,title="") 
 {
-  plot(hc[,"Gen"],hc[,"rowMeans"],main="Metamask Comparison",xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
+  plot(hc[,"Gen"],hc[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
   at <- pretty(hc[,"rowMeans"])
   axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
   lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
@@ -59,12 +62,3 @@ plotOne <- function(ecjstat,title="")
   axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
   lines(ecjstat[,"Gen"],ecjstat[,"rowMeans"],col="blue")
 }
-
-#cat("\n")
-#dga <- doAnalysis("~/exp/dga","dga")
-#fga <- doAnalysis("~/exp/fga","fga")
-#sga <- doAnalysis("~/exp/sga","sga")
-#hc <- doAnalysis("~/exp/hc","hc")
-#cat("\n")
-
-#doPlots(hc=hc,dga=dga,fga=fga,sga=sga)

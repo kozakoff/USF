@@ -1,16 +1,38 @@
 package xga;
 
+import ec.EvolutionState;
 import ec.simple.*;
+import ec.util.Parameter;
+import ec.vector.IntegerVectorIndividual;
 
 public class XGAProblem extends ec.Problem implements SimpleProblemForm 
 {
-	// ind is the individual to be evaluated.
-	// We're given state and threadnum primarily so we
-	// have access to a random number generator
-	// (in the form: state.random[threadnum] )
-	// and to the output facility
-
 	private static final long serialVersionUID = 1L;
+	public final static String P_RRFITNESSCALC = "rr-fitness-calc";
+	public final static String P_RRCHUNKSIZE = "rr-chunk-size";
+	protected boolean useRRFitnessCalc = false;
+	protected int rrChunkSize = 0;
+	
+	
+	public void setup(final EvolutionState state, final Parameter base) 
+	{
+		super.setup(state, base);
+		
+		Parameter def = defaultBase();
+
+		// Should we use RR for fitness calculation?
+		useRRFitnessCalc = state.parameters.getBoolean(base.push(P_RRFITNESSCALC), def.push(P_RRFITNESSCALC), false);
+		
+		if(useRRFitnessCalc)
+		{
+			state.output.println("Using RR Fitness calculation.", 0);
+			rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
+		}
+		else
+		{
+			state.output.println("Using MaxOnes Fitness calculation.", 0);
+		}
+	}
 	
 	public void evaluate(final ec.EvolutionState state, final ec.Individual ind, final int subpopulation, final int threadnum) 
 	{
@@ -19,20 +41,65 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 			return; // don't evaluate the individual if it's already evaluated
 		}
 
-		if (!(ind instanceof XGAIndividual))
+		int[] genome = null;
+		ec.Individual ind2 = ind;
+		
+		if (ind instanceof XGAIndividual)
 		{
-			state.output.fatal("Whoa!  It's not a XGAIndividual!!!", null);
+			genome = ((XGAIndividual)ind2).getPhenome();
+		}
+		else if((ind instanceof IntegerVectorIndividual))
+		{
+			genome = ((IntegerVectorIndividual)ind2).genome;
+		}
+		else
+		{
+			state.output.fatal("ERROR: XGAProblem requires either a IntegerVectorIndividual or XGAIndividual.",null);
 		}
 
-		XGAIndividual ind2 = (XGAIndividual) ind;
-
 		double sum = 0.0;
-		int[] genome = ind2.getPhenome();
 		
-		for (int x = 0; x < genome.length; x++)
+		try 
 		{
-			sum += genome[x];
-		}	
+			if(useRRFitnessCalc)
+			{
+				if((genome.length%rrChunkSize) != 0)
+				{
+					throw new Exception(String.format("genome-size needs to be evenly divisible by the parameter %s.", P_RRCHUNKSIZE));
+				}
+				else
+				{
+					for(int x = 0; x < genome.length; x+=rrChunkSize)
+					{
+						boolean countChunk = true;
+						for(int y = x; y < x+rrChunkSize; y++)
+						{
+							if(genome[y] == 0) 
+							{ 
+								countChunk = false;
+								break;
+							}
+						}
+						
+						if(countChunk)
+						{
+							sum += rrChunkSize;
+						}
+					}
+				}
+			}
+			else
+			{
+				for (int x = 0; x < genome.length; x++)
+				{
+					sum += genome[x];
+				}
+			}
+		}
+		catch(Exception ex) {
+			state.output.fatal(ex.getMessage(), null);
+			System.exit(1);
+		}
 
 		if (!(ind2.fitness instanceof XGAFitness))
 		{

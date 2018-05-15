@@ -40,7 +40,8 @@ pop.subpop.0.species 			= ec.vector.IntegerVectorSpecies
 vector.species.min-gene = 0
 vector.species.max-gene = 1
 
-pop.subpop.0.species.fitness	= ec.simple.SimpleFitness
+pop.subpop.0.species.fitness	= xga.XGAFitness
+#ec.simple.SimpleFitness
 pop.subpop.0.species.ind		= ec.vector.IntegerVectorIndividual
 
 pop.subpop.0.species.genome-size	= 200
@@ -55,4 +56,7 @@ pop.subpop.0.species.pipe.source.0.source.1	= ec.select.TournamentSelection
 
 select.tournament.size		= 5
 
-eval.problem		= xga.MaxOnes
+eval.problem					= xga.XGAProblem
+eval.problem.rr-fitness-calc 	= true
+eval.problem.rr-chunk-size		= 10  
+#xga.MaxOnes
