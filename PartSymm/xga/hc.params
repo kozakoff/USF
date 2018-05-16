@@ -19,7 +19,7 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-generations				= 4000
+generations				= 400
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -46,7 +46,7 @@ vector.species.max-meta-gene = 1
 metamask-size 			= 200
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
-metamask-generations	= 50
+metamask-generations	= 4000
 metamask-evolve-prob 	= .5
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
@@ -55,7 +55,8 @@ pop.subpop.0.species.ind			= xga.HCIndividual
 pop.subpop.0.species.genome-size	= 200
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
-pop.subpop.0.species.mutation-prob	= 0.001
+pop.subpop.0.species.mutation-prob	= 0
+#0.001
 pop.subpop.0.species.mirror-prob	= 0.001
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
@@ -66,6 +67,6 @@ pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelec
 
 select.tournament.size		= 5
 
-eval.problem		= xga.XGAProblem
-eval.problem.rr-fitness-calc 	= true
+eval.problem					= xga.XGAProblem
+eval.problem.rr-fitness-calc 	= false
 eval.problem.rr-chunk-size		= 10

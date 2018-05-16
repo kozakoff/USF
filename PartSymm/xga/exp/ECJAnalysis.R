@@ -65,12 +65,12 @@ plotOne <- function(ecjstat,title="")
 
 plotTwo <- function(v1,v1Title="",v2,v2Title="",mainTitle="") 
 {
-  plot(v1[,"Gen"],v1[,"rowMeans"],main=mainTitle,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
-  at <- pretty(v1[,"rowMeans"])
+  plot(v2[,"Gen"],v2[,"rowMeans"],main=mainTitle,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
+  at <- pretty(v2[,"rowMeans"])
   axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
-  lines(v1[,"Gen"],v1[,"rowMeans"],col="blue")
-  lines(v2[,"Gen"],v2[,"rowMeans"],col="red")
-  legend("bottomright",inset=0.02,legend=c(v1Title,v2Title),col=c("red","blue"), lty=1:2, cex=0.8,box.lty=0)
+  lines(v1[,"Gen"],v1[,"rowMeans"],col="red")
+  lines(v2[,"Gen"],v2[,"rowMeans"],col="blue")
+  legend("bottomright",inset=0.02,legend=c(v1Title,v2Title),col=c("blue","red"), lty=1:2, cex=0.8,box.lty=0)
 }
 
 rerunStats <- function()
