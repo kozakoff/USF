@@ -96,15 +96,30 @@ public class HCEvolutionState extends EvolutionState
 		evaluator.initializeContacts(this);
 	}
 
+	public String getMetamask()
+	{
+		StringBuilder m = new StringBuilder();
+		
+		for(int i = 0; i < metamask.length; i++)
+		{
+			m.append(metamask[i]);
+		}
+		
+		return m.toString();
+	}
+	
 	public int evolve()
 	{
 		if (generation > 0) output.message("Generation " + generation);
 
-		if((generation % metamaskGenerations) == 0)
+		output.println(String.format(" Metamask is: %s", getMetamask()), 0);
+		
+		if(((generation % metamaskGenerations) == 0) && (generation > 0))
 		{
 			resetMetas = true;
 			evolveMetamask(this,0);
-			output.println(String.format("resetMetas true at generation: %d", generation), 0);
+			output.println(String.format("New metamask: %s", getMetamask()), 0);
+			//output.println(String.format("resetMetas true at generation: %d", generation), 0);
 		}
 		else
 		{
