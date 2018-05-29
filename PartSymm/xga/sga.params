@@ -7,7 +7,7 @@
 breedthreads= 1
 evalthreads	= 1
 seed.0		= time
-jobs 		= 50
+jobs 		= 2
 
 state		= ec.simple.SimpleEvolutionState
 
@@ -19,7 +19,7 @@ eval		= ec.simple.SimpleEvaluator
 stat		= ec.simple.SimpleStatistics
 exch		= ec.simple.SimpleExchanger
 
-generations				= 300
+generations				= 1500
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec

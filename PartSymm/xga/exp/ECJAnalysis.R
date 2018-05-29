@@ -28,7 +28,7 @@ doAnalysis <- function(files)
 
 readFiles <- function(path) 
 {
-  pattern = paste("job.*.*.out.stat",sep="")
+  pattern = paste("*.out.stat",sep="")
  
   files <- list.files(path=path, pattern=pattern, full.names=T, recursive=FALSE)
   
@@ -75,16 +75,16 @@ plotTwo <- function(v1,v1Title="",v2,v2Title="",mainTitle="")
 
 rerunStats <- function()
 {
-  hcFiles <- readFiles("~/git/USF/PartSymm/xga/exp/hc")
-  sgaFiles <- readFiles("~/git/USF/PartSymm/xga/exp/sga")
-  dgaFiles <- readFiles("~/git/USF/PartSymm/xga/exp/dga")
-  fgaFiles <- readFiles("~/git/USF/PartSymm/xga/exp/fga")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga")
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga")
   
   hc <- doAnalysis(hcFiles)
   sga <- doAnalysis(sgaFiles)
   dga <- doAnalysis(dgaFiles)
   fga <- doAnalysis(fgaFiles)
   
-  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,title="RR Fitness Over 4k Gens")
+  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,title="RR Fitness Calculation")
 }
 

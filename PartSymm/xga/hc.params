@@ -7,7 +7,7 @@
 breedthreads	= 1
 evalthreads	= 1
 seed.0		= time
-jobs		= 50
+jobs		= 2
 
 state		= xga.HCEvolutionState
 
@@ -19,7 +19,7 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-generations				= 4000
+generations				= 1500
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -47,7 +47,7 @@ metamask-size 			= 200
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
 metamask-generations	= 10
-metamask-evolve-prob 	= .01
+metamask-evolve-prob 	= .5
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
@@ -56,7 +56,7 @@ pop.subpop.0.species.genome-size	= 200
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
 pop.subpop.0.species.mutation-prob	= 0.001
-pop.subpop.0.species.mirror-prob	= 0.001
+pop.subpop.0.species.mirror-prob	= 0.01
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
 pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
@@ -68,4 +68,4 @@ select.tournament.size		= 5
 
 eval.problem					= xga.XGAProblem
 eval.problem.rr-fitness-calc 	= true
-eval.problem.rr-chunk-size		= 8
+eval.problem.rr-chunk-size		= 10
