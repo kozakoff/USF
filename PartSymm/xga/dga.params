@@ -7,11 +7,9 @@
 breedthreads	= 1
 evalthreads	= 1
 seed.0		= time
-#291969
+jobs 		= 2
 
 state		= ec.simple.SimpleEvolutionState
-
-jobs 		= 2
 
 pop			= ec.Population
 init		= ec.simple.SimpleInitializer
@@ -65,5 +63,5 @@ pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelec
 select.tournament.size		= 5
 
 eval.problem		= xga.XGAProblem
-eval.problem.rr-fitness-calc 	= true
+eval.problem.rr-fitness-calc 	= false
 eval.problem.rr-chunk-size		= 10

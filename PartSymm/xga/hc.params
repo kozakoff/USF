@@ -46,8 +46,8 @@ vector.species.max-meta-gene = 1
 metamask-size 			= 200
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
-metamask-generations	= 10
-metamask-evolve-prob 	= .5
+metamask-generations	= 1
+metamask-evolve-prob 	= .9
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
@@ -67,5 +67,5 @@ pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelec
 select.tournament.size		= 5
 
 eval.problem					= xga.XGAProblem
-eval.problem.rr-fitness-calc 	= true
+eval.problem.rr-fitness-calc 	= false
 eval.problem.rr-chunk-size		= 10

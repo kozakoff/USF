@@ -15,6 +15,9 @@ public class HCEvolutionState extends EvolutionState
 	protected long minMetamaskGene;
 	protected long maxMetamaskGene;
 	protected int[] metamask;
+	protected int[] prev_metamask;
+	protected double average_fitness = 0.0;
+	protected double prev_average_fitness = 0.0;
 	public int metamaskSize;
 	public int metamaskGenerations;
 	public double metamaskEvolveProb;
@@ -36,7 +39,8 @@ public class HCEvolutionState extends EvolutionState
 
 		// create the arrays
 		metamask = new int[metamaskSize];
-
+		prev_metamask = new int[metamaskSize];
+		
 		// LOADING GLOBAL MIN/MAX GENES
 		p = new Parameter(P_MINMETAMASKGENE);
 		minMetamaskGene = parameters.getLongWithDefault(p, null, 0);
@@ -205,8 +209,44 @@ public class HCEvolutionState extends EvolutionState
 		evaluator.closeContacts(this, result);
 	}
 	
+	private double getAverageFitness(EvolutionState state, int thread)
+	{
+		double fitness_sum = 0.0;
+		
+		for(int x = 0; x < state.population.subpops[0].individuals.length; x++)
+		{
+			fitness_sum += state.population.subpops[0].individuals[x].fitness.fitness(); 
+		}
+		
+		return (fitness_sum / state.population.subpops[0].individuals.length);
+	}
+	
 	private void evolveMetamask(EvolutionState state, int thread)
 	{
+		average_fitness = getAverageFitness(state, thread);
+		
+		if(average_fitness > prev_average_fitness)
+		{
+			//Store new high fitness			
+			prev_average_fitness = average_fitness;
+			//Store new high metamask
+			prev_metamask = metamask;
+		}
+		else
+		{
+			//Discard previous metamask change and try again.
+			metamask = prev_metamask;
+		}
+		
+		if(metamask == null)
+		{
+			state.output.println(String.format("Metamask is null at generation %d.", state.generation),0);
+		}
+		else
+		{
+			state.output.println(String.format("Metamask mutating, length is %d, generation is %d.", metamask.length, state.generation),0);
+		}
+		
 		for(int x = 0; x < metamask.length; x++)
 		{
 			if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
