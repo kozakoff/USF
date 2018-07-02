@@ -1,7 +1,6 @@
 # Auth: Stephen Kozakoff
 # Desc: Utilities for aggregating and evaluating ECJ Short Statistics output files.
 
-
 doAnalysis <- function(files) 
 {
   s <- strsplit(names(files)[1],".",fixed=TRUE)
