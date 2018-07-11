@@ -42,16 +42,17 @@ readFiles <- function(path)
   return(ecjShortStatFiles)
 }
 
-doPlots <- function(hc,fga,dga,sga,title="") 
+doPlots <- function(hc,fga,dga,sga,hcrr,title="") 
 {
   plot(hc[,"Gen"],hc[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
   at <- pretty(hc[,"rowMeans"])
   axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
   lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
+  lines(hcrr[,"Gen"],hcrr[,"rowMeans"],col="cyan")
   lines(dga[,"Gen"],dga[,"rowMeans"],col="green")
   lines(fga[,"Gen"],fga[,"rowMeans"],col="red")
   lines(sga[,"Gen"],sga[,"rowMeans"],col="black")
-  legend("bottomright",inset=0.02,legend=c("DGA","FGA","HC","SGA"),col=c("green", "red","blue","black"), lty=1:2, cex=0.8,box.lty=0)
+  legend("bottomright",inset=0.02,legend=c("DGA","FGA","HC","HCRR","SGA"),col=c("green","red","blue","cyan","black"), lty=1:2, cex=0.8,box.lty=0)
 }
 
 plotOne <- function(ecjstat,title="") 
@@ -74,16 +75,18 @@ plotTwo <- function(v1,v1Title="",v2,v2Title="",mainTitle="")
 
 rerunStats <- function()
 {
+  hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
   hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
   sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga")
   dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga")
   fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga")
   
+  hcrr <- doAnalysis(hcrrFiles)
   hc <- doAnalysis(hcFiles)
   sga <- doAnalysis(sgaFiles)
   dga <- doAnalysis(dgaFiles)
   fga <- doAnalysis(fgaFiles)
   
-  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,title="RR Fitness Calculation")
+  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="MaxOnes Fitness Calculation")
 }
 

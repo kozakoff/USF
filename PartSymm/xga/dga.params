@@ -4,10 +4,7 @@
 
 # The parameters that were laid out in Tutorial 1 (see the documentation)
 
-breedthreads	= 1
-evalthreads	= 1
-seed.0		= time
-jobs 		= 2
+parent.0 	= shared.params 
 
 state		= ec.simple.SimpleEvolutionState
 
@@ -18,12 +15,6 @@ breed		= xga.XGABreeder
 eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
-
-generations				= 1500
-quit-on-run-complete	= false
-checkpoint				= false
-checkpoint-prefix		= ec
-checkpoint-modulo		= 1
 
 stat.file				= $dga.stat
 stat.num-children 		= 1
@@ -61,7 +52,3 @@ pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelec
 pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
 select.tournament.size		= 5
-
-eval.problem		= xga.XGAProblem
-eval.problem.rr-fitness-calc 	= false
-eval.problem.rr-chunk-size		= 10

@@ -1,0 +1,14 @@
+breedthreads= 1
+evalthreads	= 1
+seed.0		= time
+jobs 		= 2
+
+generations				= 1500
+quit-on-run-complete	= false
+checkpoint				= false
+checkpoint-prefix		= ec
+checkpoint-modulo		= 1
+
+eval.problem					= xga.XGAProblem
+eval.problem.rr-fitness-calc 	= true
+eval.problem.rr-chunk-size		= 10

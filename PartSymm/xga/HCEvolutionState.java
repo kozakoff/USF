@@ -11,13 +11,17 @@ public class HCEvolutionState extends EvolutionState
     public final static String P_METAMASKSIZE = "metamask-size";
     public final static String P_METAMASKGENS = "metamask-generations";
     public final static String P_METAMASKEVOLVEPROB = "metamask-evolve-prob";
+    public final static String P_METAMASKRANDRESET = "metamask-rand-reset";
     
 	protected long minMetamaskGene;
 	protected long maxMetamaskGene;
 	protected int[] metamask;
 	protected int[] prev_metamask;
+	protected boolean metamaskRandomReset = false;
 	protected double average_fitness = 0.0;
 	protected double prev_average_fitness = 0.0;
+	protected double fitness_chg_acc = 0.0;
+	protected double prev_fitness_chg_acc = 0.0;
 	public int metamaskSize;
 	public int metamaskGenerations;
 	public double metamaskEvolveProb;
@@ -50,6 +54,10 @@ public class HCEvolutionState extends EvolutionState
 		metamaskGenerations = parameters.getInt(p, null, 0);
 		p = new Parameter(P_METAMASKEVOLVEPROB);
 		metamaskEvolveProb = parameters.getDouble(p, null, 0.0);
+		
+		// Use random reset (true) or fitness based reset (false) 
+		p = new Parameter(P_METAMASKRANDRESET);
+		metamaskRandomReset = parameters.getBoolean(p, null, false);
 		
 		state.output.println(String.format("metamaskGenerations: %d", metamaskGenerations), 0);
 		
@@ -223,19 +231,39 @@ public class HCEvolutionState extends EvolutionState
 	
 	private void evolveMetamask(EvolutionState state, int thread)
 	{
-		average_fitness = getAverageFitness(state, thread);
 		
-		if(average_fitness > prev_average_fitness)
+		state.output.println(String.format("Metamask random reset is %b.", metamaskRandomReset), 0);
+		
+		if(!metamaskRandomReset)
 		{
-			//Store new high fitness			
-			prev_average_fitness = average_fitness;
-			//Store new high metamask
-			prev_metamask = metamask;
-		}
-		else
-		{
-			//Discard previous metamask change and try again.
-			metamask = prev_metamask;
+			average_fitness = getAverageFitness(state, thread);
+			fitness_chg_acc = average_fitness - prev_average_fitness;
+			prev_fitness_chg_acc = prev_fitness_chg_acc == 0 ? fitness_chg_acc : prev_fitness_chg_acc;
+			prev_fitness_chg_acc = fitness_chg_acc;
+			
+			if(average_fitness > prev_average_fitness)
+			{
+				//Store new high fitness			
+				prev_average_fitness = average_fitness;
+				if (fitness_chg_acc >= prev_fitness_chg_acc) 
+				{
+					state.output.println(String.format("Fitness rate of %2f is the SAME or FASTER at generation %d.", fitness_chg_acc, state.generation), 0);
+					//Store new high metamask
+					prev_metamask = metamask;
+					prev_fitness_chg_acc = fitness_chg_acc;
+				} 
+				else 
+				{
+					state.output.println(String.format("Fitness rate of %2f is SLOWER at generation %d.", fitness_chg_acc, state.generation), 0);
+					//Discard previous metamask change and try again.
+					metamask = prev_metamask;
+				}
+			}
+			else
+			{
+				//Discard previous metamask change and try again.
+				metamask = prev_metamask;
+			}
 		}
 		
 		if(metamask == null)

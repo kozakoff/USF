@@ -47,14 +47,14 @@ public class HCIndividual extends XGAIndividual {
 		m = getArrayString(thisState.metamask);
 		//state.output.println(String.format("         Metamask: %s", m),0);
 		
-		m = getArrayString(getMetas(state));
+		m = getArrayString(getMetas());
 		//state.output.println(String.format("       Meta genes: %s", m),0);
 		
 		phenOld = getPhenome();
 		
 		combineMetamaskAndGenotypeMetas(thisState,s);
 		
-		m = getArrayString(getMetas(state));
+		m = getArrayString(getMetas());
 		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
 		
 		m = getArrayString(phenOld);
@@ -92,7 +92,7 @@ public class HCIndividual extends XGAIndividual {
 		m = getArrayString(thisState.metamask);
 		//state.output.println(String.format("         Metamask: %s", m),0);
 		
-		m = getArrayString(getMetas(state));
+		m = getArrayString(getMetas());
 		//state.output.println(String.format("       Meta genes: %s", m),0);
 		
 		m = getArrayString(getGenome());
@@ -101,7 +101,7 @@ public class HCIndividual extends XGAIndividual {
 		m = getArrayString(phenOld);
 		//state.output.println(String.format(" Phenotype B4 Rst: %s", m),0);
 		
-		fixGenes(phenOld, thisState);
+		//fixGenes(phenOld, thisState);
 		
 		phenNew = getPhenome();
 		m = getArrayString(phenNew);
@@ -110,14 +110,14 @@ public class HCIndividual extends XGAIndividual {
 		m = getArrayString(getGenome());
 		//state.output.println(String.format(" Genotype Aft Rst: %s", m),0);
 		
-		phenOld = phenNew;
+		//phenOld = phenNew;
 		
 		m = getArrayString(phenOld);
 		//state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
 		
 		combineMetamaskAndGenotypeMetas(thisState,s);
 		
-		m = getArrayString(getMetas(state));
+		m = getArrayString(getMetas());
 		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
 		
 		fixGenes(phenOld, thisState);
@@ -333,7 +333,7 @@ public class HCIndividual extends XGAIndividual {
 		return m.toString();
 	}
 
-	public int[] getMetas(EvolutionState state) 
+	public int[] getMetas() 
 	{
 		int[] metas = new int[genome.length/2];
 
