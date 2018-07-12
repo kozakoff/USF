@@ -17,6 +17,8 @@ public class HCEvolutionState extends EvolutionState
 	protected long maxMetamaskGene;
 	protected int[] metamask;
 	protected int[] prev_metamask;
+	protected int metamask_sum = 0;
+	protected int prev_metamask_sum = 0;
 	protected boolean metamaskRandomReset = false;
 	protected double average_fitness = 0.0;
 	protected double prev_average_fitness = 0.0;
@@ -59,7 +61,7 @@ public class HCEvolutionState extends EvolutionState
 		p = new Parameter(P_METAMASKRANDRESET);
 		metamaskRandomReset = parameters.getBoolean(p, null, false);
 		
-		state.output.println(String.format("metamaskGenerations: %d", metamaskGenerations), 0);
+		//state.output.println(String.format("metamaskGenerations: %d", metamaskGenerations), 0);
 		
 		initMetamask(state, 0);
 	}
@@ -231,17 +233,24 @@ public class HCEvolutionState extends EvolutionState
 	
 	private void evolveMetamask(EvolutionState state, int thread)
 	{
-		
-		state.output.println(String.format("Metamask random reset is %b.", metamaskRandomReset), 0);
-		
 		if(!metamaskRandomReset)
 		{
+			metamask_sum = 0;
+			for(int x = 0; x < metamask.length; x++)
+			{
+				metamask_sum += metamask[x];
+			}
+			
+			//KEEP LAST POSITIONS MODIFIED. 
+			//IF NEW FITNESS IS LESS THAN PREVIOUS FITNESS REMOVE 1 POSITION AT A TIME. AFTER ALL ARE REMOVED TRY MUTATING AGAIN.
+			//IF NEW FITNESS IS GREATER THAN PREVIOUS FITNESS, MUTATE AGAIN.
+			
 			average_fitness = getAverageFitness(state, thread);
 			fitness_chg_acc = average_fitness - prev_average_fitness;
 			prev_fitness_chg_acc = prev_fitness_chg_acc == 0 ? fitness_chg_acc : prev_fitness_chg_acc;
 			prev_fitness_chg_acc = fitness_chg_acc;
 			
-			if(average_fitness > prev_average_fitness)
+			if(average_fitness >= prev_average_fitness)
 			{
 				//Store new high fitness			
 				prev_average_fitness = average_fitness;
@@ -289,7 +298,8 @@ public class HCEvolutionState extends EvolutionState
 	{
 		for(int x = 0; x < metamask.length; x++)
 		{
-			metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+			//metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+			metamask[x] = 0;
 		}
 		//state.output.println(String.format("Metamask initialized."),0);
 	}

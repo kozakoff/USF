@@ -75,11 +75,11 @@ plotTwo <- function(v1,v1Title="",v2,v2Title="",mainTitle="")
 
 rerunStats <- function()
 {
-  hcrrFiles <- readFiles("C:/Users/steve/git/USF/PartSymm/xga/exp/hcrr")
-  hcFiles <- readFiles("C:/Users/steve/git/USF/PartSymm/xga/exp/hc")
-  sgaFiles <- readFiles("C:/Users/steve/git/USF/PartSymm/xga/exp/sga")
-  dgaFiles <- readFiles("C:/Users/steve/git/USF/PartSymm/xga/exp/dga")
-  fgaFiles <- readFiles("C:/Users/steve/git/USF/PartSymm/xga/exp/fga")
+  hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga")
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga")
   
   hcrr <- doAnalysis(hcrrFiles)
   hc <- doAnalysis(hcFiles)
@@ -87,6 +87,6 @@ rerunStats <- function()
   dga <- doAnalysis(dgaFiles)
   fga <- doAnalysis(fgaFiles)
   
-  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="MaxOnes Fitness Calculation")
+  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Metamask Mutation Rate 0 and All 0's")
 }
 

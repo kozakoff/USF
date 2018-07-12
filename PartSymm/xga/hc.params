@@ -25,7 +25,7 @@ pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 
 pop.subpop.0.size 				= 40
-pop.subpop.0.duplicate-retries 	= 100
+pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= xga.HCSpecies
 
 vector.species.min-gene = 0
@@ -38,8 +38,8 @@ metamask-size 			= 200
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
 metamask-generations	= 1
-metamask-evolve-prob 	= .9
-metamask-rand-reset		= true
+metamask-evolve-prob 	= .01
+metamask-rand-reset		= false
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.HCIndividual
