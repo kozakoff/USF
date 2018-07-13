@@ -87,6 +87,6 @@ rerunStats <- function()
   dga <- doAnalysis(dgaFiles)
   fga <- doAnalysis(fgaFiles)
   
-  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Metamask Mutation Rate 0 and All 0's")
+  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=20 and Metamask Mutation Rate=0.0025")
 }
 

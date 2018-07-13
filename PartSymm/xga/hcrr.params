@@ -24,7 +24,7 @@ stat.child.0.file 		= exp/hcrr/hcrr.out.stat
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 
-pop.subpop.0.size 				= 40
+pop.subpop.0.size 				= 100
 pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= xga.HCSpecies
 
@@ -38,7 +38,7 @@ metamask-size 			= 200
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
 metamask-generations	= 1
-metamask-evolve-prob 	= .01
+metamask-evolve-prob 	= 0.0025
 metamask-rand-reset		= true
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
