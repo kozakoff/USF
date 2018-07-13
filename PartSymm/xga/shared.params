@@ -14,4 +14,4 @@ checkpoint-modulo		= 1
 
 eval.problem					= xga.XGAProblem
 eval.problem.rr-fitness-calc 	= true
-eval.problem.rr-chunk-size		= 20
+eval.problem.rr-chunk-size		= 10
