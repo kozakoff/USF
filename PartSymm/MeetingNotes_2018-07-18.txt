@@ -1,0 +1,12 @@
+Meeting notes from 2018-07-18
+
+
+Count of meta genes for HC compared to FGA
+
+How the genes are place in relationship to the chunk boundaries for both FGA and HC
+
+Hamming distance how far apart 
+
+When the genotype mutates, calculate the hamming distance of phenotypes before and after mutation to see if mutation rate is the driver?
+
+Normalized average fitness
