@@ -236,43 +236,40 @@ public class HCEvolutionState extends EvolutionState
 	
 	private void mutateMetamask(EvolutionState state, int thread)
 	{
+		averageFitness = getAverageFitness(state, thread);
+		//double thisMetamaskEvolveProb = (averageFitness == 0 ? metamaskEvolveProb : ((1-averageFitness)/200));
+		double thisMetamaskEvolveProb = metamaskEvolveProb;
+		
 		if(!metamaskRandomMutation)
 		{
-			double averageFitnessDiff = 0.0;
 			metamaskSum = 0;
 			for(int x = 0; x < metamask.length; x++)
 			{
 				metamaskSum += metamask[x];
 			}
 			
-			averageFitness = getAverageFitness(state, thread);
-			
-			if(averageFitness >= prevAverageFitness)
+			if((averageFitness >= prevAverageFitness) || (metamaskChanges.size() == 0))
 			{
-				averageFitnessDiff = averageFitness - prevAverageFitness;
-				
 				//Store new high fitness			
 				prevAverageFitness = averageFitness;
 				
-				if(true) //averageFitnessDiff != 0
+				if(averageFitness != 1)
 				{
 					//Store new high metamask
 					prevMetamask = metamask;
 				
 					//The last change we made was positive so discard the previously saved changes.
 					if(metamaskChanges.size() > 0) { metamaskChanges.removeAll(metamaskChanges); }
-					
-					double thisMetamaskEvolveProb = (averageFitness == 0 ? metamaskEvolveProb : ((1-averageFitness)/200));
 
-					state.output.println(String.format("averageFitness = %f",averageFitness), 0);
-					state.output.println(String.format("thisMetamaskEvolveProb = %f",thisMetamaskEvolveProb), 0);
+					//state.output.println(String.format("averageFitness = %f",averageFitness), 0);
+					//state.output.println(String.format("thisMetamaskEvolveProb = %f",thisMetamaskEvolveProb), 0);
 					
 					//Mutate the metamask to see if we can make it better.
 					for(int x = 0; x < metamask.length; x++)
 					{
 						if (state.random[thread].nextBoolean(thisMetamaskEvolveProb)) //metamaskEvolveProb/(1 - 
 						{
-							metamask[x] = Math.abs(metamask[x]-1); //randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+							metamask[x] = 1 - metamask[x]; //Flip the bit
 							metamaskChanges.add(new int[] { x, metamask[x] });
 						}
 					}
@@ -280,23 +277,36 @@ public class HCEvolutionState extends EvolutionState
 			}
 			else
 			{
-				averageFitnessDiff = prevAverageFitness - averageFitness;
-				
-				if(averageFitnessDiff > 0 && metamaskChanges.size() > 0)
+				if(metamaskChanges.size() > 0) 
 				{
 					state.output.println(String.format("Rollback some changes..."), 0);
 					state.output.println(String.format("metamaskChanges.size() is: %d",metamaskChanges.size()), 0);
 					int randomIndex = randomValueFromClosedInterval((int)0, (int)(metamaskChanges.size()-1), state.random[thread]);
-					state.output.println(String.format("randomIndex is: %d",randomIndex), 0);
-					int[] thisChange = metamaskChanges.get(randomIndex);
-					int index = thisChange[0];
-					int value = Math.abs(thisChange[1]-1);
-				
-					//Reverting this change in the metamask
-					metamask[index] = value;
+					//state.output.println(String.format("randomIndex is: %d",randomIndex), 0);
+					
+					for(int x = 0; x < metamaskChanges.size(); x++)
+					{
+						int[] thisChange = metamaskChanges.get(x); //randomIndex
+						int index = thisChange[0];
+						int value = 1 - thisChange[1];
+					
+						//Reverting this change in the metamask
+						metamask[index] = value;	
+						state.output.println(String.format("Reverted index: %d from %d to %d", index, thisChange[1], value), 0);
+					}
 			
 					//Removing the change from metamaskChanges
-					metamaskChanges.remove(randomIndex);
+					//metamaskChanges.remove(randomIndex);
+					metamaskChanges.removeAll(metamaskChanges);
+				}
+				
+				for(int x = 0; x < metamask.length; x++)
+				{
+					if (state.random[thread].nextBoolean(thisMetamaskEvolveProb)) //metamaskEvolveProb/(1 - 
+					{
+						metamask[x] = 1 - metamask[x]; //Flip the bit
+						metamaskChanges.add(new int[] { x, metamask[x] });
+					}
 				}
 			}
 		}
@@ -304,24 +314,12 @@ public class HCEvolutionState extends EvolutionState
 		{
 			for(int x = 0; x < metamask.length; x++)
 			{
-				if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
+				if (state.random[thread].nextBoolean(thisMetamaskEvolveProb)) 
 				{
-					metamask[x] = Math.abs(metamask[x]-1); //randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+					metamask[x] = 1 - metamask[x]; //Flip the bit
 				}
 			}
 		}
-		
-		//if(metamask == null)
-		//{
-		//	state.output.println(String.format("Metamask is null at generation %d.", state.generation),0);
-		//}
-		//else
-		//{
-		//	state.output.println(String.format("Metamask mutating, length is %d, generation is %d.", metamask.length, state.generation),0);
-		//}
-		
-		
-		//state.output.println(String.format("Metamask initialized."),0);
 	}
 	
 	private void initMetamask(EvolutionState state, int thread)
@@ -335,7 +333,7 @@ public class HCEvolutionState extends EvolutionState
 		{
 			if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
 			{
-				metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+				metamask[x] = 1; //randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
 			}
 		}
 		

@@ -36,7 +36,7 @@ public class FGAIndividual extends XGAIndividual {
 		{
 			if((x % 2) == 0)
 			{
-				genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+				genome[x] = 2; //randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
 			}
 			else
 			{
