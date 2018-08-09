@@ -7,6 +7,8 @@ public class FGAIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
+	private int[] metaGenesBeforeMutation;
+	private int[] metaGenesAfterMutation;
  
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -47,6 +49,8 @@ public class FGAIndividual extends XGAIndividual {
 	
 	public void defaultMutate(EvolutionState state, int thread) 
 	{
+		metaGenesBeforeMutation = getMetas();
+		
 		FGASpecies s = (FGASpecies) species;
 		for (int x = 0; x < genome.length; x++)
 		{
@@ -108,6 +112,8 @@ public class FGAIndividual extends XGAIndividual {
 				}
 			}
 		}
+		
+		metaGenesAfterMutation = getMetas();
 	}
 	
 	public void mirror(EvolutionState state, int thread)
@@ -195,6 +201,17 @@ public class FGAIndividual extends XGAIndividual {
 		return m.toString();
 	}
 
+	public int[] getMetas() 
+	{
+		int[] metas = new int[genome.length/2];
+
+		for (int x = 0; x < genome.length; x+=2)
+		{
+			metas[x/2] = genome[(x)];
+		}
+		
+		return metas;
+	}
 	
 	public int[] getGenome() 
 	{
@@ -235,5 +252,60 @@ public class FGAIndividual extends XGAIndividual {
 		
 		return phenome;
 	}
+	
+	public int getMetaGenesHammingDistanceFromMutation()
+	{
+		int count = 0;
+		for(int x = 0; x < metaGenesBeforeMutation.length; x++)
+		{
+			if(metaGenesBeforeMutation[x] != metaGenesAfterMutation[x]) 
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public int getMetaGenesLevenshteinDistanceFromMutation()
+	{
+		int size = metaGenesBeforeMutation.length, i = size, j = size, subCost = 0;;
+		int distanceMatrix[][] = new int[size][size];
+		
+		for(j = 0; j < size; j++)
+		{
+			for(i = 0; i < size; i++)
+			{
+				distanceMatrix[i][j] = 0;
+			}
+		}
+		
+		for(i = 0; i< size; i++) 
+		{
+			distanceMatrix[i][0] = i;
+			distanceMatrix[0][i] = i;
+		}
+		
+		for(j = 0; j < size; j++)
+		{
+			for(i = 0; i < size; i++)
+			{
+				if(metaGenesBeforeMutation[i] != metaGenesAfterMutation[j]) 
+				{
+					subCost = 0;
+				}
+				else
+				{
+					subCost = 1;
+				}
+				Math.min(Math.min(
+							distanceMatrix[i-1][j]+1, 			//deletion 
+							distanceMatrix[i][j-1]+1),			//insertion
+							distanceMatrix[i-1][j-1]+subCost);	//substitution
+			}
+		}
+		
+		return distanceMatrix[size-1][size-1];
+	}
+
 }
 

@@ -111,6 +111,9 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?  
 
 		((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
+		((XGAFitness) ind2.fitness).setMetaGenesHammingDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesHammingDistanceFromMutation());
+		((XGAFitness) ind2.fitness).setMetaGenesLevenshteinDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesLevenshteinDistanceFromMutation());
+		//((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
 		//state.output.println(String.format("Generation: %d, Fitness: %2f", state.generation, fitnessValue), 0);
 		ind2.evaluated = true;
 	}

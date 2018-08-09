@@ -43,6 +43,8 @@ import java.io.*;
 public class XGAFitness extends Fitness {
 	private static final long serialVersionUID = 1L;
 	private double fitness;
+	private double metaGenesHammingDistanceFromMutation;
+	private double metaGenesLevenshteinDistanceFromMutation;
 	protected boolean isIdeal;
 
 	public Parameter defaultBase() {
@@ -69,7 +71,27 @@ public class XGAFitness extends Fitness {
 			fitness = _f;
 		isIdeal = _isIdeal;
 	}
-
+	
+	public double getMetaGenesHammingDistanceFromMutation() 
+	{
+		return this.metaGenesHammingDistanceFromMutation;
+	}
+	
+	public void setMetaGenesHammingDistanceFromMutation(double d) 
+	{
+		this.metaGenesHammingDistanceFromMutation = d;
+	}
+	
+	public double getMetaGenesLevenshteinDistanceFromMutation()
+	{
+		return this.metaGenesLevenshteinDistanceFromMutation;
+	}
+	
+	public void setMetaGenesLevenshteinDistanceFromMutation(double d) 
+	{
+		this.metaGenesLevenshteinDistanceFromMutation = d;
+	}
+	
 	public double fitness() {
 		return fitness;
 	}

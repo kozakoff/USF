@@ -4,10 +4,12 @@ import ec.EvolutionState;
 import ec.util.Parameter;
 
 
-public class DGAIndividual extends XGAIndividual {
-
+public class DGAIndividual extends XGAIndividual 
+{
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
+	private int metaGeneBeforeMutation;
+	private int metaGeneAfterMutation;
 
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -82,6 +84,13 @@ public class DGAIndividual extends XGAIndividual {
 		}
 	}
 
+	public void defaultMutate(EvolutionState state, int thread) 
+	{
+		metaGeneBeforeMutation = genome[0];
+		super.defaultMutate(state, thread);
+		metaGeneAfterMutation = genome[0];
+	}
+	
 	@Override
 	public int[] getPhenome() 
 	{
@@ -101,5 +110,26 @@ public class DGAIndividual extends XGAIndividual {
 		
 		return phenome;
 	}
+	
+	public int getMetaGenesHammingDistanceFromMutation()
+	{
+		int count = 0;
+		if(metaGeneBeforeMutation != metaGeneAfterMutation) 
+		{
+			count++;
+		}
+		return count;
+	}
+	
+	public int getMetaGenesLevenshteinDistanceFromMutation()
+	{
+		int count = 0;
+		if(metaGeneBeforeMutation != metaGeneAfterMutation) 
+		{
+			count++;
+		}
+		return count;
+	}
+
 	
 }

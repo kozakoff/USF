@@ -9,4 +9,6 @@ public abstract class XGAIndividual extends IntegerVectorIndividual
 	public abstract int[] getGenome();
 	public abstract int[] getPhenome();
 	public abstract void mirror(EvolutionState state, int thread);
+	public abstract int getMetaGenesHammingDistanceFromMutation();
+	public abstract int getMetaGenesLevenshteinDistanceFromMutation();
 }

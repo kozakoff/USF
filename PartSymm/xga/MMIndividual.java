@@ -31,4 +31,16 @@ public class MMIndividual extends XGAIndividual
 		
 	}
 
+	@Override
+	public int getMetaGenesHammingDistanceFromMutation() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMetaGenesLevenshteinDistanceFromMutation() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

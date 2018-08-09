@@ -9,6 +9,8 @@ public class HCIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
+	private int[] metaGenesBeforeMutation;
+	private int[] metaGenesAfterMutation;
 	
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -80,6 +82,8 @@ public class HCIndividual extends XGAIndividual {
 	
 	public void resetMetas(EvolutionState state, int thread)
 	{
+		metaGenesBeforeMutation = getMetas();
+		
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
 		String m = "";
@@ -125,6 +129,8 @@ public class HCIndividual extends XGAIndividual {
 		phenNew = getPhenome();
 		m = getArrayString(phenNew);
 		//state.output.println(String.format("    New Phenotype: %s", m),0);
+		
+		metaGenesAfterMutation = getMetas();
 	}
 	
 	private void checkIfPhenotypesEq(int[] p1,int[] p2) throws Exception
@@ -384,5 +390,86 @@ public class HCIndividual extends XGAIndividual {
 		
 		return phenome;
 	}
+
+	public int getMetaGenesHammingDistanceFromMutation()
+	{
+		int count = 0;
+		for(int x = 0; x < metaGenesBeforeMutation.length; x++)
+		{
+			if(metaGenesBeforeMutation[x] != metaGenesAfterMutation[x]) 
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public int getMetaGenesLevenshteinDistanceFromMutation()
+	{
+		int size = metaGenesBeforeMutation.length, i = size, j = size, subCost = 0;;
+		int distanceMatrix[][] = new int[size][size];
+		
+		for(j = 0; j < size; j++)
+		{
+			for(i = 0; i < size; i++)
+			{
+				distanceMatrix[i][j] = 0;
+			}
+		}
+		
+		for(i = 0; i< size; i++) 
+		{
+			distanceMatrix[i][0] = i;
+			distanceMatrix[0][i] = i;
+		}
+		
+		for(j = 0; j < size; j++)
+		{
+			for(i = 0; i < size; i++)
+			{
+				if(metaGenesBeforeMutation[i] != metaGenesAfterMutation[j]) 
+				{
+					subCost = 0;
+				}
+				else
+				{
+					subCost = 1;
+				}
+				Math.min(Math.min(
+							distanceMatrix[i-1][j]+1, 			//deletion 
+							distanceMatrix[i][j-1]+1),			//insertion
+							distanceMatrix[i-1][j-1]+subCost);	//substitution
+			}
+		}
+		
+		return distanceMatrix[size-1][size-1];
+	}
+
 }
+
+//		declare int d[0..m, 0..n]
+//		 
+//		  set each element in d to zero
+//		 
+//		  // source prefixes can be transformed into empty string by
+//		  // dropping all characters
+//		  for i from 1 to m:
+//		      d[i, 0] := i
+//		 
+//		  // target prefixes can be reached from empty source prefix
+//		  // by inserting every character
+//		  for j from 1 to n:
+//		      d[0, j] := j
+//		 
+//		  for j from 1 to n:
+//		      for i from 1 to m:
+//		          if s[i] = t[j]:
+//		            substitutionCost := 0
+//		          else:
+//		            substitutionCost := 1
+//		          d[i, j] := minimum(d[i-1, j] + 1,                   // deletion
+//		                             d[i, j-1] + 1,                   // insertion
+//		                             d[i-1, j-1] + substitutionCost)  // substitution
+//		 
+//		  return d[m, n]
 
