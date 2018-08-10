@@ -279,8 +279,8 @@ public class HCEvolutionState extends EvolutionState
 			{
 				if(metamaskChanges.size() > 0) 
 				{
-					state.output.println(String.format("Rollback some changes..."), 0);
-					state.output.println(String.format("metamaskChanges.size() is: %d",metamaskChanges.size()), 0);
+					//state.output.println(String.format("Rollback some changes..."), 0);
+					//state.output.println(String.format("metamaskChanges.size() is: %d",metamaskChanges.size()), 0);
 					int randomIndex = randomValueFromClosedInterval((int)0, (int)(metamaskChanges.size()-1), state.random[thread]);
 					//state.output.println(String.format("randomIndex is: %d",randomIndex), 0);
 					
@@ -292,7 +292,7 @@ public class HCEvolutionState extends EvolutionState
 					
 						//Reverting this change in the metamask
 						metamask[index] = value;	
-						state.output.println(String.format("Reverted index: %d from %d to %d", index, thisChange[1], value), 0);
+						//state.output.println(String.format("Reverted index: %d from %d to %d", index, thisChange[1], value), 0);
 					}
 			
 					//Removing the change from metamaskChanges

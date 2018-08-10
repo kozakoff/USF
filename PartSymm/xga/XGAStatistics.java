@@ -85,6 +85,8 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 	/** The best individual we've found so far */
 	public Individual[] best_of_run = null;
 	public double[] average_fitness_of_run; 
+	public double[] average_hamming_distance_of_run; 
+	public double[] average_levenshtein_distance_of_run; 
 
 	/** Should we compress the file? */
 	public boolean compress;
@@ -134,6 +136,8 @@ public class XGAStatistics extends Statistics implements SteadyStateStatisticsFo
 		// we don't know if the number of subpopulations has been determined yet
 		best_of_run = new Individual[state.population.subpops.length];
 		average_fitness_of_run = new double[state.population.subpops.length];
+		average_hamming_distance_of_run = new double[state.population.subpops.length];
+		average_levenshtein_distance_of_run = new double[state.population.subpops.length];
 	}
 
 	/** Logs the best individual of the generation. */
