@@ -158,10 +158,10 @@ plotCompareThree <- function(v1,v1Title="",v2,v2Title="",v3,v3Title="",v4,v4Titl
   lines(v1[,"Gen"],v1[,"rowMeans"],col="blue",lty="dotted")
   lines(v2[,"Gen"],v2[,"rowMeans"],col="red",lty="dotted")
   lines(v3[,"Gen"],v3[,"rowMeans"],col="green",lty="dotted")
-  lines(v4[,"Gen"],v4[,"rowMeans"],col="blue",lty="solid")
-  lines(v5[,"Gen"],v5[,"rowMeans"],col="red",lty="solid")
-  lines(v6[,"Gen"],v6[,"rowMeans"],col="green",lty="solid")
-  legend("right",inset=0.02,legend=c(v1Title,v2Title,v3Title,v4Title,v5Title,v6Title),col=c("blue","red","green","blue","red","green"), lty=c(3,3,3,1,1,1), cex=0.8,box.lty=1)
+  lines(v4[,"Gen"],v4[,"rowMeans"],col="black",lty="solid")
+  lines(v5[,"Gen"],v5[,"rowMeans"],col="magenta",lty="solid")
+  lines(v6[,"Gen"],v6[,"rowMeans"],col="cyan",lty="solid")
+  legend("right",inset=0.02,legend=c(v1Title,v2Title,v3Title,v4Title,v5Title,v6Title),col=c("blue","red","green","black","magenta","cyan"), lty=c(3,3,3,1,1,1), cex=0.8,box.lty=1)
 }
 
 rerunStatsOneAlgo <- function(type1,title)
