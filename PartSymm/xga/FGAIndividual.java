@@ -24,6 +24,8 @@ public class FGAIndividual extends XGAIndividual {
 		FGASpecies s = (FGASpecies) species;
     
 		genome = new int[s.genomeSize*2];
+		metaGenesBeforeMutation = getMetas();
+		metaGenesAfterMutation = getMetas();
     }
 	
 	/**
@@ -285,11 +287,11 @@ public class FGAIndividual extends XGAIndividual {
 			distanceMatrix[0][i] = i;
 		}
 		
-		for(j = 0; j < size; j++)
+		for(j = 1; j < size; j++)
 		{
-			for(i = 0; i < size; i++)
+			for(i = 1; i < size; i++)
 			{
-				if(metaGenesBeforeMutation[i] != metaGenesAfterMutation[j]) 
+				if(metaGenesBeforeMutation[i] == metaGenesAfterMutation[j]) 
 				{
 					subCost = 0;
 				}
@@ -297,7 +299,7 @@ public class FGAIndividual extends XGAIndividual {
 				{
 					subCost = 1;
 				}
-				Math.min(Math.min(
+				distanceMatrix[i][j] = Math.min(Math.min(
 							distanceMatrix[i-1][j]+1, 			//deletion 
 							distanceMatrix[i][j-1]+1),			//insertion
 							distanceMatrix[i-1][j-1]+subCost);	//substitution
