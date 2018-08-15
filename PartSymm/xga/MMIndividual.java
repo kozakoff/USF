@@ -21,6 +21,8 @@ public class MMIndividual extends XGAIndividual
 		//ec.Evolve.main(args);
 		return phenome;
 	}
+	
+	
 
 	@Override
 	public void mirror(EvolutionState state, int thread)
@@ -41,6 +43,12 @@ public class MMIndividual extends XGAIndividual
 	public int getMetaGenesLevenshteinDistanceFromMutation() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int[] getMetas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

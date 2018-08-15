@@ -1,7 +1,6 @@
 package xga;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ec.*;
 import ec.util.*;

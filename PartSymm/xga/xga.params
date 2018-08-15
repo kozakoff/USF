@@ -25,7 +25,7 @@ checkpoint				= false
 checkpoint-prefix		= ec
 checkpoint-modulo		= 1
 
-stat.file				= $xga.stat
+stat.file				= ../logs/$xga.stat
 
 pop.subpops			= 2
 

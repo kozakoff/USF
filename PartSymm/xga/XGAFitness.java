@@ -46,6 +46,9 @@ public class XGAFitness extends Fitness {
 	private double metaGenesHammingDistanceFromMutation;
 	private double metaGenesLevenshteinDistanceFromMutation;
 	protected boolean isIdeal;
+	protected int metaGenesZeroCount = 0;
+	protected int metaGenesOneCount = 0;
+	protected int metaGenesTwoCount = 0;
 
 	public Parameter defaultBase() {
 		return SimpleDefaults.base().push(P_FITNESS);

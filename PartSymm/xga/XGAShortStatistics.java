@@ -30,6 +30,9 @@ public class XGAShortStatistics extends Statistics
 	public Individual[] bestOfGeneration; // per-subpop best individual this generation
 	public double[] totalHammingDistanceThisGen; // per-subpop total hamming distance this generation
 	public double[] totalLevenshteinDistanceThisGen; // per-subpop total levenshtein distance this generation
+	public int[] totalZeroCountThisGen;
+	public int[] totalOneCountThisGen;
+	public int[] totalTwoCountThisGen;
 	
 	// timings
 	public long lastTime;
@@ -208,9 +211,15 @@ public class XGAShortStatistics extends Statistics
 		totalFitnessThisGen = new double[subpops]; // per-subpop mean fitness this generation
 		totalHammingDistanceThisGen = new double[subpops]; // per-subpop mean fitness this generation
 		totalLevenshteinDistanceThisGen = new double[subpops]; // per-subpop mean fitness this generation
+		totalZeroCountThisGen = new int[subpops];
+		totalOneCountThisGen = new int[subpops];
+		totalTwoCountThisGen = new int[subpops];
 		double[] meanFitnessThisGen = new double[subpops]; // per-subpop mean fitness this generation
 		double[] meanHammingDistanceThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
 		double[] meanLevenshteinDistanceThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation; 
+		double[] meanZeroCountThisGen = new double[subpops];
+		double[] meanOneCountThisGen = new double[subpops];
+		double[] meanTwoCountThisGen = new double[subpops];
 
 		prepareStatistics(state);
 
@@ -240,6 +249,9 @@ public class XGAShortStatistics extends Statistics
 					totalFitnessThisGen[x] += state.population.subpops[x].individuals[y].fitness.fitness();
 					totalHammingDistanceThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).getMetaGenesHammingDistanceFromMutation();
 					totalLevenshteinDistanceThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).getMetaGenesLevenshteinDistanceFromMutation();
+					totalZeroCountThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).metaGenesZeroCount;
+					totalOneCountThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).metaGenesOneCount;
+					totalTwoCountThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).metaGenesTwoCount;
 
 					// hook for KozaShortStatistics etc.
 					gatherExtraSubpopStatistics(state, x, y);
@@ -249,6 +261,9 @@ public class XGAShortStatistics extends Statistics
 			meanFitnessThisGen[x] = (totalIndsThisGen[x] > 0 ? totalFitnessThisGen[x] / totalIndsThisGen[x] : 0);
 			meanHammingDistanceThisGen[x] = (totalIndsThisGen[x] > 0 ? totalHammingDistanceThisGen[x] / totalIndsThisGen[x] : 0);
 			meanLevenshteinDistanceThisGen[x] = (totalIndsThisGen[x] > 0 ? totalLevenshteinDistanceThisGen[x] / totalIndsThisGen[x] : 0);
+			meanZeroCountThisGen[x] = (totalIndsThisGen[x] > 0 ? totalZeroCountThisGen[x] / totalIndsThisGen[x] : 0);
+			meanOneCountThisGen[x] = (totalIndsThisGen[x] > 0 ? totalOneCountThisGen[x] / totalIndsThisGen[x] : 0);
+			meanTwoCountThisGen[x] = (totalIndsThisGen[x] > 0 ? totalTwoCountThisGen[x] / totalIndsThisGen[x] : 0);
 			
 
 			// hook for KozaShortStatistics etc.
@@ -286,6 +301,12 @@ public class XGAShortStatistics extends Statistics
 		double popTotalHammingDistance = 0;
 		double popMeanLevenshteinDistance = 0;
 		double popTotalLevenshteinDistance = 0;
+		double popMeanZeroCount = 0;
+		int popTotalZeroCount = 0;
+		double popMeanOneCount = 0;
+		int popTotalOneCount = 0;
+		double popMeanTwoCount = 0;
+		int popTotalTwoCount = 0;
 		Individual popBestOfGeneration = null;
 		Individual popBestSoFar = null;
 
@@ -298,6 +319,10 @@ public class XGAShortStatistics extends Statistics
 			popTotalFitness += totalFitnessThisGen[x];
 			popTotalHammingDistance += totalHammingDistanceThisGen[x];
 			popTotalLevenshteinDistance += totalLevenshteinDistanceThisGen[x];
+			popTotalZeroCount += totalZeroCountThisGen[x];
+			popTotalOneCount += totalOneCountThisGen[x];
+			popTotalTwoCount += totalTwoCountThisGen[x];
+			
 			if (bestOfGeneration[x] != null && (popBestOfGeneration == null || bestOfGeneration[x].fitness.betterThan(popBestOfGeneration.fitness))) popBestOfGeneration = bestOfGeneration[x];
 			if (bestSoFar[x] != null && (popBestSoFar == null || bestSoFar[x].fitness.betterThan(popBestSoFar.fitness))) popBestSoFar = bestSoFar[x];
 
@@ -309,6 +334,9 @@ public class XGAShortStatistics extends Statistics
 		popMeanFitness = (popTotalInds > 0 ? popTotalFitness / popTotalInds : 0); // average out
 		popMeanHammingDistance = (popTotalInds > 0 ? popTotalHammingDistance / popTotalInds : 0);
 		popMeanLevenshteinDistance = (popTotalInds > 0 ? popTotalLevenshteinDistance / popTotalInds : 0);
+		popMeanZeroCount = (popTotalInds > 0 ? popTotalZeroCount / popTotalInds : 0);
+		popMeanOneCount = (popTotalInds > 0 ? popTotalOneCount / popTotalInds : 0);
+		popMeanTwoCount = (popTotalInds > 0 ? popTotalTwoCount / popTotalInds : 0);
 		
 		// hook for KozaShortStatistics etc.
 		if (output) printExtraPopStatisticsBefore(state);
@@ -316,31 +344,23 @@ public class XGAShortStatistics extends Statistics
 		// optionally print out mean size info
 		if (output && doSize)
 		{
-			state.output.print("" + (popTotalInds > 0 ? popTotalSize / popTotalInds : 0) + " ", statisticslog); // mean
-																												// size
-																												// of
-																												// pop
-																												// this
-																												// gen
+			state.output.print("" + (popTotalInds > 0 ? popTotalSize / popTotalInds : 0) + " ", statisticslog); // mean size of pop this gen
 			state.output.print("" + (popTotalIndsSoFar > 0 ? popTotalSizeSoFar / popTotalIndsSoFar : 0) + " ", statisticslog); // mean size of pop so far
-			state.output.print("" + (double) (popBestOfGeneration.size()) + " ", statisticslog); // size of best ind of
-																									// pop this gen
-			state.output.print("" + (double) (popBestSoFar.size()) + " ", statisticslog); // size of best ind of pop so
-																							// far
+			state.output.print("" + (double) (popBestOfGeneration.size()) + " ", statisticslog); // size of best ind of pop this gen
+			state.output.print("" + (double) (popBestSoFar.size()) + " ", statisticslog); // size of best ind of pop so far
 		}
 
 		// print out fitness info
 		if (output)
 		{
 			state.output.print("" + popMeanFitness + " ", statisticslog); // mean fitness of pop this gen
-			state.output.print("" + (double) (popBestOfGeneration.fitness.fitness()) + " ", statisticslog); // best
-																											// fitness
-																											// of pop
-																											// this gen
-			state.output.print("" + (double) (popBestSoFar.fitness.fitness()) + " ", statisticslog); // best fitness of
-																										// pop so far
+			state.output.print("" + (double) (popBestOfGeneration.fitness.fitness()) + " ", statisticslog); // best fitness of pop this gen
+			state.output.print("" + (double) (popBestSoFar.fitness.fitness()) + " ", statisticslog); // best fitness of pop so far
 			state.output.print("" + popMeanHammingDistance / 200 + " ", statisticslog);
 			state.output.print("" + popMeanLevenshteinDistance / 200 + " ", statisticslog);
+			state.output.print("" + popMeanZeroCount / 200 + " ", statisticslog);
+			state.output.print("" + popMeanOneCount / 200 + " ", statisticslog);
+			state.output.print("" + popMeanTwoCount / 200 + " ", statisticslog);
 		}
 
 		// hook for KozaShortStatistics etc.

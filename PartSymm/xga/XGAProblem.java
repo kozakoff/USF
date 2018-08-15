@@ -42,11 +42,30 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		}
 
 		int[] genome = null;
+		int[] metagenes = null;
+		int zeroCount = 0, oneCount = 0, twoCount = 0;
 		ec.Individual ind2 = ind;
 		
 		if (ind instanceof XGAIndividual)
 		{
 			genome = ((XGAIndividual)ind2).getPhenome();
+			metagenes = ((XGAIndividual)ind2).getMetas();
+			
+			for(int x = 0; x < metagenes.length; x++)
+			{
+				switch(metagenes[x])
+				{
+					case 0:
+						zeroCount++;
+						break;
+					case 1:
+						oneCount++;
+						break;
+					case 2:
+						twoCount++;
+						break;
+				}
+			}
 		}
 		else if((ind instanceof IntegerVectorIndividual))
 		{
@@ -108,14 +127,18 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		
 		double genomeLength = (double) genome.length;
 		double fitnessValue = sum / genomeLength; //The fitness value
-		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?  
+		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?
+		
 
 		((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
 		((XGAFitness) ind2.fitness).setMetaGenesHammingDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesHammingDistanceFromMutation());
 		((XGAFitness) ind2.fitness).setMetaGenesLevenshteinDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesLevenshteinDistanceFromMutation());
+		((XGAFitness) ind2.fitness).metaGenesZeroCount = zeroCount;
+		((XGAFitness) ind2.fitness).metaGenesOneCount = oneCount;
+		((XGAFitness) ind2.fitness).metaGenesTwoCount = twoCount;
+		
 		//((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
 		//state.output.println(String.format("Generation: %d, Fitness: %2f", state.generation, fitnessValue), 0);
 		ind2.evaluated = true;
 	}
-	
 }

@@ -16,7 +16,7 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-stat.file				= $hc.stat
+stat.file				= ../logs/hc.stat
 stat.num-children 		= 1
 stat.child.0 			= xga.XGAShortStatistics
 stat.child.0.file 		= exp/hc/hc.out.stat

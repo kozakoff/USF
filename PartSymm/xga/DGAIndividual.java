@@ -131,5 +131,11 @@ public class DGAIndividual extends XGAIndividual
 		return count;
 	}
 
+	@Override
+	public int[] getMetas() {
+		// TODO Auto-generated method stub
+		return new int[genome[0]];
+	}
+
 	
 }
