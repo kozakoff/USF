@@ -44,7 +44,9 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		int[] genome = null;
 		int[] metagenes = null;
 		int zeroCount = 0, oneCount = 0, twoCount = 0;
+		boolean isSimple = false;
 		ec.Individual ind2 = ind;
+		
 		
 		if (ind instanceof XGAIndividual)
 		{
@@ -70,6 +72,7 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		else if((ind instanceof IntegerVectorIndividual))
 		{
 			genome = ((IntegerVectorIndividual)ind2).genome;
+			isSimple = true;
 		}
 		else
 		{
@@ -129,16 +132,25 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		double fitnessValue = sum / genomeLength; //The fitness value
 		boolean isIdeal = (sum == genomeLength ? true : false); //Is the individual ideal?
 		
-
-		((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
-		((XGAFitness) ind2.fitness).setMetaGenesHammingDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesHammingDistanceFromMutation());
-		((XGAFitness) ind2.fitness).setMetaGenesLevenshteinDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesLevenshteinDistanceFromMutation());
-		((XGAFitness) ind2.fitness).metaGenesZeroCount = zeroCount;
-		((XGAFitness) ind2.fitness).metaGenesOneCount = oneCount;
-		((XGAFitness) ind2.fitness).metaGenesTwoCount = twoCount;
+		if (isSimple)
+		{
+			((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
+			((XGAFitness) ind2.fitness).setMetaGenesHammingDistanceFromMutation(0);
+			((XGAFitness) ind2.fitness).setMetaGenesLevenshteinDistanceFromMutation(0);
+			((XGAFitness) ind2.fitness).metaGenesZeroCount = 0;
+			((XGAFitness) ind2.fitness).metaGenesOneCount = 0;
+			((XGAFitness) ind2.fitness).metaGenesTwoCount = 0;
+		}
+		else
+		{
+			((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
+			((XGAFitness) ind2.fitness).setMetaGenesHammingDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesHammingDistanceFromMutation());
+			((XGAFitness) ind2.fitness).setMetaGenesLevenshteinDistanceFromMutation(((XGAIndividual)ind2).getMetaGenesLevenshteinDistanceFromMutation());
+			((XGAFitness) ind2.fitness).metaGenesZeroCount = zeroCount;
+			((XGAFitness) ind2.fitness).metaGenesOneCount = oneCount;
+			((XGAFitness) ind2.fitness).metaGenesTwoCount = twoCount;	
+		}
 		
-		//((XGAFitness) ind2.fitness).setFitness(state, fitnessValue, isIdeal);
-		//state.output.println(String.format("Generation: %d, Fitness: %2f", state.generation, fitnessValue), 0);
 		ind2.evaluated = true;
 	}
 }

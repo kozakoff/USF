@@ -335,16 +335,17 @@ public class HCEvolutionState extends EvolutionState
 	{
 		for(int x = 0; x < metamask.length; x++)
 		{
-			metamask[x] = 0;
+			//metamask[x] = 0;
+			metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
 		}
 		
-		for(int x = 0; x < metamask.length; x++)
-		{
-			if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
-			{
+		//for(int x = 0; x < metamask.length; x++)
+		//{
+		//	if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
+		//	{
 				//metamask[x] = 1; //randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
-			}
-		}
+		//	}
+		//}
 		
 		
 		//state.output.println(String.format("Metamask initialized."),0);

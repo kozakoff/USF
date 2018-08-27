@@ -10,17 +10,26 @@ doAnalysis <- function(files)
   ecjdata <- t[,1:2]
   names(ecjdata) <- cols
   
-  for(file in 2:length(files)) 
-  {
-    t <- files[[file]]
-    ecjdata <- merge(ecjdata,t[,1:2],by=1)
-    s <- strsplit(names(files)[file],".",fixed=TRUE)
-    cols <- c(cols,paste("Job",s[[1]][2]))
-    names(ecjdata) <- cols
-  } 
+  if(length(files[]) > 1) 
+  { 
+  
+    for(file in 2:length(files)) 
+    {
+      t <- files[[file]]
+      ecjdata <- merge(ecjdata,t[,1:2],by=1)
+      s <- strsplit(names(files)[file],".",fixed=TRUE)
+      cols <- c(cols,paste("Job",s[[1]][2]))
+      names(ecjdata) <- cols
+    } 
 
-  #Add row means
-  ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+    #Add row means
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+  }
+  else
+  {
+    #Copy the only column to be the rowMeans
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=ecjdata[,-1]),by=1)
+  }
 
   return(ecjdata)
 }
@@ -38,21 +47,29 @@ doHammingDistanceAnalysis <- function(files)
   
   names(ecjdata) <- cols
   
-  for(file in 2:length(files)) 
-  {
-    t <- files[[file]]
-    e <- t[,1:5]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    ecjdata <- merge(ecjdata,e[,1:2],by=1)
-    s <- strsplit(names(files)[file],".",fixed=TRUE)
-    cols <- c(cols,paste("Job",s[[1]][2]))
-    names(ecjdata) <- cols
-  } 
+  if(length(files[]) > 1) 
+  { 
+    for(file in 2:length(files)) 
+    {
+      t <- files[[file]]
+      e <- t[,1:5]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      ecjdata <- merge(ecjdata,e[,1:2],by=1)
+      s <- strsplit(names(files)[file],".",fixed=TRUE)
+      cols <- c(cols,paste("Job",s[[1]][2]))
+      names(ecjdata) <- cols
+    } 
   
-  #Add row means
-  ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+    #Add row means
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+  }
+  else
+  {
+    #Copy the only column to be the rowMeans
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=ecjdata[,-1]),by=1)
+  }
   
   return(ecjdata)
 }
@@ -71,22 +88,30 @@ doLevenshteinDistanceAnalysis <- function(files)
   
   names(ecjdata) <- cols
   
-  for(file in 2:length(files)) 
-  {
-    t <- files[[file]]
-    e <- t[,1:6]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    ecjdata <- merge(ecjdata,e[,1:2],by=1)
-    s <- strsplit(names(files)[file],".",fixed=TRUE)
-    cols <- c(cols,paste("Job",s[[1]][2]))
-    names(ecjdata) <- cols
-  } 
+  if(length(files[]) > 1) 
+  { 
+    for(file in 2:length(files)) 
+    {
+      t <- files[[file]]
+      e <- t[,1:6]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      ecjdata <- merge(ecjdata,e[,1:2],by=1)
+      s <- strsplit(names(files)[file],".",fixed=TRUE)
+      cols <- c(cols,paste("Job",s[[1]][2]))
+      names(ecjdata) <- cols
+    } 
   
-  #Add row means
-  ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+    #Add row means
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+  }
+  else
+  {
+    #Copy the only column to be the rowMeans
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=ecjdata[,-1]),by=1)
+  }
   
   return(ecjdata)
 }
@@ -106,23 +131,31 @@ doZeroCountAnalysis <- function(files)
   
   names(ecjdata) <- cols
   
-  for(file in 2:length(files)) 
+  if(length(files[]) > 1) 
+  { 
+    for(file in 2:length(files)) 
+    {
+      t <- files[[file]]
+      e <- t[,1:7]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      ecjdata <- merge(ecjdata,e[,1:2],by=1)
+      s <- strsplit(names(files)[file],".",fixed=TRUE)
+      cols <- c(cols,paste("Job",s[[1]][2]))
+      names(ecjdata) <- cols
+    } 
+    
+    #Add row means
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+  }
+  else
   {
-    t <- files[[file]]
-    e <- t[,1:7]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    ecjdata <- merge(ecjdata,e[,1:2],by=1)
-    s <- strsplit(names(files)[file],".",fixed=TRUE)
-    cols <- c(cols,paste("Job",s[[1]][2]))
-    names(ecjdata) <- cols
-  } 
-  
-  #Add row means
-  ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+    #Copy the only column to be the rowMeans
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=ecjdata[,-1]),by=1)
+  }
   
   return(ecjdata)
 }
@@ -143,24 +176,32 @@ doOneCountAnalysis <- function(files)
   
   names(ecjdata) <- cols
   
-  for(file in 2:length(files)) 
-  {
-    t <- files[[file]]
-    e <- t[,1:8]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    ecjdata <- merge(ecjdata,e[,1:2],by=1)
-    s <- strsplit(names(files)[file],".",fixed=TRUE)
-    cols <- c(cols,paste("Job",s[[1]][2]))
-    names(ecjdata) <- cols
-  } 
+  if(length(files[]) > 1) 
+  { 
+    for(file in 2:length(files)) 
+    {
+      t <- files[[file]]
+      e <- t[,1:8]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      ecjdata <- merge(ecjdata,e[,1:2],by=1)
+      s <- strsplit(names(files)[file],".",fixed=TRUE)
+      cols <- c(cols,paste("Job",s[[1]][2]))
+      names(ecjdata) <- cols
+    } 
   
-  #Add row means
-  ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+    #Add row means
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+  }
+  else
+  {
+    #Copy the only column to be the rowMeans
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=ecjdata[,-1]),by=1) 
+  }
   
   return(ecjdata)
 }
@@ -182,25 +223,33 @@ doTwoCountAnalysis <- function(files)
   
   names(ecjdata) <- cols
   
-  for(file in 2:length(files)) 
-  {
-    t <- files[[file]]
-    e <- t[,1:9]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    e <- e[,-2]
-    ecjdata <- merge(ecjdata,e[,1:2],by=1)
-    s <- strsplit(names(files)[file],".",fixed=TRUE)
-    cols <- c(cols,paste("Job",s[[1]][2]))
-    names(ecjdata) <- cols
-  } 
+  if(length(files[]) > 1) 
+  { 
+    for(file in 2:length(files)) 
+    {
+      t <- files[[file]]
+      e <- t[,1:9]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      e <- e[,-2]
+      ecjdata <- merge(ecjdata,e[,1:2],by=1)
+      s <- strsplit(names(files)[file],".",fixed=TRUE)
+      cols <- c(cols,paste("Job",s[[1]][2]))
+      names(ecjdata) <- cols
+    } 
   
-  #Add row means
-  ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+    #Add row means
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=rowMeans(ecjdata[,-1])),by=1)
+  }
+  else
+  {
+    #Copy the only column to be the rowMeans
+    ecjdata <- merge(ecjdata,data.frame(Gen=ecjdata[,1], rowMeans=ecjdata[,-1]),by=1)
+  }
   
   return(ecjdata)
 }
@@ -278,7 +327,7 @@ plotCompareThree <- function(v1,v1Title="",v2,v2Title="",v3,v3Title="",v4,v4Titl
   legend("bottomright",inset=0.02,legend=c(v1Title,v2Title,v3Title,v4Title,v5Title,v6Title),col=c("blue","red","green","black","magenta","cyan"), lty=c(3,3,3,1,1,1), cex=0.65,box.lty=1)
 }
 
-rerunStatsOneAlgo <- function(type1,title)
+runStatsOneAlgo <- function(type1,title)
 {
   t1 = ""
   if(type1 == "HCRR") { t1 <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr") }
@@ -315,7 +364,7 @@ runStatsTwoAlgo <- function(type1,type2,title)
   plotCompareThree(e1,paste(type1," Fitness"),e2,paste(type1," Levenshtein"),e3,paste(type1," Meta Gene Count (1s)"),e4,paste(type2," Fitness"),e5,paste(type2," Levenshtein"),e6,paste(type2," Meta Gene Count (1s)"),title)
 }
 
-rerunStats <- function()
+runCompareAllFitness <- function()
 {
   hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
   hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")

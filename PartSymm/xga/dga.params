@@ -34,7 +34,7 @@ vector.species.max-gene = 1
 pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.DGAIndividual
 
-pop.subpop.0.species.genome-size	= 200
+pop.subpop.0.species.genome-size	= 64
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
 pop.subpop.0.species.mutation-prob	= 0.005

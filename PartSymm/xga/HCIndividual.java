@@ -202,10 +202,10 @@ public class HCIndividual extends XGAIndividual {
 					case HCSpecies.C_RESET_MUTATION:
 						if((x % 2) == 0)
 						{
-							//if(genome[x] != 2)
-							//{
-							//	genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-							//}
+							if(genome[x] != 2)
+							{
+								genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+							}
 						}
 						else
 						{

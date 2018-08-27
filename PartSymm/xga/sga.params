@@ -18,7 +18,7 @@ exch		= ec.simple.SimpleExchanger
 
 stat.file				= ../logs/sga.stat
 stat.num-children 		= 1
-stat.child.0 			= ec.simple.SimpleShortStatistics
+stat.child.0 			= xga.XGAShortStatistics
 stat.child.0.file 		= exp/sga/sga.out.stat
 
 pop.subpops		= 1
@@ -35,7 +35,7 @@ pop.subpop.0.species.fitness	= xga.XGAFitness
 #ec.simple.SimpleFitness
 pop.subpop.0.species.ind		= ec.vector.IntegerVectorIndividual
 
-pop.subpop.0.species.genome-size	= 200
+pop.subpop.0.species.genome-size	= 64
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type	= reset
 pop.subpop.0.species.mutation-prob	= 0.005

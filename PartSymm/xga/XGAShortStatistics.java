@@ -14,6 +14,7 @@ public class XGAShortStatistics extends Statistics
 	public static final String P_DO_TIME = "do-time";
 	public static final String P_DO_SUBPOPS = "do-subpops";
 	public static final String P_STATISTICS_FILE = "file";
+	public static final int GENOME_SIZE = 64;
 
 	public int statisticslog = 0; // stdout by default
 	public int modulus;
@@ -40,7 +41,20 @@ public class XGAShortStatistics extends Statistics
 	public void setup(final EvolutionState state, final Parameter base)
 	{
 		super.setup(state, base);
+		
 		File statisticsFile = state.parameters.getFile(base.push(P_STATISTICS_FILE), null);
+		
+		state.output.println(String.format("Deleting file(s) in %s...", statisticsFile.getParent()), 0);
+		
+		File oldFiles[] = new File(statisticsFile.getParent()).listFiles();
+		
+		for (File f : oldFiles) 
+        {
+            state.output.println(String.format("\tDeleted %s", f.getName()), 0);
+            f.delete();
+        }
+		
+		state.output.println(String.format("Finished deleting file(s) in %s.", statisticsFile.getParent()), 0);
 
 		modulus = state.parameters.getIntWithDefault(base.push(P_STATISTICS_MODULUS), null, 1);
 
@@ -356,11 +370,11 @@ public class XGAShortStatistics extends Statistics
 			state.output.print("" + popMeanFitness + " ", statisticslog); // mean fitness of pop this gen
 			state.output.print("" + (double) (popBestOfGeneration.fitness.fitness()) + " ", statisticslog); // best fitness of pop this gen
 			state.output.print("" + (double) (popBestSoFar.fitness.fitness()) + " ", statisticslog); // best fitness of pop so far
-			state.output.print("" + popMeanHammingDistance / 200 + " ", statisticslog);
-			state.output.print("" + popMeanLevenshteinDistance / 200 + " ", statisticslog);
-			state.output.print("" + popMeanZeroCount / 200 + " ", statisticslog);
-			state.output.print("" + popMeanOneCount / 200 + " ", statisticslog);
-			state.output.print("" + popMeanTwoCount / 200 + " ", statisticslog);
+			state.output.print("" + popMeanHammingDistance / GENOME_SIZE + " ", statisticslog);
+			state.output.print("" + popMeanLevenshteinDistance / GENOME_SIZE + " ", statisticslog);
+			state.output.print("" + popMeanZeroCount / GENOME_SIZE + " ", statisticslog);
+			state.output.print("" + popMeanOneCount / GENOME_SIZE + " ", statisticslog);
+			state.output.print("" + popMeanTwoCount / GENOME_SIZE + " ", statisticslog);
 		}
 
 		// hook for KozaShortStatistics etc.

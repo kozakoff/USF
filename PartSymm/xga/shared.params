@@ -4,7 +4,7 @@ seed.0		= 4357
 #seed.1		= time
 #seed.2		= time
 #seed.3		= time
-jobs 		= 2
+jobs 		= 1
 
 generations				= 1000
 quit-on-run-complete	= false
@@ -14,4 +14,4 @@ checkpoint-modulo		= 1
 
 eval.problem					= xga.XGAProblem
 eval.problem.rr-fitness-calc 	= true
-eval.problem.rr-chunk-size		= 10
+eval.problem.rr-chunk-size		= 8
