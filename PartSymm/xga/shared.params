@@ -13,5 +13,7 @@ checkpoint-prefix		= ec
 checkpoint-modulo		= 1
 
 eval.problem					= xga.XGAProblem
-eval.problem.rr-fitness-calc 	= true
+
+#fitness-calc can be: rr, rr2, maxones
+eval.problem.fitness-calc 		= rr2
 eval.problem.rr-chunk-size		= 8

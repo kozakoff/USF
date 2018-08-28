@@ -315,9 +315,10 @@ plotThree <- function(v1,v1Title="",v2,v2Title="",v3,v3Title="",mainTitle="")
 
 plotCompareThree <- function(v1,v1Title="",v2,v2Title="",v3,v3Title="",v4,v4Title="",v5,v5Title="",v6,v6Title="",mainTitle="") 
 {
-  plot(v1[,"Gen"],v1[,"rowMeans"],main=mainTitle,xlab="Generation",ylab="Average",yaxt="n",pch=".",col="blue")
-  at <- pretty(v1[,"rowMeans"])
-  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
+  plot(v1[,"Gen"],v1[,"rowMeans"],main=mainTitle,xlab="Generation",ylab="Average",yaxt="n",pch=".",col="blue", ylim = c(0.0, 1.0))
+  grid(NA, NULL, col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
+  at <- pretty(v1[,"rowMeans"]) #c(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0) #
+  axis(side=2,las=2, at=at, labels=formatC(at, format="f", digits=2))
   lines(v1[,"Gen"],v1[,"rowMeans"],col="blue",lty="dotted")
   lines(v2[,"Gen"],v2[,"rowMeans"],col="red",lty="dotted")
   lines(v3[,"Gen"],v3[,"rowMeans"],col="green",lty="dotted")
