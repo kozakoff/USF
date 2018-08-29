@@ -48,7 +48,7 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 
 		int[] genome = null, metagenes = null;
 		int zeroCount = 0, oneCount = 0, twoCount = 0;
-		double hammingDistance = 0.0, levenshteinDistance = 0.0, genomeLength = 0.0, fitnessValue = 0.0;
+		double hammingDistance = 0.0, levenshteinDistance = 0.0, fitnessValue = 0.0;
 		boolean isIdeal = false;
 		
 		ec.Individual ind2 = ind;
@@ -168,46 +168,52 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		return sum/(double)max;
 	}
 	
-	private double calcRRRPFitness(int[] g, int max) throws Exception
-	{
-		double sum = 0.0;
-		int thisChunkSize = 0;
-		
-		if((g.length%rrChunkSize) != 0)
-		{
-			throw new Exception(String.format("genome-size needs to be evenly divisible by the parameter %s.", P_RRCHUNKSIZE));
-		}
-		else
-		{
-			thisChunkSize = rrChunkSize;
-			
-			for(int x = 0; x < g.length; x+=thisChunkSize)
-			{
-				boolean countChunk1 = false, countChunk2 = false;
-				
-				for(int y = x; y < x+thisChunkSize; y++)
-				{
-					int index1, index2;
-					
-					index1 = y;
-					index2 = (g.length - (y + thisChunkSize));
-					
-					if(g[y] == 0) 
-					{ 
-						countChunk1 = false;
-						break;
-					}
-				}
-				
-				if(countChunk1)
-				{
-					sum += thisChunkSize;
-				}
-			}
-			thisChunkSize *= 2;
-		}
-		return sum/(double)max;
-	}
+//	private double calcRRRPFitness(int[] g, int max) throws Exception
+//	{
+//		double sum = 0.0;
+//		int thisChunkSize = 0;
+//		
+//		if((g.length%rrChunkSize) != 0)
+//		{
+//			throw new Exception(String.format("genome-size needs to be evenly divisible by the parameter %s.", P_RRCHUNKSIZE));
+//		}
+//		else
+//		{
+//			thisChunkSize = rrChunkSize;
+//			
+//			for(int x = 0; x < g.length; x+=thisChunkSize)
+//			{
+//				boolean countChunk1 = false, countChunk2 = false;
+//				
+//				for(int y = x; y < x+thisChunkSize; y++)
+//				{
+//					int index1, index2;
+//					
+//					index1 = y;
+//					index2 = (y + thisChunkSize) % g.length;
+//					
+//					if(g[index1] == 0) 
+//					{ 
+//						countChunk1 = false;
+//						break;
+//					}
+//					
+//					if(g[index2] == 1) 
+//					{ 
+//						countChunk2 = false;
+//						break;
+//					}
+//				}
+//				
+//				if(countChunk1)
+//				{
+//					sum += thisChunkSize;
+//				}
+//			}
+//			thisChunkSize *= 2;
+//		}
+//		return sum/(double)max;
+//	}
 	
 	
 	
