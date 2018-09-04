@@ -24,3 +24,17 @@ Add R3 and Dynamic Pattern Tracking?
 
 How many meta genes are in the metamask for HC?
 How many meta genes are in the FGA on Average/Max/Min? 
+
+**********Meeting notes from 09/04/2018**********
+
+Ideas for Comp Arch paper on EA and Hardware 
+-GECCO
+-CEC
+-Porting code to run on GPU w/Evolutionary Algorithm
+-Circuit design
+
+Dynamic pattern tracking
+-Using EA to evolve a genome to match a pattern like 00001111 or 11001100, then, the pattern changes after some period of generations.
+-Use Hamming distance to determine fitness 
+-Look in Team folders
+-Probably some info in previous version of overleaf proposal

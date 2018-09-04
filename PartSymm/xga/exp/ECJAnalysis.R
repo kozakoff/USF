@@ -271,24 +271,25 @@ readFiles <- function(path)
   return(ecjShortStatFiles)
 }
 
-doPlots <- function(hc,fga,dga,sga,hcrr,title="") 
+doPlots <- function(fga,dga,sga,hcrr,title="") 
 {
-  plot(hc[,"Gen"],hc[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
-  at <- pretty(hc[,"rowMeans"])
-  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
-  lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
-  lines(hcrr[,"Gen"],hcrr[,"rowMeans"],col="cyan")
+  plot(hcrr[,"Gen"],hcrr[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue", ylim = c(0.5, 1.0))
+  grid(NA, NULL, col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
+  at <- pretty(hcrr[,"rowMeans"])
+  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
+  #lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
+  lines(hcrr[,"Gen"],hcrr[,"rowMeans"],col="blue")
   lines(dga[,"Gen"],dga[,"rowMeans"],col="green")
   lines(fga[,"Gen"],fga[,"rowMeans"],col="red")
   lines(sga[,"Gen"],sga[,"rowMeans"],col="black")
-  legend("bottomright",inset=0.02,legend=c("DGA","FGA","HC","HCRR","SGA"),col=c("green","red","blue","cyan","black"), lty=1:2, cex=0.8,box.lty=0)
+  legend("topleft",inset=0.04,legend=c("DGA","FGA","HC","SGA"),col=c("green","red","blue","black"), lty=c(1,1,1,1), cex=0.5, box.lty=0, pt.cex=.3)
 }
 
 plotOne <- function(ecjstat,title="") 
 {
   plot(ecjstat[,"Gen"],ecjstat[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue")
   at <- pretty(ecjstat[,"rowMeans"])
-  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=3))
+  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
   lines(ecjstat[,"Gen"],ecjstat[,"rowMeans"],col="blue")
 }
 
@@ -368,17 +369,18 @@ runStatsTwoAlgo <- function(type1,type2,title)
 runCompareAllFitness <- function()
 {
   hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
-  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
+  #hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
   sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga")
   dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga")
   fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga")
   
   hcrr <- doAnalysis(hcrrFiles)
-  hc <- doAnalysis(hcFiles)
+  #hc <- doAnalysis(hcFiles)
   sga <- doAnalysis(sgaFiles)
   dga <- doAnalysis(dgaFiles)
   fga <- doAnalysis(fgaFiles)
   
-  doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=10 and Metamask Mutation Rate=0.0025")
+  #doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=10 and Metamask Mutation Rate=0.0025")
+  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - MaxOnes")
 }
 
