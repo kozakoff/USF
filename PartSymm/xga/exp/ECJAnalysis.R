@@ -271,11 +271,11 @@ readFiles <- function(path)
   return(ecjShortStatFiles)
 }
 
-doPlots <- function(fga,dga,sga,hcrr,title="") 
+doPlots <- function(fga,dga,sga,hcrr,title="",ylim) 
 {
-  plot(hcrr[,"Gen"],hcrr[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue", ylim = c(0.5, 1.0))
-  grid(NA, NULL, col = "lightgray", lty = "dotted", lwd = par("lwd"), equilogs = TRUE)
-  at <- pretty(hcrr[,"rowMeans"])
+  plot(hcrr[,"Gen"],hcrr[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue", ylim = ylim)
+  grid(NA, NULL, col = "lightgray", lty = "solid", equilogs = TRUE)
+  at <- c(0.00,0.10,0.20,0.30,0.40,0.50,0.60,0.70,0.80,0.90,1.00) #pretty(hcrr[,"rowMeans"])
   axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
   #lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
   lines(hcrr[,"Gen"],hcrr[,"rowMeans"],col="blue")
@@ -381,6 +381,6 @@ runCompareAllFitness <- function()
   fga <- doAnalysis(fgaFiles)
   
   #doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=10 and Metamask Mutation Rate=0.0025")
-  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - MaxOnes")
+  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - RRRP",c(0.0, 1.0))
 }
 
