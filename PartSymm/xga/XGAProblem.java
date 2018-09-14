@@ -34,6 +34,9 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 			case "RRRP1":
 				rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
 				break;
+			case "RRRP2":
+				rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
+				break;
 			default:
 				state.output.println("Using MaxOnes Fitness calculation.", 0);
 				break;
@@ -107,7 +110,10 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 				fitnessValue = calcRR2Fitness(genome, genome.length*4);
 				break;
 			case "RRRP1":
-				fitnessValue = calcRRRPFitness(genome, genome.length, state);
+				fitnessValue = calcRRRPFitness(genome, genome.length, false, state);
+				break;
+			case "RRRP2":
+				fitnessValue = calcRRRPFitness(genome, genome.length + rrChunkSize, true, state);
 				break;
 			default:
 				fitnessValue = calcMaxOnesFitness(genome, genome.length);
@@ -176,10 +182,11 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		return sum/(double)max;
 	}
 	
-	private double calcRRRPFitness(int[] g, int max, final ec.EvolutionState state) throws Exception
+	private double calcRRRPFitness(int[] g, int max, boolean positional, final ec.EvolutionState state) throws Exception
 	{
 		double sum = 0.0;
 		int thisChunkSize = 0;
+		boolean startsWith1 = true;
 		
 		if((g.length%rrChunkSize) != 0)
 		{
@@ -199,6 +206,14 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 					
 					index1 = y;
 					index2 = (y + thisChunkSize) % g.length;
+					
+					if(y < thisChunkSize) 
+					{
+						if(g[index1] != 1) 
+						{
+							startsWith1 = false;
+						}
+					}
 					
 					if(g[index1] != 0 || g[index2] != 1) 
 					{ 
@@ -222,6 +237,14 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 			}
 			//thisChunkSize *= 2;
 		}
+		
+		if(positional) {
+			if(startsWith1) 
+			{
+				sum += thisChunkSize;
+			}
+		}
+		
 		return sum/(double)max;
 	}
 	
