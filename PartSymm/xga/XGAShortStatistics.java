@@ -321,9 +321,27 @@ public class XGAShortStatistics extends Statistics
 		int popTotalOneCount = 0;
 		double popMeanTwoCount = 0;
 		int popTotalTwoCount = 0;
+		double metamaskPercentOnes = 0;
+		int metamaskOneCount = 0;
 		Individual popBestOfGeneration = null;
 		Individual popBestSoFar = null;
 
+		if(state instanceof HCEvolutionState)
+		{
+			HCEvolutionState thisState = (HCEvolutionState)state;
+			int metamaskLength = thisState.metamask.length;
+			
+			for(int x = 0; x < metamaskLength; x++)
+			{
+				if(thisState.metamask[x] == 1)
+				{
+					metamaskOneCount++;
+				}
+			}
+			metamaskPercentOnes = (double)metamaskOneCount / (double)metamaskLength;
+			//state.output.print(String.format(" metamaskPercentOnes == %f ", metamaskPercentOnes), statisticslog); 
+		}
+		
 		for (int x = 0; x < subpops; x++)
 		{
 			popTotalInds += totalIndsThisGen[x];
@@ -375,6 +393,7 @@ public class XGAShortStatistics extends Statistics
 			state.output.print("" + popMeanZeroCount / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanOneCount / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanTwoCount / GENOME_SIZE + " ", statisticslog);
+			state.output.print("" + metamaskPercentOnes + " ", statisticslog);
 		}
 
 		// hook for KozaShortStatistics etc.
