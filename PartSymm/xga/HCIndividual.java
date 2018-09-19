@@ -9,8 +9,6 @@ public class HCIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
-	private int[] metaGenesBeforeMutation;
-	private int[] metaGenesAfterMutation;
 	
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -190,6 +188,11 @@ public class HCIndividual extends XGAIndividual {
 	public void defaultMutate(EvolutionState state, int thread) 
 	{
 		HCSpecies s = (HCSpecies) species;
+		
+		metaGenesBeforeMutation = getMetas();
+		genotypeBeforeMutation = getGenome();
+		phenotypeBeforeMutation = getPhenome();
+		
 		for (int x = 0; x < genome.length; x++)
 		{
 			if (state.random[thread].nextBoolean(s.mutationProbability(x))) 
@@ -253,10 +256,46 @@ public class HCIndividual extends XGAIndividual {
 				}
 			}
 		}
+		
+		metaGenesAfterMutation = getMetas();
+		genotypeAfterMutation = getGenome();
+		phenotypeAfterMutation = getPhenome();
+		
+		metaGenesHammingDistanceFromMutation = getHammingDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
+		metaGenesLevenshteinDistanceFromMutation = getLevenshteinDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
+		genotypeHammingDistanceFromMutation = getHammingDistance(genotypeBeforeMutation,genotypeAfterMutation);
+		genotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(genotypeBeforeMutation,genotypeAfterMutation);
+		phenotypeHammingDistanceFromMutation = getHammingDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
+		phenotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
+	}
+	
+	public void defaultCrossover(EvolutionState state, int thread, ec.vector.VectorIndividual ind)
+	{
+		metaGenesBeforeCrossover = getMetas();
+		genotypeBeforeCrossover = getGenome();
+		phenotypeBeforeCrossover = getPhenome();
+		
+		super.defaultCrossover(state, thread, ind);
+		
+		metaGenesAfterCrossover = getMetas();
+		genotypeAfterCrossover = getGenome();
+		phenotypeAfterCrossover = getPhenome();
+		
+		metaGenesHammingDistanceFromCrossover = getHammingDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
+		metaGenesLevenshteinDistanceFromCrossover = getLevenshteinDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
+		genotypeHammingDistanceFromCrossover = getHammingDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
+		genotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
+		phenotypeHammingDistanceFromCrossover = getHammingDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
+		phenotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
 	}
 	
 	public void mirror(EvolutionState state, int thread)
 	{
+		
+		metaGenesBeforeMirror = getMetas();
+		genotypeBeforeMirror = getGenome();
+		phenotypeBeforeMirror = getPhenome();
+		
 		//Probability, then,  
 		//Meta gene values
 		//2 - No meta gene present
@@ -298,6 +337,17 @@ public class HCIndividual extends XGAIndividual {
 				}
 			}
 		}
+		
+		metaGenesAfterMirror = getMetas();
+		genotypeAfterMirror = getGenome();
+		phenotypeAfterMirror = getPhenome();
+		
+		metaGenesHammingDistanceFromMirror = getHammingDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
+		metaGenesLevenshteinDistanceFromMirror = getLevenshteinDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
+		genotypeHammingDistanceFromMirror = getHammingDistance(genotypeBeforeMirror,genotypeAfterMirror);
+		genotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(genotypeBeforeMirror,genotypeAfterMirror);
+		phenotypeHammingDistanceFromMirror = getHammingDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
+		phenotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
 	}
 	
 	public String genotypeToStringForHumans() 
@@ -393,12 +443,12 @@ public class HCIndividual extends XGAIndividual {
 		return phenome;
 	}
 
-	public int getMetaGenesHammingDistanceFromMutation()
+	public int getHammingDistance(int[] before, int[] after)
 	{
 		int count = 0;
-		for(int x = 0; x < metaGenesBeforeMutation.length; x++)
+		for(int x = 0; x < before.length; x++)
 		{
-			if(metaGenesBeforeMutation[x] != metaGenesAfterMutation[x]) 
+			if(before[x] != after[x]) 
 			{
 				count++;
 			}
@@ -406,9 +456,9 @@ public class HCIndividual extends XGAIndividual {
 		return count;
 	}
 	
-	public int getMetaGenesLevenshteinDistanceFromMutation()
+	public int getLevenshteinDistance(int[] before, int[] after)
 	{
-		int size = metaGenesBeforeMutation.length, i = size, j = size, subCost = 0;;
+		int size = before.length, i = size, j = size, subCost = 0;;
 		int distanceMatrix[][] = new int[size][size];
 		
 		for(j = 0; j < size; j++)
@@ -429,7 +479,7 @@ public class HCIndividual extends XGAIndividual {
 		{
 			for(i = 1; i < size; i++)
 			{
-				if(metaGenesBeforeMutation[i] == metaGenesAfterMutation[j]) 
+				if(before[i] == after[j]) 
 				{
 					subCost = 0;
 				}
@@ -448,30 +498,3 @@ public class HCIndividual extends XGAIndividual {
 	}
 
 }
-
-//		declare int d[0..m, 0..n]
-//		 
-//		  set each element in d to zero
-//		 
-//		  // source prefixes can be transformed into empty string by
-//		  // dropping all characters
-//		  for i from 1 to m:
-//		      d[i, 0] := i
-//		 
-//		  // target prefixes can be reached from empty source prefix
-//		  // by inserting every character
-//		  for j from 1 to n:
-//		      d[0, j] := j
-//		 
-//		  for j from 1 to n:
-//		      for i from 1 to m:
-//		          if s[i] = t[j]:
-//		            substitutionCost := 0
-//		          else:
-//		            substitutionCost := 1
-//		          d[i, j] := minimum(d[i-1, j] + 1,                   // deletion
-//		                             d[i, j-1] + 1,                   // insertion
-//		                             d[i-1, j-1] + substitutionCost)  // substitution
-//		 
-//		  return d[m, n]
-

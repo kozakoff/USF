@@ -81,8 +81,8 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 						break;
 				}
 			}
-			hammingDistance = ((XGAIndividual)ind2).getMetaGenesHammingDistanceFromMutation();
-			levenshteinDistance = ((XGAIndividual)ind2).getMetaGenesLevenshteinDistanceFromMutation();
+			hammingDistance = ((XGAIndividual)ind2).getHammingDistance(((XGAIndividual)ind2).metaGenesBeforeMutation,((XGAIndividual)ind2).metaGenesAfterMutation);
+			levenshteinDistance = ((XGAIndividual)ind2).getLevenshteinDistance(((XGAIndividual)ind2).metaGenesBeforeMutation,((XGAIndividual)ind2).metaGenesAfterMutation);
 		}
 		else if((ind instanceof IntegerVectorIndividual))
 		{

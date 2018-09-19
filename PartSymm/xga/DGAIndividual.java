@@ -8,8 +8,6 @@ public class DGAIndividual extends XGAIndividual
 {
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
-	private int metaGeneBeforeMutation;
-	private int metaGeneAfterMutation;
 
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -65,6 +63,10 @@ public class DGAIndividual extends XGAIndividual
 
 	public void mirror(EvolutionState state, int thread)
 	{
+		metaGenesBeforeMirror = getMetas();
+		genotypeBeforeMirror = getGenome();
+		phenotypeBeforeMirror = getPhenome();
+		
 		//Probability, then, flip everything to opposite including meta gene.
 		XGASpecies s = (XGASpecies) species;
 		boolean yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
@@ -82,13 +84,57 @@ public class DGAIndividual extends XGAIndividual
 				}	
 			}
 		}
+		
+		metaGenesAfterMirror = getMetas();
+		genotypeAfterMirror = getGenome();
+		phenotypeAfterMirror = getPhenome();
+		
+		metaGenesHammingDistanceFromMirror = getHammingDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
+		metaGenesLevenshteinDistanceFromMirror = getLevenshteinDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
+		genotypeHammingDistanceFromMirror = getHammingDistance(genotypeBeforeMirror,genotypeAfterMirror);
+		genotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(genotypeBeforeMirror,genotypeAfterMirror);
+		phenotypeHammingDistanceFromMirror = getHammingDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
+		phenotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
 	}
 
 	public void defaultMutate(EvolutionState state, int thread) 
 	{
-		metaGeneBeforeMutation = genome[0];
+		metaGenesBeforeMutation = getMetas();
+		genotypeBeforeMutation = getGenome();
+		phenotypeBeforeMutation = getPhenome();
+		
 		super.defaultMutate(state, thread);
-		metaGeneAfterMutation = genome[0];
+		
+		metaGenesAfterMutation = getMetas();
+		genotypeAfterMutation = getGenome();
+		phenotypeAfterMutation = getPhenome();
+		
+		metaGenesHammingDistanceFromMutation = getHammingDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
+		metaGenesLevenshteinDistanceFromMutation = getLevenshteinDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
+		genotypeHammingDistanceFromMutation = getHammingDistance(genotypeBeforeMutation,genotypeAfterMutation);
+		genotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(genotypeBeforeMutation,genotypeAfterMutation);
+		phenotypeHammingDistanceFromMutation = getHammingDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
+		phenotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
+	}
+	
+	public void defaultCrossover(EvolutionState state, int thread, ec.vector.VectorIndividual ind)
+	{
+		metaGenesBeforeCrossover = getMetas();
+		genotypeBeforeCrossover = getGenome();
+		phenotypeBeforeCrossover = getPhenome();
+		
+		super.defaultCrossover(state, thread, ind);
+		
+		metaGenesAfterCrossover = getMetas();
+		genotypeAfterCrossover = getGenome();
+		phenotypeAfterCrossover = getPhenome();
+		
+		metaGenesHammingDistanceFromCrossover = getHammingDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
+		metaGenesLevenshteinDistanceFromCrossover = getLevenshteinDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
+		genotypeHammingDistanceFromCrossover = getHammingDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
+		genotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
+		phenotypeHammingDistanceFromCrossover = getHammingDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
+		phenotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
 	}
 	
 	@Override
@@ -111,20 +157,20 @@ public class DGAIndividual extends XGAIndividual
 		return phenome;
 	}
 	
-	public int getMetaGenesHammingDistanceFromMutation()
+	public int getHammingDistance(int[] before, int[] after)
 	{
 		int count = 0;
-		if(metaGeneBeforeMutation != metaGeneAfterMutation) 
+		if(before != after) 
 		{
 			count++;
 		}
 		return count;
 	}
 	
-	public int getMetaGenesLevenshteinDistanceFromMutation()
+	public int getLevenshteinDistance(int[] before, int[] after)
 	{
 		int count = 0;
-		if(metaGeneBeforeMutation != metaGeneAfterMutation) 
+		if(before != after) 
 		{
 			count++;
 		}

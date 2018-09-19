@@ -319,36 +319,14 @@ public class HCEvolutionState extends EvolutionState
 				}
 			}
 		}
-		
-		int oneCount = 0;
-		for(int x = 0; x < metamask.length; x++)
-		{
-			if(metamask[x] == 1) 
-			{
-				oneCount++;
-			}
-		}
-		//state.output.println(String.format("At gen %d metamask has %d 1's (%.2f%%) and %d 0's",state.generation, oneCount, (float)oneCount/(float)metamask.length, metamask.length-oneCount), 0);
 	}
 	
 	private void initMetamask(EvolutionState state, int thread)
 	{
 		for(int x = 0; x < metamask.length; x++)
 		{
-			//metamask[x] = 0;
 			metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
 		}
-		
-		//for(int x = 0; x < metamask.length; x++)
-		//{
-		//	if (state.random[thread].nextBoolean(metamaskEvolveProb)) 
-		//	{
-				//metamask[x] = 1; //randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
-		//	}
-		//}
-		
-		
-		//state.output.println(String.format("Metamask initialized."),0);
 	}
 	
 	/**
