@@ -353,5 +353,30 @@ public class FGAIndividual extends XGAIndividual {
 		return distanceMatrix[size-1][size-1];
 	}
 
+
+	@Override
+	public int[] getMetagenesTranslation() {
+		
+		int[] translated = new int[genome.length/2];
+		int currMetaGene, lastMetaGene = 0;
+		
+		for(int i = 0; i < genome.length; i+=2)
+		{
+			currMetaGene = genome[i];
+			if(currMetaGene != 2)
+			{
+				lastMetaGene = genome[i];
+			}
+			else
+			{
+				//No meta gene so keep lastMetaGene
+			}
+			
+			translated[i/2] = lastMetaGene;
+		}
+		
+		return translated;
+	}
+
 }
 

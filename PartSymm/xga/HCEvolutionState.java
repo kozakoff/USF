@@ -153,7 +153,7 @@ public class HCEvolutionState extends EvolutionState
 				}
 			}
 		}
-				
+		
 		// EVALUATION
 		statistics.preEvaluationStatistics(this);
 		evaluator.evaluatePopulation(this);
