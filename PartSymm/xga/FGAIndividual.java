@@ -353,7 +353,6 @@ public class FGAIndividual extends XGAIndividual {
 		return distanceMatrix[size-1][size-1];
 	}
 
-
 	@Override
 	public int[] getMetagenesTranslation() {
 		

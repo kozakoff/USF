@@ -19,9 +19,15 @@ public class XGAShortStatistics extends Statistics
 
 	public int statisticslog = 0; // stdout by default
 	public int metagenesLog = 0; // stdout by default
+	public int metagenesStringLog = 0; // stdout by default
 	public int translatedMetagenesLog = 0;
+	public int translatedMetagenesStringLog = 0;
 	public int genotypesLog = 0; // stdout by default
+	public int genotypesStringLog = 0; // stdout by default
 	public int phenotypesLog = 0; // stdout by default
+	public int phenotypesStringLog = 0; // stdout by default
+	public int metamaskLog = 0; // stdout by default
+	public int metamaskStringLog = 0; // stdout by default
 	public int modulus;
 	public boolean doSize;
 	public boolean doTime;
@@ -70,20 +76,26 @@ public class XGAShortStatistics extends Statistics
 		
 		state.output.println(String.format("Deleting file(s) in %s...", statisticsFile.getParent()), 0);
 		
-		File oldFiles[] = new File(statisticsFile.getParent()).listFiles();
+		//File oldFiles[] = new File(statisticsFile.getParent()).listFiles();
 		
-		for (File f : oldFiles) 
-        {
-            state.output.println(String.format("\tDeleted %s", f.getName()), 0);
-            f.delete();
-        }
+		//for (File f : oldFiles) 
+        //{
+        //    state.output.println(String.format("\tDeleted %s", f.getName()), 0);
+        //    f.delete();
+        //}
 		
 		state.output.println(String.format("Finished deleting file(s) in %s.", statisticsFile.getParent()), 0);
 
 		File metagenesFile = new File(statisticsFile.getParent()+"/metagenes.txt");
+		File metagenesStringFile = new File(statisticsFile.getParent()+"/metagenes_string.txt");
 		File translatedMetagenesFile = new File(statisticsFile.getParent()+"/translatedmetagenes.txt");
+		File translatedMetagenesStringFile = new File(statisticsFile.getParent()+"/translatedmetagenes_string.txt");
 		File genotypesFile = new File(statisticsFile.getParent()+"/genotypes.txt");
+		File genotypesStringFile = new File(statisticsFile.getParent()+"/genotypes_string.txt");
 		File phenotypesFile = new File(statisticsFile.getParent()+"/phenotypes.txt");
+		File phenotypesStringFile = new File(statisticsFile.getParent()+"/phenotypes_string.txt");
+		File metamaskFile = new File(statisticsFile.getParent()+"/metamask.txt");
+		File metamaskStringFile = new File(statisticsFile.getParent()+"/metamask_string.txt");
 		
 		modulus = state.parameters.getIntWithDefault(base.push(P_STATISTICS_MODULUS), null, 1);
 
@@ -97,9 +109,15 @@ public class XGAShortStatistics extends Statistics
 			{
 				statisticslog = state.output.addLog(statisticsFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
 				metagenesLog = state.output.addLog(metagenesFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
+				metagenesStringLog = state.output.addLog(metagenesStringFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
 				genotypesLog = state.output.addLog(genotypesFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
+				genotypesStringLog = state.output.addLog(genotypesStringFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
 				phenotypesLog = state.output.addLog(phenotypesFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
+				phenotypesStringLog = state.output.addLog(phenotypesStringFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
 				translatedMetagenesLog = state.output.addLog(translatedMetagenesFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
+				translatedMetagenesStringLog = state.output.addLog(translatedMetagenesStringFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
+				metamaskLog = state.output.addLog(metamaskFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
+				metamaskStringLog=state.output.addLog(metamaskStringFile, !state.parameters.getBoolean(base.push(P_COMPRESS), null, false), state.parameters.getBoolean(base.push(P_COMPRESS), null, false));
 			}
 			catch (IOException i)
 			{
@@ -210,7 +228,8 @@ public class XGAShortStatistics extends Statistics
 			{
 				XGAIndividual ind = (XGAIndividual)state.population.subpops[x].individuals[i];
 				
-				int[] metagenes = ind.getMetagenesTranslation();
+				int[] metagenes = ind.getMetas();
+				int[] translatedMetagenes = ind.getMetagenesTranslation();
 				int[] genotype = ind.getGenome();
 				int[] phenotype = ind.getPhenome();
 				
@@ -218,6 +237,11 @@ public class XGAShortStatistics extends Statistics
 				for(int c = 0; c < metagenes.length; c++)
 				{
 					if(metagenes[c] == 1)
+					{
+						state.output.println(String.format("%d,%d", g, c+1), metagenesLog);						
+					}
+					
+					if(translatedMetagenes[c] == 1)
 					{
 						state.output.println(String.format("%d,%d", g, c+1), translatedMetagenesLog);						
 					}
@@ -233,12 +257,35 @@ public class XGAShortStatistics extends Statistics
 					}
 				}
 				
-				//state.output.println(String.format("%d,x%s",state.generation, ind.getArrayString(ind.getMetas())), metagenesLog);
-				//state.output.println(String.format("%d,x%s",state.generation, ind.getArrayString(ind.getGenome())), genotypesLog);
-				//state.output.println(String.format("%d,x%s",state.generation, ind.getArrayString(ind.getPhenome())), phenotypesLog);
-				//state.output.println(String.format("%d,x%s",state.generation, ind.getArrayString(ind.getMetagenesTranslation())), translatedMetagenesLog);
+				state.output.println(String.format("%d,x%s",state.generation, getArrayString(ind.getMetas())), metagenesStringLog);
+				state.output.println(String.format("%d,x%s",state.generation, getArrayString(ind.getGenome())), genotypesStringLog);
+				state.output.println(String.format("%d,x%s",state.generation, getArrayString(ind.getPhenome())), phenotypesStringLog);
+				state.output.println(String.format("%d,x%s",state.generation, getArrayString(ind.getMetagenesTranslation())), translatedMetagenesStringLog);
 			}
 		}
+		
+		if(state instanceof HCEvolutionState)
+		{
+			HCEvolutionState thisState = (HCEvolutionState)state;
+			for(int c = 0; c < thisState.metamask.length; c++)
+			{
+				if(thisState.metamask[c] == 1)
+				{
+					state.output.println(String.format("%d,%d", g, c+1), metamaskLog);						
+				}
+			}
+			state.output.println(String.format("%d,%s,x%s",state.generation, getCommaSepArrayString(thisState.metamask),getArrayString(thisState.metamask)), metamaskStringLog);
+		}
+	}
+	
+	public String getArrayString(int[] a)
+	{
+		StringBuilder m = new StringBuilder();
+		for(int x = 0; x < a.length; x++)
+		{
+			m.append(a[x]);
+		}
+		return m.toString();
 	}
 	
 	public String getCommaSepArrayString(int[] a)

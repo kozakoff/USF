@@ -6,7 +6,7 @@ seed.0		= 4357
 #seed.3		= time
 jobs 		= 1
 
-generations				= 200
+generations				= 220
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -15,5 +15,5 @@ checkpoint-modulo		= 1
 eval.problem					= xga.XGAProblem
 
 #fitness-calc can be: rr, rr2, rrrp1, rrrp2, maxones
-eval.problem.fitness-calc 		= rr
+eval.problem.fitness-calc 		= rr2
 eval.problem.rr-chunk-size		= 8

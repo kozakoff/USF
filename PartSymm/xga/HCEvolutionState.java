@@ -17,7 +17,7 @@ public class HCEvolutionState extends EvolutionState
     
 	protected long minMetamaskGene;
 	protected long maxMetamaskGene;
-	protected int[] metamask;
+	protected int[] metamask = {1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	protected int[] prevMetamask;
 	protected int metamaskSum = 0;
 	protected int prevMetamaskSum = 0;
@@ -46,6 +46,7 @@ public class HCEvolutionState extends EvolutionState
         //state.output.println(String.format("metamaskSize: %d", metamaskSize),0);
 
 		// create the arrays
+ 
 		metamask = new int[metamaskSize];
 		prevMetamask = new int[metamaskSize];
 		
