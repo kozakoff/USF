@@ -77,4 +77,8 @@ public abstract class XGAIndividual extends IntegerVectorIndividual
 		}
 		return m.toString();
 	}
+	public int[] getMetagenesTranslation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
