@@ -33,7 +33,7 @@ public class HCIndividual extends XGAIndividual {
 	 * mingene to maxgene.
 	 */
 	public void reset(EvolutionState state, int thread) 
-	{
+	{	
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
 		String m = "";
@@ -82,7 +82,9 @@ public class HCIndividual extends XGAIndividual {
 	
 	public void resetMetas(EvolutionState state, int thread)
 	{
-		metaGenesBeforeMutation = getMetas();
+		metaGenesBeforeReset = getMetas();
+		genotypeBeforeReset = getGenome();
+		phenotypeBeforeReset = getPhenome();
 		
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
@@ -130,7 +132,16 @@ public class HCIndividual extends XGAIndividual {
 		m = getArrayString(phenNew);
 		//state.output.println(String.format("    New Phenotype: %s", m),0);
 		
-		metaGenesAfterMutation = getMetas();
+		metaGenesAfterReset = getMetas();
+		genotypeAfterReset = getGenome();
+		phenotypeAfterReset = getPhenome();
+		
+		metaGenesHammingDistanceFromReset = getHammingDistance(metaGenesBeforeReset,metaGenesAfterReset);
+		metaGenesLevenshteinDistanceFromReset = getLevenshteinDistance(metaGenesBeforeReset,metaGenesAfterReset);
+		genotypeHammingDistanceFromReset = getHammingDistance(genotypeBeforeReset,genotypeAfterReset);
+		genotypeLevenshteinDistanceFromReset = getLevenshteinDistance(genotypeBeforeReset,genotypeAfterReset);
+		phenotypeHammingDistanceFromReset = getHammingDistance(phenotypeBeforeReset,phenotypeAfterReset);
+		phenotypeLevenshteinDistanceFromReset = getLevenshteinDistance(phenotypeBeforeReset,phenotypeAfterReset);
 	}
 	
 	private void checkIfPhenotypesEq(int[] p1,int[] p2) throws Exception
@@ -493,6 +504,7 @@ public class HCIndividual extends XGAIndividual {
 							distanceMatrix[i-1][j-1]+subCost);	//substitution
 			}
 		}
+		
 		
 		return distanceMatrix[size-1][size-1];
 	}
