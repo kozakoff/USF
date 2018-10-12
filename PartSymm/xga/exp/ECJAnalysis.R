@@ -381,6 +381,11 @@ runCompareAllFitness <- function()
   fga <- doAnalysis(fgaFiles)
   
   #doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=10 and Metamask Mutation Rate=0.0025")
-  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - RRRP",c(0.0, 1.0))
+  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - RR2",c(0.5, 1.0))
 }
 
+runHistogram <- function(thisFile,title)
+{
+  f <- read.csv(thisFile,header=FALSE)
+  hist(f$V2,main=title,xlab="Bit Position",ylab="Count of 1's",col="darkmagenta",freq=TRUE,breaks=seq(1,64,by=1),right=FALSE)
+}
