@@ -183,5 +183,13 @@ public class DGAIndividual extends XGAIndividual
 		return new int[genome[0]];
 	}
 
+	@Override
+	public int[] getMetagenesTranslation() {
+		
+		int[] translated = new int[1];
+
+		translated[0] = genome[0];
 	
+		return translated;
+	}
 }

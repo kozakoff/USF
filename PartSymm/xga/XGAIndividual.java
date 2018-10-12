@@ -56,5 +56,18 @@ public abstract class XGAIndividual extends IntegerVectorIndividual
 	public abstract void mirror(EvolutionState state, int thread);
 	public abstract int getHammingDistance(int[] before, int[] after);
 	public abstract int getLevenshteinDistance(int[] before, int[] after);
-
+	public abstract int[] getMetagenesTranslation();
+	
+	public String getArrayString(int[] a)
+	{
+		StringBuilder m = new StringBuilder();
+		for(int x = 0; x < a.length; x++)
+		{
+			m.append(a[x]);
+		}
+		return m.toString();
+	}
+	
+	
+	
 }

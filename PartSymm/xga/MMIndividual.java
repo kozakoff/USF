@@ -51,4 +51,10 @@ public class MMIndividual extends XGAIndividual
 		return 0;
 	}
 
+	@Override
+	public int[] getMetagenesTranslation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
