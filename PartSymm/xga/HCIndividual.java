@@ -33,7 +33,7 @@ public class HCIndividual extends XGAIndividual {
 	 * mingene to maxgene.
 	 */
 	public void reset(EvolutionState state, int thread) 
-	{
+	{	
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
 		String m = "";
@@ -70,9 +70,21 @@ public class HCIndividual extends XGAIndividual {
 		//state.output.println(String.format("    New Phenotype: %s", m),0);
 	}
 	
+	public String getArrayString(int[] a)
+	{
+		StringBuilder m = new StringBuilder();
+		for(int x = 0; x < a.length; x++)
+		{
+			m.append(a[x]);
+		}
+		return m.toString();
+	}
+	
 	public void resetMetas(EvolutionState state, int thread)
 	{
-		metaGenesBeforeMutation = getMetas();
+		metaGenesBeforeReset = getMetas();
+		genotypeBeforeReset = getGenome();
+		phenotypeBeforeReset = getPhenome();
 		
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
@@ -120,7 +132,16 @@ public class HCIndividual extends XGAIndividual {
 		m = getArrayString(phenNew);
 		//state.output.println(String.format("    New Phenotype: %s", m),0);
 		
-		metaGenesAfterMutation = getMetas();
+		metaGenesAfterReset = getMetas();
+		genotypeAfterReset = getGenome();
+		phenotypeAfterReset = getPhenome();
+		
+		metaGenesHammingDistanceFromReset = getHammingDistance(metaGenesBeforeReset,metaGenesAfterReset);
+		metaGenesLevenshteinDistanceFromReset = getLevenshteinDistance(metaGenesBeforeReset,metaGenesAfterReset);
+		genotypeHammingDistanceFromReset = getHammingDistance(genotypeBeforeReset,genotypeAfterReset);
+		genotypeLevenshteinDistanceFromReset = getLevenshteinDistance(genotypeBeforeReset,genotypeAfterReset);
+		phenotypeHammingDistanceFromReset = getHammingDistance(phenotypeBeforeReset,phenotypeAfterReset);
+		phenotypeLevenshteinDistanceFromReset = getLevenshteinDistance(phenotypeBeforeReset,phenotypeAfterReset);
 	}
 	
 	private void checkIfPhenotypesEq(int[] p1,int[] p2) throws Exception
@@ -484,9 +505,10 @@ public class HCIndividual extends XGAIndividual {
 			}
 		}
 		
+		
 		return distanceMatrix[size-1][size-1];
 	}
-
+	
 	@Override
 	public int[] getMetagenesTranslation() {
 		
@@ -510,4 +532,5 @@ public class HCIndividual extends XGAIndividual {
 		
 		return translated;
 	}
+
 }
