@@ -29,15 +29,12 @@ public class XGAShortStatistics extends Statistics
 	public long[] totalSizeThisGen; // per-subpop total size of individuals this generation
 	public double[] totalFitnessThisGen; // per-subpop mean fitness this generation
 	public Individual[] bestOfGeneration; // per-subpop best individual this generation
-	
 	public double[] totalMetagenesHammingDistanceFromMutationThisGen; // per-subpop total hamming distance this generation
 	public double[] totalMetagenesLevenshteinDistanceFromMutationThisGen; // per-subpop total levenshtein distance this generation
 	public double[] totalMetagenesHammingDistanceFromCrossoverThisGen; // per-subpop total hamming distance this generation
 	public double[] totalMetagenesLevenshteinDistanceFromCrossoverThisGen; // per-subpop total levenshtein distance this generation
 	public double[] totalMetagenesHammingDistanceFromMirrorThisGen; // per-subpop total hamming distance this generation
 	public double[] totalMetagenesLevenshteinDistanceFromMirrorThisGen; // per-subpop total levenshtein distance this generation
-	public double[] totalMetagenesHammingDistanceFromResetThisGen; // per-subpop total hamming distance this generation
-	public double[] totalMetagenesLevenshteinDistanceFromResetThisGen; // per-subpop total levenshtein distance this generation
 	
 	public double[] totalGenotypeHammingDistanceFromMutationThisGen; // per-subpop total hamming distance this generation
 	public double[] totalGenotypeLevenshteinDistanceFromMutationThisGen; // per-subpop total levenshtein distance this generation
@@ -45,8 +42,6 @@ public class XGAShortStatistics extends Statistics
 	public double[] totalGenotypeLevenshteinDistanceFromCrossoverThisGen; // per-subpop total levenshtein distance this generation
 	public double[] totalGenotypeHammingDistanceFromMirrorThisGen; // per-subpop total hamming distance this generation
 	public double[] totalGenotypeLevenshteinDistanceFromMirrorThisGen; // per-subpop total levenshtein distance this generation
-	public double[] totalGenotypeHammingDistanceFromResetThisGen; // per-subpop total hamming distance this generation
-	public double[] totalGenotypeLevenshteinDistanceFromResetThisGen; // per-subpop total levenshtein distance this generation
 	
 	public double[] totalPhenotypeHammingDistanceFromMutationThisGen; // per-subpop total hamming distance this generation
 	public double[] totalPhenotypeLevenshteinDistanceFromMutationThisGen; // per-subpop total levenshtein distance this generation
@@ -54,8 +49,6 @@ public class XGAShortStatistics extends Statistics
 	public double[] totalPhenotypeLevenshteinDistanceFromCrossoverThisGen; // per-subpop total levenshtein distance this generation
 	public double[] totalPhenotypeHammingDistanceFromMirrorThisGen; // per-subpop total hamming distance this generation
 	public double[] totalPhenotypeLevenshteinDistanceFromMirrorThisGen; // per-subpop total levenshtein distance this generation
-	public double[] totalPhenotypeHammingDistanceFromResetThisGen; // per-subpop total hamming distance this generation
-	public double[] totalPhenotypeLevenshteinDistanceFromResetThisGen; // per-subpop total levenshtein distance this generation
 	
 	public int[] totalZeroCountThisGen;
 	public int[] totalOneCountThisGen;
@@ -249,15 +242,15 @@ public class XGAShortStatistics extends Statistics
 		bestOfGeneration = new Individual[subpops]; // per-subpop best individual this generation
 		totalSizeThisGen = new long[subpops]; // per-subpop total size of individuals this generation
 		totalFitnessThisGen = new double[subpops]; // per-subpop mean fitness this generation
-	
 		totalMetagenesHammingDistanceFromMutationThisGen = new double[subpops]; // per-subpop mean fitness this generation
 		totalMetagenesLevenshteinDistanceFromMutationThisGen = new double[subpops]; // per-subpop mean fitness this generation
+		
+		totalMetagenesHammingDistanceFromMutationThisGen = new double[subpops];
+		totalMetagenesLevenshteinDistanceFromMutationThisGen = new double[subpops];
 		totalMetagenesHammingDistanceFromCrossoverThisGen = new double[subpops];
 		totalMetagenesLevenshteinDistanceFromCrossoverThisGen = new double[subpops];
 		totalMetagenesHammingDistanceFromMirrorThisGen = new double[subpops];
 		totalMetagenesLevenshteinDistanceFromMirrorThisGen = new double[subpops];
-		totalMetagenesHammingDistanceFromResetThisGen = new double[subpops];
-		totalMetagenesLevenshteinDistanceFromResetThisGen = new double[subpops];
 		
 		totalGenotypeHammingDistanceFromMutationThisGen = new double[subpops];
 		totalGenotypeLevenshteinDistanceFromMutationThisGen = new double[subpops];
@@ -265,8 +258,6 @@ public class XGAShortStatistics extends Statistics
 		totalGenotypeLevenshteinDistanceFromCrossoverThisGen = new double[subpops];
 		totalGenotypeHammingDistanceFromMirrorThisGen = new double[subpops];
 		totalGenotypeLevenshteinDistanceFromMirrorThisGen = new double[subpops];
-		totalGenotypeHammingDistanceFromResetThisGen = new double[subpops];
-		totalGenotypeLevenshteinDistanceFromResetThisGen = new double[subpops];
 		
 		totalPhenotypeHammingDistanceFromMutationThisGen = new double[subpops];
 		totalPhenotypeLevenshteinDistanceFromMutationThisGen = new double[subpops];
@@ -274,8 +265,6 @@ public class XGAShortStatistics extends Statistics
 		totalPhenotypeLevenshteinDistanceFromCrossoverThisGen = new double[subpops];
 		totalPhenotypeHammingDistanceFromMirrorThisGen = new double[subpops];
 		totalPhenotypeLevenshteinDistanceFromMirrorThisGen = new double[subpops];
-		totalPhenotypeHammingDistanceFromResetThisGen = new double[subpops];
-		totalPhenotypeLevenshteinDistanceFromResetThisGen = new double[subpops];
 		
 		totalZeroCountThisGen = new int[subpops];
 		totalOneCountThisGen = new int[subpops];
@@ -289,8 +278,6 @@ public class XGAShortStatistics extends Statistics
 		double[] meanMetagenesLevenshteinDistanceFromCrossoverThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
 		double[] meanMetagenesHammingDistanceFromMirrorThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
 		double[] meanMetagenesLevenshteinDistanceFromMirrorThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
-		double[] meanMetagenesHammingDistanceFromResetThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
-		double[] meanMetagenesLevenshteinDistanceFromResetThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
 		
 		double[] meanGenotypeHammingDistanceFromMutationThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
 		double[] meanGenotypeLevenshteinDistanceFromMutationThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation; 
@@ -298,8 +285,6 @@ public class XGAShortStatistics extends Statistics
 		double[] meanGenotypeLevenshteinDistanceFromCrossoverThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
 		double[] meanGenotypeHammingDistanceFromMirrorThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
 		double[] meanGenotypeLevenshteinDistanceFromMirrorThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
-		double[] meanGenotypeHammingDistanceFromResetThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
-		double[] meanGenotypeLevenshteinDistanceFromResetThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
 		
 		double[] meanPhenotypeHammingDistanceFromMutationThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
 		double[] meanPhenotypeLevenshteinDistanceFromMutationThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation; 
@@ -307,8 +292,6 @@ public class XGAShortStatistics extends Statistics
 		double[] meanPhenotypeLevenshteinDistanceFromCrossoverThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
 		double[] meanPhenotypeHammingDistanceFromMirrorThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
 		double[] meanPhenotypeLevenshteinDistanceFromMirrorThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
-		double[] meanPhenotypeHammingDistanceFromResetThisGen = new double[subpops]; // per-subpop mean hamming distance this generation; 
-		double[] meanPhenotypeLevenshteinDistanceFromResetThisGen = new double[subpops]; // per-subpop mean levenshtein distance this generation;
 		
 		double[] meanZeroCountThisGen = new double[subpops];
 		double[] meanOneCountThisGen = new double[subpops];
@@ -347,8 +330,6 @@ public class XGAShortStatistics extends Statistics
 					totalMetagenesLevenshteinDistanceFromCrossoverThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).metaGenesLevenshteinDistanceFromCrossover;
 					totalMetagenesHammingDistanceFromMirrorThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).metaGenesHammingDistanceFromMirror;
 					totalMetagenesLevenshteinDistanceFromMirrorThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).metaGenesLevenshteinDistanceFromMirror;
-					totalMetagenesHammingDistanceFromResetThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).metaGenesHammingDistanceFromReset;
-					totalMetagenesLevenshteinDistanceFromResetThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).metaGenesLevenshteinDistanceFromReset;
 					
 					totalGenotypeHammingDistanceFromMutationThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeHammingDistanceFromMutation;
 					totalGenotypeLevenshteinDistanceFromMutationThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeLevenshteinDistanceFromMutation;
@@ -356,8 +337,6 @@ public class XGAShortStatistics extends Statistics
 					totalGenotypeLevenshteinDistanceFromCrossoverThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeLevenshteinDistanceFromCrossover;
 					totalGenotypeHammingDistanceFromMirrorThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeHammingDistanceFromMirror;
 					totalGenotypeLevenshteinDistanceFromMirrorThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeLevenshteinDistanceFromMirror;
-					totalGenotypeHammingDistanceFromResetThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeHammingDistanceFromReset;
-					totalGenotypeLevenshteinDistanceFromResetThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).genotypeLevenshteinDistanceFromReset;
 					
 					totalPhenotypeHammingDistanceFromMutationThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeHammingDistanceFromMutation;
 					totalPhenotypeLevenshteinDistanceFromMutationThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeLevenshteinDistanceFromMutation;
@@ -365,8 +344,6 @@ public class XGAShortStatistics extends Statistics
 					totalPhenotypeLevenshteinDistanceFromCrossoverThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeLevenshteinDistanceFromCrossover;
 					totalPhenotypeHammingDistanceFromMirrorThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeHammingDistanceFromMirror;
 					totalPhenotypeLevenshteinDistanceFromMirrorThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeLevenshteinDistanceFromMirror;
-					totalPhenotypeHammingDistanceFromResetThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeHammingDistanceFromReset;
-					totalPhenotypeLevenshteinDistanceFromResetThisGen[x] = ((XGAIndividual)state.population.subpops[x].individuals[y]).phenotypeLevenshteinDistanceFromReset;
 					
 					totalZeroCountThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).metaGenesZeroCount;
 					totalOneCountThisGen[x] += ((XGAFitness)state.population.subpops[x].individuals[y].fitness).metaGenesOneCount;
@@ -385,8 +362,6 @@ public class XGAShortStatistics extends Statistics
 			meanMetagenesLevenshteinDistanceFromCrossoverThisGen[x] = (totalIndsThisGen[x] > 0 ? totalMetagenesLevenshteinDistanceFromCrossoverThisGen[x] / totalIndsThisGen[x] : 0);
 			meanMetagenesHammingDistanceFromMirrorThisGen[x] = (totalIndsThisGen[x] > 0 ? totalMetagenesHammingDistanceFromMirrorThisGen[x] / totalIndsThisGen[x] : 0);
 			meanMetagenesLevenshteinDistanceFromMirrorThisGen[x] = (totalIndsThisGen[x] > 0 ? totalMetagenesLevenshteinDistanceFromMirrorThisGen[x] / totalIndsThisGen[x] : 0);
-			meanMetagenesHammingDistanceFromResetThisGen[x] = (totalIndsThisGen[x] > 0 ? totalMetagenesHammingDistanceFromResetThisGen[x] / totalIndsThisGen[x] : 0);
-			meanMetagenesLevenshteinDistanceFromResetThisGen[x] = (totalIndsThisGen[x] > 0 ? totalMetagenesLevenshteinDistanceFromResetThisGen[x] / totalIndsThisGen[x] : 0);
 			
 			meanGenotypeHammingDistanceFromMutationThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeHammingDistanceFromMutationThisGen[x] / totalIndsThisGen[x] : 0);
 			meanGenotypeLevenshteinDistanceFromMutationThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeLevenshteinDistanceFromMutationThisGen[x] / totalIndsThisGen[x] : 0);
@@ -394,8 +369,6 @@ public class XGAShortStatistics extends Statistics
 			meanGenotypeLevenshteinDistanceFromCrossoverThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeLevenshteinDistanceFromCrossoverThisGen[x] / totalIndsThisGen[x] : 0);
 			meanGenotypeHammingDistanceFromMirrorThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeHammingDistanceFromMirrorThisGen[x] / totalIndsThisGen[x] : 0);
 			meanGenotypeLevenshteinDistanceFromMirrorThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeLevenshteinDistanceFromMirrorThisGen[x] / totalIndsThisGen[x] : 0);
-			meanGenotypeHammingDistanceFromResetThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeHammingDistanceFromResetThisGen[x] / totalIndsThisGen[x] : 0);
-			meanGenotypeLevenshteinDistanceFromResetThisGen[x] = (totalIndsThisGen[x] > 0 ? totalGenotypeLevenshteinDistanceFromResetThisGen[x] / totalIndsThisGen[x] : 0);
 			
 			meanPhenotypeHammingDistanceFromMutationThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeHammingDistanceFromMutationThisGen[x] / totalIndsThisGen[x] : 0);
 			meanPhenotypeLevenshteinDistanceFromMutationThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeLevenshteinDistanceFromMutationThisGen[x] / totalIndsThisGen[x] : 0);
@@ -403,8 +376,6 @@ public class XGAShortStatistics extends Statistics
 			meanPhenotypeLevenshteinDistanceFromCrossoverThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeLevenshteinDistanceFromCrossoverThisGen[x] / totalIndsThisGen[x] : 0);
 			meanPhenotypeHammingDistanceFromMirrorThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeHammingDistanceFromMirrorThisGen[x] / totalIndsThisGen[x] : 0);
 			meanPhenotypeLevenshteinDistanceFromMirrorThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeLevenshteinDistanceFromMirrorThisGen[x] / totalIndsThisGen[x] : 0);
-			meanPhenotypeHammingDistanceFromResetThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeHammingDistanceFromResetThisGen[x] / totalIndsThisGen[x] : 0);
-			meanPhenotypeLevenshteinDistanceFromResetThisGen[x] = (totalIndsThisGen[x] > 0 ? totalPhenotypeLevenshteinDistanceFromResetThisGen[x] / totalIndsThisGen[x] : 0);
 			
 			meanZeroCountThisGen[x] = (totalIndsThisGen[x] > 0 ? totalZeroCountThisGen[x] / totalIndsThisGen[x] : 0);
 			meanOneCountThisGen[x] = (totalIndsThisGen[x] > 0 ? totalOneCountThisGen[x] / totalIndsThisGen[x] : 0);
@@ -449,8 +420,6 @@ public class XGAShortStatistics extends Statistics
 		double popTotalMetagenesLevenshteinDistanceFromCrossover = 0;
 		double popTotalMetagenesHammingDistanceFromMirror = 0;
 		double popTotalMetagenesLevenshteinDistanceFromMirror = 0;
-		double popTotalMetagenesHammingDistanceFromReset = 0;
-		double popTotalMetagenesLevenshteinDistanceFromReset = 0;
 		
 		double popTotalGenotypeHammingDistanceFromMutation = 0;
 		double popTotalGenotypeLevenshteinDistanceFromMutation = 0;
@@ -458,8 +427,6 @@ public class XGAShortStatistics extends Statistics
 		double popTotalGenotypeLevenshteinDistanceFromCrossover = 0;
 		double popTotalGenotypeHammingDistanceFromMirror = 0;
 		double popTotalGenotypeLevenshteinDistanceFromMirror = 0;
-		double popTotalGenotypeHammingDistanceFromReset = 0;
-		double popTotalGenotypeLevenshteinDistanceFromReset = 0;
 		
 		double popTotalPhenotypeHammingDistanceFromMutation = 0;
 		double popTotalPhenotypeLevenshteinDistanceFromMutation = 0;
@@ -467,8 +434,6 @@ public class XGAShortStatistics extends Statistics
 		double popTotalPhenotypeLevenshteinDistanceFromCrossover = 0;
 		double popTotalPhenotypeHammingDistanceFromMirror = 0;
 		double popTotalPhenotypeLevenshteinDistanceFromMirror = 0;
-		double popTotalPhenotypeHammingDistanceFromReset = 0;
-		double popTotalPhenotypeLevenshteinDistanceFromReset = 0;
 		
 		double popMeanMetagenesHammingDistanceFromMutation = 0;
 		double popMeanMetagenesLevenshteinDistanceFromMutation = 0;
@@ -476,8 +441,6 @@ public class XGAShortStatistics extends Statistics
 		double popMeanMetagenesLevenshteinDistanceFromCrossover = 0;
 		double popMeanMetagenesHammingDistanceFromMirror = 0;
 		double popMeanMetagenesLevenshteinDistanceFromMirror = 0;
-		double popMeanMetagenesHammingDistanceFromReset = 0;
-		double popMeanMetagenesLevenshteinDistanceFromReset = 0;
 		
 		double popMeanGenotypeHammingDistanceFromMutation = 0;
 		double popMeanGenotypeLevenshteinDistanceFromMutation = 0;
@@ -485,8 +448,6 @@ public class XGAShortStatistics extends Statistics
 		double popMeanGenotypeLevenshteinDistanceFromCrossover = 0;
 		double popMeanGenotypeHammingDistanceFromMirror = 0;
 		double popMeanGenotypeLevenshteinDistanceFromMirror = 0;
-		double popMeanGenotypeHammingDistanceFromReset = 0;
-		double popMeanGenotypeLevenshteinDistanceFromReset = 0;
 		
 		double popMeanPhenotypeHammingDistanceFromMutation = 0;
 		double popMeanPhenotypeLevenshteinDistanceFromMutation = 0;
@@ -494,8 +455,6 @@ public class XGAShortStatistics extends Statistics
 		double popMeanPhenotypeLevenshteinDistanceFromCrossover = 0;
 		double popMeanPhenotypeHammingDistanceFromMirror = 0;
 		double popMeanPhenotypeLevenshteinDistanceFromMirror = 0;
-		double popMeanPhenotypeHammingDistanceFromReset = 0;
-		double popMeanPhenotypeLevenshteinDistanceFromReset = 0;
 		
 		double popMeanZeroCount = 0;
 		int popTotalZeroCount = 0;
@@ -538,8 +497,6 @@ public class XGAShortStatistics extends Statistics
 			popTotalMetagenesLevenshteinDistanceFromCrossover += totalMetagenesLevenshteinDistanceFromCrossoverThisGen[x];
 			popTotalMetagenesHammingDistanceFromMirror += totalMetagenesHammingDistanceFromMirrorThisGen[x];
 			popTotalMetagenesLevenshteinDistanceFromMirror += totalMetagenesLevenshteinDistanceFromMirrorThisGen[x];
-			popTotalMetagenesHammingDistanceFromReset += totalMetagenesHammingDistanceFromResetThisGen[x];
-			popTotalMetagenesLevenshteinDistanceFromReset += totalMetagenesLevenshteinDistanceFromResetThisGen[x];
 			
 			popTotalGenotypeHammingDistanceFromMutation += totalGenotypeHammingDistanceFromMutationThisGen[x];
 			popTotalGenotypeLevenshteinDistanceFromMutation += totalGenotypeLevenshteinDistanceFromMutationThisGen[x];
@@ -547,8 +504,6 @@ public class XGAShortStatistics extends Statistics
 			popTotalGenotypeLevenshteinDistanceFromCrossover += totalGenotypeLevenshteinDistanceFromCrossoverThisGen[x];
 			popTotalGenotypeHammingDistanceFromMirror += totalGenotypeHammingDistanceFromMirrorThisGen[x];
 			popTotalGenotypeLevenshteinDistanceFromMirror += totalGenotypeLevenshteinDistanceFromMirrorThisGen[x];
-			popTotalGenotypeHammingDistanceFromReset += totalGenotypeHammingDistanceFromResetThisGen[x];
-			popTotalGenotypeLevenshteinDistanceFromReset += totalGenotypeLevenshteinDistanceFromResetThisGen[x];
 			
 			popTotalPhenotypeHammingDistanceFromMutation += totalPhenotypeHammingDistanceFromMutationThisGen[x];
 			popTotalPhenotypeLevenshteinDistanceFromMutation += totalPhenotypeLevenshteinDistanceFromMutationThisGen[x];
@@ -556,8 +511,6 @@ public class XGAShortStatistics extends Statistics
 			popTotalPhenotypeLevenshteinDistanceFromCrossover += totalPhenotypeLevenshteinDistanceFromCrossoverThisGen[x];
 			popTotalPhenotypeHammingDistanceFromMirror += totalPhenotypeHammingDistanceFromMirrorThisGen[x];
 			popTotalPhenotypeLevenshteinDistanceFromMirror += totalPhenotypeLevenshteinDistanceFromMirrorThisGen[x];
-			popTotalPhenotypeHammingDistanceFromReset += totalPhenotypeHammingDistanceFromResetThisGen[x];
-			popTotalPhenotypeLevenshteinDistanceFromReset += totalPhenotypeLevenshteinDistanceFromResetThisGen[x];
 			
 			popTotalZeroCount += totalZeroCountThisGen[x];
 			popTotalOneCount += totalOneCountThisGen[x];
@@ -579,8 +532,6 @@ public class XGAShortStatistics extends Statistics
 		popMeanMetagenesLevenshteinDistanceFromCrossover = (popTotalInds > 0 ? popTotalMetagenesLevenshteinDistanceFromCrossover / popTotalInds : 0);
 		popMeanMetagenesHammingDistanceFromMirror = (popTotalInds > 0 ? popTotalMetagenesHammingDistanceFromMirror / popTotalInds : 0);
 		popMeanMetagenesLevenshteinDistanceFromMirror = (popTotalInds > 0 ? popTotalMetagenesLevenshteinDistanceFromMirror / popTotalInds : 0);
-		popMeanMetagenesHammingDistanceFromReset = (popTotalInds > 0 ? popTotalMetagenesHammingDistanceFromReset / popTotalInds : 0);
-		popMeanMetagenesLevenshteinDistanceFromReset = (popTotalInds > 0 ? popTotalMetagenesLevenshteinDistanceFromReset / popTotalInds : 0);
 		
 		popMeanGenotypeHammingDistanceFromMutation = (popTotalInds > 0 ? popTotalGenotypeHammingDistanceFromMutation / popTotalInds : 0);
 		popMeanGenotypeLevenshteinDistanceFromMutation = (popTotalInds > 0 ? popTotalGenotypeLevenshteinDistanceFromMutation / popTotalInds : 0);
@@ -588,8 +539,6 @@ public class XGAShortStatistics extends Statistics
 		popMeanGenotypeLevenshteinDistanceFromCrossover = (popTotalInds > 0 ? popTotalGenotypeLevenshteinDistanceFromCrossover / popTotalInds : 0);
 		popMeanGenotypeHammingDistanceFromMirror = (popTotalInds > 0 ? popTotalGenotypeHammingDistanceFromMirror / popTotalInds : 0);
 		popMeanGenotypeLevenshteinDistanceFromMirror = (popTotalInds > 0 ? popTotalGenotypeLevenshteinDistanceFromMirror / popTotalInds : 0);
-		popMeanGenotypeHammingDistanceFromReset = (popTotalInds > 0 ? popTotalGenotypeHammingDistanceFromReset / popTotalInds : 0);
-		popMeanGenotypeLevenshteinDistanceFromReset = (popTotalInds > 0 ? popTotalGenotypeLevenshteinDistanceFromReset / popTotalInds : 0);
 
 		popMeanPhenotypeHammingDistanceFromMutation = (popTotalInds > 0 ? popTotalPhenotypeHammingDistanceFromMutation / popTotalInds : 0);
 		popMeanPhenotypeLevenshteinDistanceFromMutation = (popTotalInds > 0 ? popTotalPhenotypeLevenshteinDistanceFromMutation / popTotalInds : 0);
@@ -597,8 +546,6 @@ public class XGAShortStatistics extends Statistics
 		popMeanPhenotypeLevenshteinDistanceFromCrossover = (popTotalInds > 0 ? popTotalPhenotypeLevenshteinDistanceFromCrossover / popTotalInds : 0);
 		popMeanPhenotypeHammingDistanceFromMirror = (popTotalInds > 0 ? popTotalPhenotypeHammingDistanceFromMirror / popTotalInds : 0);
 		popMeanPhenotypeLevenshteinDistanceFromMirror = (popTotalInds > 0 ? popTotalPhenotypeLevenshteinDistanceFromMirror / popTotalInds : 0);
-		popMeanPhenotypeHammingDistanceFromReset = (popTotalInds > 0 ? popTotalPhenotypeHammingDistanceFromReset / popTotalInds : 0);
-		popMeanPhenotypeLevenshteinDistanceFromReset = (popTotalInds > 0 ? popTotalPhenotypeLevenshteinDistanceFromReset / popTotalInds : 0);
 		
 		popMeanZeroCount = (popTotalInds > 0 ? popTotalZeroCount / popTotalInds : 0);
 		popMeanOneCount = (popTotalInds > 0 ? popTotalOneCount / popTotalInds : 0);
@@ -633,8 +580,6 @@ public class XGAShortStatistics extends Statistics
 			state.output.print("" + popMeanMetagenesLevenshteinDistanceFromCrossover / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanMetagenesHammingDistanceFromMirror / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanMetagenesLevenshteinDistanceFromMirror / GENOME_SIZE + " ", statisticslog);
-			state.output.print("" + popMeanMetagenesHammingDistanceFromReset / GENOME_SIZE + " ", statisticslog);
-			state.output.print("" + popMeanMetagenesLevenshteinDistanceFromReset / GENOME_SIZE + " ", statisticslog);
 			
 			state.output.print("" + popMeanGenotypeHammingDistanceFromMutation / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanGenotypeLevenshteinDistanceFromMutation / GENOME_SIZE + " ", statisticslog);
@@ -642,8 +587,6 @@ public class XGAShortStatistics extends Statistics
 			state.output.print("" + popMeanGenotypeLevenshteinDistanceFromCrossover / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanGenotypeHammingDistanceFromMirror / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanGenotypeLevenshteinDistanceFromMirror / GENOME_SIZE + " ", statisticslog);
-			state.output.print("" + popMeanGenotypeHammingDistanceFromReset / GENOME_SIZE + " ", statisticslog);
-			state.output.print("" + popMeanGenotypeLevenshteinDistanceFromReset / GENOME_SIZE + " ", statisticslog);
 			
 			state.output.print("" + popMeanPhenotypeHammingDistanceFromMutation / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanPhenotypeLevenshteinDistanceFromMutation / GENOME_SIZE + " ", statisticslog);
@@ -651,8 +594,7 @@ public class XGAShortStatistics extends Statistics
 			state.output.print("" + popMeanPhenotypeLevenshteinDistanceFromCrossover / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanPhenotypeHammingDistanceFromMirror / GENOME_SIZE + " ", statisticslog);
 			state.output.print("" + popMeanPhenotypeLevenshteinDistanceFromMirror / GENOME_SIZE + " ", statisticslog);
-			state.output.print("" + popMeanPhenotypeHammingDistanceFromReset / GENOME_SIZE + " ", statisticslog);
-			state.output.print("" + popMeanPhenotypeLevenshteinDistanceFromReset / GENOME_SIZE + " ", statisticslog);
+			
 		}
 
 		// hook for KozaShortStatistics etc.
