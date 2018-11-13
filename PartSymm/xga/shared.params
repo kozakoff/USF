@@ -4,9 +4,9 @@ seed.0		= 4357
 #seed.1		= time
 #seed.2		= time
 #seed.3		= time
-jobs 		= 50
+jobs 		= 1
 
-generations				= 50
+generations				= 40
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec

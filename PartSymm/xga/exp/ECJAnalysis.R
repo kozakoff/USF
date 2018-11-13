@@ -297,7 +297,8 @@ plotTwo <- function(v1,v1Title="",v2,v2Title="",mainTitle="")
 {
   plot(v2[,"Gen"],v2[,"rowMeans"],main=mainTitle,xlab="Generation",ylab="Average",yaxt="n",pch=".",col="blue")
   at <- pretty(v2[,"rowMeans"])
-  axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
+  op <- par(mar = c(5,4.11,4,2))
+  axis(side=2,las=3,at=at,labels=formatC(at, format="f", digits=2))
   lines(v1[,"Gen"],v1[,"rowMeans"],col="red")
   lines(v2[,"Gen"],v2[,"rowMeans"],col="blue")
   legend("bottomright",inset=0.02,legend=c(v1Title,v2Title),col=c("red","blue"), lty=1:2, cex=0.8,box.lty=0)
@@ -364,6 +365,22 @@ runStatsTwoAlgo <- function(type1,type2,title)
   e5 <- doLevenshteinDistanceAnalysis(t2)
   e6 <- doOneCountAnalysis(t2)
   plotCompareThree(e1,paste(type1," Fitness"),e2,paste(type1," Levenshtein"),e3,paste(type1," Meta Gene Count (1s)"),e4,paste(type2," Fitness"),e5,paste(type2," Levenshtein"),e6,paste(type2," Meta Gene Count (1s)"),title)
+}
+
+runStatsTwoAlgoDE <- function(type1,type2,title)
+{
+  t1 = ""
+  if(type1 == "DE") { t1 <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/de") }
+  if(type1 == "DE-DGA") { t1 <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/de-dga") }
+  
+  t2 = ""
+  if(type2 == "DE") { t2 <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/de") }
+  if(type2 == "DE-DGA") { t2 <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/de-dga") }
+
+  e1 <- doAnalysis(t1)
+  e2 <- doAnalysis(t2)
+  
+  plotTwo(e1,paste(type1," Fitness"),e2,paste(type2," Fitness"),title)
 }
 
 runCompareAllFitness <- function()

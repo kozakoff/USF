@@ -1,0 +1,70 @@
+# Copyright 2006 by Sean Luke and George Mason University
+# Licensed under the Academic Free License version 3.0
+# See the file "LICENSE" for more information
+
+parent.0 = dga.params
+
+generations				= 1500
+
+eval = ec.de.DEEvaluator
+breed = ec.de.DEBreeder
+# Other breed choices: ec.de.Best1BinDEBreeder, ec.de.Rand1EitherOrDEBreeder
+
+stat 					= ec.simple.SimpleStatistics
+stat.file				= ../logs/de-dga.stat
+stat.num-children 		= 1
+stat.child.0 			= ec.simple.SimpleShortStatistics
+stat.child.0.file 		= exp/de-dga/de-dga.out.stat
+
+# DE has certain parameters you must set.  Note that these parameters
+# are fairly sensitive to the problem at hand.
+
+# Scaling factor for mutation, used by all breeders:
+breed.f = 0.1
+
+# Gene-independent probability of crossover, used only by
+# DEBreeder and Best1BinDEBreeder
+breed.cr = 0.5
+
+# Scaling factor for noise on F, used only by Best1BinDEBreeder
+breed.f-noise = 0.001
+
+# Probability of picking the "classic" algorithm versus the alternate, 
+# only ud by Rand1EitherOrDEBreeder
+breed.pf = 0.5
+
+# How often we should attempt to create something within valid bounds
+breed.out-of-bounds-retries = 10
+
+#Default params from ecsuite
+pop.subpop.0.species 						= xga.XGAFloatVectorSpecies
+
+pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
+pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
+
+pop.subpop.0.species.fitness 				= ec.simple.SimpleFitness
+pop.subpop.0.species.ind 					= xga.DGADoubleVectorIndividual
+pop.subpop.0.species.mutation-bounded 		= true
+
+# Mind the expected ranges given in ECSuite.java
+pop.subpop.0.species.min-gene 				= -5.12
+pop.subpop.0.species.max-gene 				= 5.12
+
+# You can change this to whatever you want, though Booth requires a genome size of 2
+pop.subpop.0.species.genome-size 			= 64
+
+# ECJ will complain if this isn't set even if we don't use it, so here's a default
+pop.subpop.0.species.crossover-type = one
+
+select.tournament.size = 		2
+pop.subpop.0.species.mutation-prob = 0.01
+pop.subpop.0.species.mutation-stdev = 1.0
+pop.subpop.0.species.mutation-type = gauss
+
+pop.subpop.0.size =			1000
+
+eval.problem = xga.XGAECSuite
+eval.problem.type = rastrigin
