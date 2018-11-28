@@ -385,8 +385,8 @@ runStatsTwoAlgoDE <- function(type1,type2,title)
 
 runCompareAllFitness <- function()
 {
-  hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
-  #hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
+  #hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
+  hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
   sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga")
   dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga")
   fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga")
@@ -398,7 +398,7 @@ runCompareAllFitness <- function()
   fga <- doAnalysis(fgaFiles)
   
   #doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=10 and Metamask Mutation Rate=0.0025")
-  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - RR2",c(0.5, 1.0))
+  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - RR2",c(0.0, 1.0))
 }
 
 runHistogram <- function(thisFile,title)
