@@ -4,7 +4,7 @@
 
 parent.0 = dga.params
 
-generations				= 1500
+generations				= 30
 
 eval = ec.de.DEEvaluator
 breed = ec.de.DEBreeder
@@ -53,7 +53,7 @@ pop.subpop.0.species.min-gene 				= -5.12
 pop.subpop.0.species.max-gene 				= 5.12
 
 # You can change this to whatever you want, though Booth requires a genome size of 2
-pop.subpop.0.species.genome-size 			= 64
+pop.subpop.0.species.genome-size 			= 2
 
 # ECJ will complain if this isn't set even if we don't use it, so here's a default
 pop.subpop.0.species.crossover-type = one
