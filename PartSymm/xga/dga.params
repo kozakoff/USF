@@ -21,7 +21,7 @@ stat.num-children 		= 1
 stat.child.0 			= xga.XGAShortStatistics
 stat.child.0.file 		= exp/dga/dga.out.stat
  
-pop.subpops			= 1
+pop.subpops		 	= 1
 pop.subpop.0		= ec.Subpopulation
 
 pop.subpop.0.size 				= 40
