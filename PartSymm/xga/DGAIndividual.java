@@ -1,8 +1,8 @@
 package xga;
 
-
 import ec.EvolutionState;
 import ec.util.Parameter;
+
 
 public class DGAIndividual extends XGAIndividual 
 {
