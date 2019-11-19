@@ -3,7 +3,6 @@ package xga;
 import ec.EvolutionState;
 import ec.util.Parameter;
 
-
 public class DGAIndividual extends XGAIndividual 
 {
 	private static final long serialVersionUID = 1L;
