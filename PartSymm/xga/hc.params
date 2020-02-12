@@ -38,7 +38,7 @@ metamask-size 			= 64
 min-metamask-gene 		= 0
 max-metamask-gene 		= 1
 metamask-generations	= 1
-metamask-evolve-prob 	= 0.005
+metamask-evolve-prob 	= 0.01
 metamask-rand-reset		= false
 
 pop.subpop.0.species.fitness 		= xga.XGAFitness
