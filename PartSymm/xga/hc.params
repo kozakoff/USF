@@ -47,8 +47,8 @@ pop.subpop.0.species.ind			= xga.HCIndividual
 pop.subpop.0.species.genome-size	= 64
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type  = reset
-pop.subpop.0.species.mutation-prob	= 0.005
-pop.subpop.0.species.mirror-prob	= 0.1
+pop.subpop.0.species.mutation-prob	= 0.03125
+pop.subpop.0.species.mirror-prob	= 0.05
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
 pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
