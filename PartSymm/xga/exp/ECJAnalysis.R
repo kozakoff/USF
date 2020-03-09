@@ -274,7 +274,7 @@ readFiles <- function(path)
 doPlots <- function(fga,dga,sga,hcrr,title="",ylim) 
 {
   plot(hcrr[,"Gen"],hcrr[,"rowMeans"],main=title,xlab="Generation",ylab="Average Fitness",yaxt="n",pch=".",col="blue", ylim = ylim)
-  grid(NA, NULL, col = "lightgray", lty = "solid", equilogs = TRUE)
+  grid(NA, NULL, col = "lightgray", lty = "solid", equilogs = FALSE)
   at <- c(0.00,0.10,0.20,0.30,0.40,0.50,0.60,0.70,0.80,0.90,1.00) #pretty(hcrr[,"rowMeans"])
   axis(side=2,las=2,at=at,labels=formatC(at, format="f", digits=2))
   #lines(hc[,"Gen"],hc[,"rowMeans"],col="blue")
@@ -386,19 +386,19 @@ runStatsTwoAlgoDE <- function(type1,type2,title)
 runCompareAllFitness <- function()
 {
   #hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hcrr")
-  hcrrFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc")
   sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga")
   dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga")
   fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga")
   
-  hcrr <- doAnalysis(hcrrFiles)
-  #hc <- doAnalysis(hcFiles)
+  #hcrr <- doAnalysis(hcrrFiles)
+  hc <- doAnalysis(hcFiles)
   sga <- doAnalysis(sgaFiles)
   dga <- doAnalysis(dgaFiles)
   fga <- doAnalysis(fgaFiles)
   
   #doPlots(hc=hc,fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="RR Fitness Calculation w/Chunk Size=10 and Metamask Mutation Rate=0.0025")
-  doPlots(fga=fga,dga=dga,sga=sga,hcrr=hcrr,title="Fitness Comparison - RR2",c(0.0, 1.0))
+  doPlots(fga=fga,dga=dga,sga=sga,hc=hc,title="Fitness Comparison - RR2",c(0.0, 1.0))
 }
 
 runHistogram <- function(thisFile,title)

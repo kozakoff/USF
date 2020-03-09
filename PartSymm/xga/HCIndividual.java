@@ -9,6 +9,8 @@ public class HCIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
+	private int lastGeneration = -1;
+	private int defMetaVal;
 	
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -315,8 +317,19 @@ public class HCIndividual extends XGAIndividual {
 		
 		HCSpecies s = (HCSpecies) species;
 		
-		int currMetaGene, lastMetaGene = 0;
+		int currMetaGene, lastMetaGene;
 		boolean yesMirror = false;
+		
+		if(s.defaultMetaValue == -1)
+		{
+			lastMetaGene = randomValueFromClosedInterval(0, 1, state.random[thread]);
+		}
+		else
+		{
+			lastMetaGene = s.defaultMetaValue;
+		}
+		
+		defMetaVal = lastMetaGene;
 		
 		mirrorString.setLength(0);
 
@@ -338,6 +351,7 @@ public class HCIndividual extends XGAIndividual {
 			
 			if(yesMirror) 
 			{
+				
 				if(lastMetaGene == 0)
 				{
 					genome[x] = (genome[x+1]==1 ? 1 : 0);
@@ -429,7 +443,7 @@ public class HCIndividual extends XGAIndividual {
 	@Override
 	public int[] getPhenome() 
 	{
-		int currMetaGene, lastMetaGene = 0;
+		int currMetaGene, lastMetaGene = defMetaVal;
 		int[] phenome = new int[genome.length/2];
 		
 		for (int x = 0; x < genome.length; x+=2)

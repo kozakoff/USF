@@ -7,6 +7,7 @@ public class FGAIndividual extends XGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
+	private int defMetaVal;
  
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -160,8 +161,19 @@ public class FGAIndividual extends XGAIndividual {
 		//0 - Do not flip
 		
 		FGASpecies s = (FGASpecies) species;
-		int currMetaGene, lastMetaGene = 0;
+		int currMetaGene, lastMetaGene;
 		boolean yesMirror = false;
+		
+		if(s.defaultMetaValue == -1)
+		{
+			lastMetaGene = randomValueFromClosedInterval(0, 1, state.random[thread]);
+		}
+		else
+		{
+			lastMetaGene = s.defaultMetaValue;
+		}
+		
+		defMetaVal = lastMetaGene;
 		
 		mirrorString.setLength(0);
 
@@ -274,7 +286,7 @@ public class FGAIndividual extends XGAIndividual {
 	@Override
 	public int[] getPhenome() 
 	{
-		int currMetaGene, lastMetaGene = 0;
+		int currMetaGene, lastMetaGene = defMetaVal;
 		int[] phenome = new int[genome.length/2];
 		
 		for (int x = 0; x < genome.length; x+=2)

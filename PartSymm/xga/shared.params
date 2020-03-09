@@ -4,7 +4,7 @@ seed.0		= 4357
 #seed.1		= time
 #seed.2		= time
 #seed.3		= time
-jobs 		= 1
+jobs 		= 10
 
 generations				= 100
 quit-on-run-complete	= false
