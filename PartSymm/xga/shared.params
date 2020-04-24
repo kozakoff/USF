@@ -4,7 +4,7 @@ seed.0		= time
 seed.1		= time
 seed.2		= time
 seed.3		= time
-jobs 		= 100
+jobs 		= 10
 
 generations				= 50
 quit-on-run-complete	= false
@@ -12,11 +12,11 @@ checkpoint				= false
 checkpoint-prefix		= ec
 checkpoint-modulo		= 1
 
-select.tournament.size		= 5
+select.tournament.size		= 2
 
 eval.problem					= xga.XGAProblem
 
 #fitness-calc can be: rr, rr2, rrrp1, rrrp2, maxones
 eval.problem.fitness-calc 		= rrrp2
-eval.problem.rr-chunk-size		= 8
+eval.problem.rr-chunk-size		= 4
 

@@ -24,7 +24,7 @@ stat.child.0.file 		= exp/sga/sga.out.stat
 pop.subpops		= 1
 pop.subpop.0	= ec.Subpopulation
 
-pop.subpop.0.size 				= 128
+pop.subpop.0.size 				= 64
 pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= ec.vector.IntegerVectorSpecies
 
@@ -35,10 +35,11 @@ pop.subpop.0.species.fitness	= xga.XGAFitness
 #ec.simple.SimpleFitness
 pop.subpop.0.species.ind		= ec.vector.IntegerVectorIndividual
 
-pop.subpop.0.species.genome-size	= 64
+pop.subpop.0.species.genome-size	= 32
 pop.subpop.0.species.crossover-type	= one
 pop.subpop.0.species.mutation-type	= reset
-pop.subpop.0.species.mutation-prob	= 0.005
+pop.subpop.0.species.mutation-prob	= 0.03125
+#pop.subpop.0.species.mutation-prob	 = 0.015625
 
 pop.subpop.0.species.pipe					= ec.vector.breed.VectorMutationPipeline
 pop.subpop.0.species.pipe.source.0			= ec.vector.breed.VectorCrossoverPipeline
