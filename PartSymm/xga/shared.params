@@ -1,9 +1,9 @@
 breedthreads= 1
 evalthreads	= 4
-seed.0		= time
-seed.1		= time
-seed.2		= time
-seed.3		= time
+seed.0		= 4357
+seed.1		= 4358
+seed.2		= 4359
+seed.3		= 4360
 jobs 		= 5
 
 generations				= 100

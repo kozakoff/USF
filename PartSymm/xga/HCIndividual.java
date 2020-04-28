@@ -38,13 +38,13 @@ public class HCIndividual extends XGAIndividual {
 	{	
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
-		String m = "";
-		int[] phenOld, phenNew;
+		//String m = "";
+		//int[] phenOld, phenNew;
 		
 		//setGenotypeMetasToTwos();
 		
-		StringBuilder gBefore = new StringBuilder();
-		StringBuilder gAfter = new StringBuilder();
+		//StringBuilder gBefore = new StringBuilder();
+		//StringBuilder gAfter = new StringBuilder();
 		
 //		for (int i = 0; i < genome.length; i+=2) 
 //		{
@@ -328,9 +328,9 @@ public class HCIndividual extends XGAIndividual {
 	public void mirror(EvolutionState state, int thread)
 	{
 		
-		metaGenesBeforeMirror = getMetas();
-		genotypeBeforeMirror = getGenome();
-		phenotypeBeforeMirror = getPhenome();
+		//metaGenesBeforeMirror = getMetas();
+		//genotypeBeforeMirror = getGenome();
+		//phenotypeBeforeMirror = getPhenome();
 		
 		//Probability, then,  
 		//Meta gene values
@@ -377,25 +377,25 @@ public class HCIndividual extends XGAIndividual {
 				
 				if(lastMetaGene == 0)
 				{
-					genome[x] = (genome[x+1]==1 ? 1 : 0);
+					genome[x+1] = (genome[x+1]==1 ? 1 : 0);
 				}
 				else
 				{
-					genome[x] = (genome[x+1]==1 ? 0 : 1);
+					genome[x+1] = (genome[x+1]==1 ? 0 : 1);
 				}
 			}
 		}
 		
-		metaGenesAfterMirror = getMetas();
-		genotypeAfterMirror = getGenome();
-		phenotypeAfterMirror = getPhenome();
+		//metaGenesAfterMirror = getMetas();
+		//genotypeAfterMirror = getGenome();
+		//phenotypeAfterMirror = getPhenome();
 		
-		metaGenesHammingDistanceFromMirror = getHammingDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
-		metaGenesLevenshteinDistanceFromMirror = getLevenshteinDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
-		genotypeHammingDistanceFromMirror = getHammingDistance(genotypeBeforeMirror,genotypeAfterMirror);
-		genotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(genotypeBeforeMirror,genotypeAfterMirror);
-		phenotypeHammingDistanceFromMirror = getHammingDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
-		phenotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
+		//metaGenesHammingDistanceFromMirror = getHammingDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
+		//metaGenesLevenshteinDistanceFromMirror = getLevenshteinDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
+		//genotypeHammingDistanceFromMirror = getHammingDistance(genotypeBeforeMirror,genotypeAfterMirror);
+		//genotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(genotypeBeforeMirror,genotypeAfterMirror);
+		//phenotypeHammingDistanceFromMirror = getHammingDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
+		//phenotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
 	}
 	
 	public String genotypeToStringForHumans() 

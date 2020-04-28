@@ -133,8 +133,8 @@ public class HCEvolutionState extends EvolutionState
 		
 		if(((generation % metamaskGenerations) == 0) && (generation > 0))
 		{
-			resetMetas = true;
-			mutateMetamask(this,0);
+			//resetMetas = true;
+			//mutateMetamask(this,0);
 			//output.println(String.format("New metamask: %s", getMetamask()), 0);
 			//output.println(String.format("resetMetas true at generation: %d", generation), 0);
 		}
@@ -154,6 +154,8 @@ public class HCEvolutionState extends EvolutionState
 				}
 			}
 		}
+		
+		resetMetas = false;
 		
 		// EVALUATION
 		statistics.preEvaluationStatistics(this);
@@ -240,13 +242,14 @@ public class HCEvolutionState extends EvolutionState
 		//double thisMetamaskEvolveProb = (averageFitness == 0 ? metamaskEvolveProb : ((1-averageFitness)/200));
 		double thisMetamaskEvolveProb = metamaskEvolveProb;
 		
-		for (int x = 0; x < metamask.length; x++)
+		for (int x = 0; x < metamask.length; x++) 
 		{
-			if (state.random[thread].nextBoolean(thisMetamaskEvolveProb)) 
+			if (state.random[thread].nextBoolean(thisMetamaskEvolveProb))
 			{
 				metamask[x] = randomValueFromClosedInterval(0, 2, state.random[thread]);
 			}
 		}
+		
 		return;
 		
 		/*
