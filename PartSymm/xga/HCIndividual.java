@@ -41,36 +41,53 @@ public class HCIndividual extends XGAIndividual {
 		String m = "";
 		int[] phenOld, phenNew;
 		
-		setGenotypeMetasToTwos();
+		//setGenotypeMetasToTwos();
+		
+		StringBuilder gBefore = new StringBuilder();
+		StringBuilder gAfter = new StringBuilder();
+		
+//		for (int i = 0; i < genome.length; i+=2) 
+//		{
+//			gBefore.append(genome[i+1]);
+//		}
+		//state.output.println(String.format("         Genotype Before: %s", gBefore),0);
 		
 		for(int x = 0; x < genome.length; x+=2)
 		{
-			genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+			genome[x] = thisState.metamask[x/2];
+			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 		}
 		
-		m = getArrayString(thisState.metamask);
-		//state.output.println(String.format("         Metamask: %s", m),0);
+//		for (int i = 0; i < genome.length; i+=2) 
+//		{
+//			gAfter.append(genome[i+1]);
+//		}
+		//state.output.println(String.format("         Genotype After: %s", gAfter),0);
 		
-		m = getArrayString(getMetas());
-		//state.output.println(String.format("       Meta genes: %s", m),0);
-		
-		phenOld = getPhenome();
-		
-		combineMetamaskAndGenotypeMetas(thisState,s);
-		
-		m = getArrayString(getMetas());
-		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
-		
-		m = getArrayString(phenOld);
-		//state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
-		
-		fixGenes(phenOld, thisState);
-		
-		phenNew = getPhenome();
-		
-		m = getArrayString(phenNew);
-		//state.output.println(String.format("    New Phenotype: %s", m),0);
-	}
+		/*
+		 * m = getArrayString(thisState.metamask);
+		 * //state.output.println(String.format("         Metamask: %s", m),0);
+		 * 
+		 * m = getArrayString(getMetas());
+		 * //state.output.println(String.format("       Meta genes: %s", m),0);
+		 * 
+		 * phenOld = getPhenome();
+		 * 
+		 * combineMetamaskAndGenotypeMetas(thisState,s);
+		 * 
+		 * m = getArrayString(getMetas());
+		 * //state.output.println(String.format("Masked Meta Genes: %s", m),0);
+		 * 
+		 * m = getArrayString(phenOld);
+		 * //state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
+		 * 
+		 * fixGenes(phenOld, thisState);
+		 * 
+		 * phenNew = getPhenome();
+		 * 
+		 * m = getArrayString(phenNew);
+		 * //state.output.println(String.format("    New Phenotype: %s", m),0);
+		 */	}
 	
 	public String getArrayString(int[] a)
 	{
@@ -95,45 +112,50 @@ public class HCIndividual extends XGAIndividual {
 		
 		phenOld = getPhenome();
 		
-		setGenotypeMetasToTwos();
+		for(int x = 0; x < genome.length; x+=2)
+		{
+			genome[x] = thisState.metamask[x/2];
+			//genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+		}
 		
-		m = getArrayString(thisState.metamask);
-		//state.output.println(String.format("         Metamask: %s", m),0);
-		
-		m = getArrayString(getMetas());
-		//state.output.println(String.format("       Meta genes: %s", m),0);
-		
-		m = getArrayString(getGenome());
-		//state.output.println(String.format("  Genotype B4 Rst: %s", m),0);
-		
-		m = getArrayString(phenOld);
-		//state.output.println(String.format(" Phenotype B4 Rst: %s", m),0);
-		
-		//fixGenes(phenOld, thisState);
-		
-		phenNew = getPhenome();
-		m = getArrayString(phenNew);
-		//state.output.println(String.format("Phenotype Aft Rst: %s", m),0);
-		
-		m = getArrayString(getGenome());
-		//state.output.println(String.format(" Genotype Aft Rst: %s", m),0);
-		
-		//phenOld = phenNew;
-		
-		m = getArrayString(phenOld);
-		//state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
-		
-		combineMetamaskAndGenotypeMetas(thisState,s);
-		
-		m = getArrayString(getMetas());
-		//state.output.println(String.format("Masked Meta Genes: %s", m),0);
-		
-		fixGenes(phenOld, thisState);
-		
-		phenNew = getPhenome();
-		m = getArrayString(phenNew);
-		//state.output.println(String.format("    New Phenotype: %s", m),0);
-		
+		/*
+		 * setGenotypeMetasToTwos();
+		 * 
+		 * m = getArrayString(thisState.metamask);
+		 * //state.output.println(String.format("         Metamask: %s", m),0);
+		 * 
+		 * m = getArrayString(getMetas());
+		 * //state.output.println(String.format("       Meta genes: %s", m),0);
+		 * 
+		 * m = getArrayString(getGenome());
+		 * //state.output.println(String.format("  Genotype B4 Rst: %s", m),0);
+		 * 
+		 * m = getArrayString(phenOld);
+		 * //state.output.println(String.format(" Phenotype B4 Rst: %s", m),0);
+		 * 
+		 * //fixGenes(phenOld, thisState);
+		 * 
+		 * phenNew = getPhenome(); m = getArrayString(phenNew);
+		 * //state.output.println(String.format("Phenotype Aft Rst: %s", m),0);
+		 * 
+		 * m = getArrayString(getGenome());
+		 * //state.output.println(String.format(" Genotype Aft Rst: %s", m),0);
+		 * 
+		 * //phenOld = phenNew;
+		 * 
+		 * m = getArrayString(phenOld);
+		 * //state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
+		 * 
+		 * combineMetamaskAndGenotypeMetas(thisState,s);
+		 * 
+		 * m = getArrayString(getMetas());
+		 * //state.output.println(String.format("Masked Meta Genes: %s", m),0);
+		 * 
+		 * fixGenes(phenOld, thisState);
+		 * 
+		 * phenNew = getPhenome(); m = getArrayString(phenNew);
+		 * //state.output.println(String.format("    New Phenotype: %s", m),0);
+		 */		
 		metaGenesAfterReset = getMetas();
 		genotypeAfterReset = getGenome();
 		phenotypeAfterReset = getPhenome();
@@ -187,6 +209,7 @@ public class HCIndividual extends XGAIndividual {
 	{
 		for (int x = 0; x < genome.length; x+=2)
 		{
+			//genome[x] = thisState.metamask[x/2];
 			if(thisState.metamask[x/2] == 1)
 			{
 				genome[x] = randomValueFromClosedInterval((int)species.minMetaGene(x), (int)species.maxMetaGene(x), thisState.random[0]);
@@ -206,7 +229,7 @@ public class HCIndividual extends XGAIndividual {
 		genotypeBeforeMutation = getGenome();
 		phenotypeBeforeMutation = getPhenome();
 		
-		for (int x = 0; x < genome.length; x++)
+		for (int x = 0; x < genome.length; x+=2)
 		{
 			if (state.random[thread].nextBoolean(s.mutationProbability(x))) 
 			{
@@ -216,17 +239,17 @@ public class HCIndividual extends XGAIndividual {
 					switch (s.mutationType(x)) 
 					{
 					case HCSpecies.C_RESET_MUTATION:
-						if((x % 2) == 0)
-						{
-							if(genome[x] != 2)
-							{
-								genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-							}
-						}
-						else
-						{
+						//if((x % 2) == 0)
+						//{
+						//	if(genome[x] != 2)
+						//	{
+						//		genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+						//	}
+						//}
+						//else
+						//{
 							genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-						}
+						//}
 						
 						break;
 					case HCSpecies.C_RANDOM_WALK_MUTATION:
