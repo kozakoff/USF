@@ -133,8 +133,8 @@ public class HCEvolutionState extends EvolutionState
 		
 		if(((generation % metamaskGenerations) == 0) && (generation > 0))
 		{
-			//resetMetas = true;
-			//mutateMetamask(this,0);
+			resetMetas = true;
+			mutateMetamask(this,0);
 			//output.println(String.format("New metamask: %s", getMetamask()), 0);
 			//output.println(String.format("resetMetas true at generation: %d", generation), 0);
 		}
@@ -154,8 +154,7 @@ public class HCEvolutionState extends EvolutionState
 				}
 			}
 		}
-		
-		resetMetas = false;
+
 		
 		// EVALUATION
 		statistics.preEvaluationStatistics(this);
@@ -238,14 +237,25 @@ public class HCEvolutionState extends EvolutionState
 	
 	private void mutateMetamask(EvolutionState state, int thread)
 	{
+		//output.message("mutateMetamask is happening");
 		averageFitness = getAverageFitness(state, thread);
 		//double thisMetamaskEvolveProb = (averageFitness == 0 ? metamaskEvolveProb : ((1-averageFitness)/200));
 		double thisMetamaskEvolveProb = metamaskEvolveProb;
+		int replacedCount = 0;
 		
-		for (int x = 0; x < metamask.length; x++) 
+		for (int x = 0; (x < metamask.length) && (replacedCount < 2); x++) 
 		{
+//			if (metamask[x] == 2)
+//			{
+//				if (state.random[thread].nextBoolean(thisMetamaskEvolveProb))
+//				{
+//					metamask[x] = randomValueFromClosedInterval(0, 1, state.random[thread]);
+//				}
+//				//replacedCount++;
+//			}
 			if (state.random[thread].nextBoolean(thisMetamaskEvolveProb))
 			{
+				output.message("Metamask is mutating");
 				metamask[x] = randomValueFromClosedInterval(0, 2, state.random[thread]);
 			}
 		}
@@ -308,7 +318,24 @@ public class HCEvolutionState extends EvolutionState
 	{
 		for(int x = 0; x < metamask.length; x++)
 		{
-			metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+			//Original
+			metamask[x] = 0;
+			//metamask[x] = randomValueFromClosedInterval((int)minMetamaskGene, (int)maxMetamaskGene, state.random[thread]);
+//			if(state.random[thread].nextBoolean(0.8) == true)
+//			{
+//				metamask[x] = 2;
+//			}
+//			else
+//			{
+//				if(state.random[thread].nextBoolean(0.5) == true)
+//				{
+//					metamask[x] = 0;
+//				}
+//				else
+//				{
+//					metamask[x] = 1;
+//				}
+//			}
 		}
 	}
 	

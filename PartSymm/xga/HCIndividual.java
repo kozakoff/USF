@@ -101,9 +101,9 @@ public class HCIndividual extends XGAIndividual {
 	
 	public void resetMetas(EvolutionState state, int thread)
 	{
-		metaGenesBeforeReset = getMetas();
-		genotypeBeforeReset = getGenome();
-		phenotypeBeforeReset = getPhenome();
+//		metaGenesBeforeReset = getMetas();
+//		genotypeBeforeReset = getGenome();
+//		phenotypeBeforeReset = getPhenome();
 		
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		HCSpecies s = (HCSpecies) species;
@@ -156,16 +156,16 @@ public class HCIndividual extends XGAIndividual {
 		 * phenNew = getPhenome(); m = getArrayString(phenNew);
 		 * //state.output.println(String.format("    New Phenotype: %s", m),0);
 		 */		
-		metaGenesAfterReset = getMetas();
-		genotypeAfterReset = getGenome();
-		phenotypeAfterReset = getPhenome();
-		
-		metaGenesHammingDistanceFromReset = getHammingDistance(metaGenesBeforeReset,metaGenesAfterReset);
-		metaGenesLevenshteinDistanceFromReset = getLevenshteinDistance(metaGenesBeforeReset,metaGenesAfterReset);
-		genotypeHammingDistanceFromReset = getHammingDistance(genotypeBeforeReset,genotypeAfterReset);
-		genotypeLevenshteinDistanceFromReset = getLevenshteinDistance(genotypeBeforeReset,genotypeAfterReset);
-		phenotypeHammingDistanceFromReset = getHammingDistance(phenotypeBeforeReset,phenotypeAfterReset);
-		phenotypeLevenshteinDistanceFromReset = getLevenshteinDistance(phenotypeBeforeReset,phenotypeAfterReset);
+//		metaGenesAfterReset = getMetas();
+//		genotypeAfterReset = getGenome();
+//		phenotypeAfterReset = getPhenome();
+//		
+//		metaGenesHammingDistanceFromReset = getHammingDistance(metaGenesBeforeReset,metaGenesAfterReset);
+//		metaGenesLevenshteinDistanceFromReset = getLevenshteinDistance(metaGenesBeforeReset,metaGenesAfterReset);
+//		genotypeHammingDistanceFromReset = getHammingDistance(genotypeBeforeReset,genotypeAfterReset);
+//		genotypeLevenshteinDistanceFromReset = getLevenshteinDistance(genotypeBeforeReset,genotypeAfterReset);
+//		phenotypeHammingDistanceFromReset = getHammingDistance(phenotypeBeforeReset,phenotypeAfterReset);
+//		phenotypeLevenshteinDistanceFromReset = getLevenshteinDistance(phenotypeBeforeReset,phenotypeAfterReset);
 	}
 	
 	private void checkIfPhenotypesEq(int[] p1,int[] p2) throws Exception
@@ -225,9 +225,9 @@ public class HCIndividual extends XGAIndividual {
 	{
 		HCSpecies s = (HCSpecies) species;
 		
-		metaGenesBeforeMutation = getMetas();
-		genotypeBeforeMutation = getGenome();
-		phenotypeBeforeMutation = getPhenome();
+//		metaGenesBeforeMutation = getMetas();
+//		genotypeBeforeMutation = getGenome();
+//		phenotypeBeforeMutation = getPhenome();
 		
 		for (int x = 0; x < genome.length; x+=2)
 		{
@@ -239,17 +239,17 @@ public class HCIndividual extends XGAIndividual {
 					switch (s.mutationType(x)) 
 					{
 					case HCSpecies.C_RESET_MUTATION:
-						//if((x % 2) == 0)
-						//{
-						//	if(genome[x] != 2)
-						//	{
-						//		genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-						//	}
-						//}
-						//else
-						//{
+						if((x % 2) == 0)
+						{
+//							if(genome[x] != 2)
+//							{
+//								genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
+//							}
+						}
+						else
+						{
 							genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-						//}
+						}
 						
 						break;
 					case HCSpecies.C_RANDOM_WALK_MUTATION:
@@ -293,36 +293,36 @@ public class HCIndividual extends XGAIndividual {
 			}
 		}
 		
-		metaGenesAfterMutation = getMetas();
-		genotypeAfterMutation = getGenome();
-		phenotypeAfterMutation = getPhenome();
-		
-		metaGenesHammingDistanceFromMutation = getHammingDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
-		metaGenesLevenshteinDistanceFromMutation = getLevenshteinDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
-		genotypeHammingDistanceFromMutation = getHammingDistance(genotypeBeforeMutation,genotypeAfterMutation);
-		genotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(genotypeBeforeMutation,genotypeAfterMutation);
-		phenotypeHammingDistanceFromMutation = getHammingDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
-		phenotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
+//		metaGenesAfterMutation = getMetas();
+//		genotypeAfterMutation = getGenome();
+//		phenotypeAfterMutation = getPhenome();
+//		
+//		metaGenesHammingDistanceFromMutation = getHammingDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
+//		metaGenesLevenshteinDistanceFromMutation = getLevenshteinDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
+//		genotypeHammingDistanceFromMutation = getHammingDistance(genotypeBeforeMutation,genotypeAfterMutation);
+//		genotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(genotypeBeforeMutation,genotypeAfterMutation);
+//		phenotypeHammingDistanceFromMutation = getHammingDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
+//		phenotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
 	}
 	
 	public void defaultCrossover(EvolutionState state, int thread, ec.vector.VectorIndividual ind)
 	{
-		metaGenesBeforeCrossover = getMetas();
-		genotypeBeforeCrossover = getGenome();
-		phenotypeBeforeCrossover = getPhenome();
+//		metaGenesBeforeCrossover = getMetas();
+//		genotypeBeforeCrossover = getGenome();
+//		phenotypeBeforeCrossover = getPhenome();
 		
 		super.defaultCrossover(state, thread, ind);
 		
-		metaGenesAfterCrossover = getMetas();
-		genotypeAfterCrossover = getGenome();
-		phenotypeAfterCrossover = getPhenome();
-		
-		metaGenesHammingDistanceFromCrossover = getHammingDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
-		metaGenesLevenshteinDistanceFromCrossover = getLevenshteinDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
-		genotypeHammingDistanceFromCrossover = getHammingDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
-		genotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
-		phenotypeHammingDistanceFromCrossover = getHammingDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
-		phenotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
+//		metaGenesAfterCrossover = getMetas();
+//		genotypeAfterCrossover = getGenome();
+//		phenotypeAfterCrossover = getPhenome();
+//		
+//		metaGenesHammingDistanceFromCrossover = getHammingDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
+//		metaGenesLevenshteinDistanceFromCrossover = getLevenshteinDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
+//		genotypeHammingDistanceFromCrossover = getHammingDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
+//		genotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
+//		phenotypeHammingDistanceFromCrossover = getHammingDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
+//		phenotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
 	}
 	
 	public void mirror(EvolutionState state, int thread)

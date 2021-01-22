@@ -35,10 +35,9 @@ pop.subpop.0.species.fitness 		= xga.XGAFitness
 pop.subpop.0.species.ind			= xga.DGAIndividual
 
 pop.subpop.0.species.crossover-type	= one
-pop.subpop.0.species.crossover-prob = 0.25
 pop.subpop.0.species.mutation-type  = reset
-pop.subpop.0.species.mutation-prob	 = 0.015625
-pop.subpop.0.species.mirror-prob	= 0.025
+pop.subpop.0.species.mutation-prob	 = 0.025
+pop.subpop.0.species.mirror-prob	= 0.05
 
 pop.subpop.0.species.pipe								= xga.XGAMirrorPipeline
 pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
