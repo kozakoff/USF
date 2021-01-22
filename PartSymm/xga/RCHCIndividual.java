@@ -11,6 +11,7 @@ public class RCHCIndividual extends RCXGAIndividual {
 	private StringBuilder mirrorString = new StringBuilder();
 	private int lastGeneration = -1;
 	private int defMetaVal;
+	public int[] metagenes;
 	
 	public void setup(final EvolutionState state, final Parameter base)
     {
@@ -25,9 +26,8 @@ public class RCHCIndividual extends RCXGAIndividual {
         
 		RCHCSpecies s = (RCHCSpecies) species;
     
-		genome = new double[s.genomeSize*2];
-		metaGenesBeforeMutation = getMetas();
-		metaGenesAfterMutation = getMetas();
+		metagenes = new int[s.genomeSize];
+		genome = new double[s.genomeSize];
     }
 	
 	/**
@@ -38,58 +38,15 @@ public class RCHCIndividual extends RCXGAIndividual {
 	{	
 		HCEvolutionState thisState = (HCEvolutionState)state;
 		RCHCSpecies s = (RCHCSpecies) species;
-		//String m = "";
-		//int[] phenOld, phenNew;
-		
-		//setGenotypeMetasToTwos();
-		
-		//StringBuilder gBefore = new StringBuilder();
-		//StringBuilder gAfter = new StringBuilder();
-		
-//		for (int i = 0; i < genome.length; i+=2) 
-//		{
-//			gBefore.append(genome[i+1]);
-//		}
-		//state.output.println(String.format("         Genotype Before: %s", gBefore),0);
-		
+
 		for(int x = 0; x < genome.length; x+=2)
 		{
-			genome[x] = thisState.metamask[x/2];
-			genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
+			metagenes[x] = thisState.metamask[x];
+			genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 		}
-		
-//		for (int i = 0; i < genome.length; i+=2) 
-//		{
-//			gAfter.append(genome[i+1]);
-//		}
-		//state.output.println(String.format("         Genotype After: %s", gAfter),0);
-		
-		/*
-		 * m = getArrayString(thisState.metamask);
-		 * //state.output.println(String.format("         Metamask: %s", m),0);
-		 * 
-		 * m = getArrayString(getMetas());
-		 * //state.output.println(String.format("       Meta genes: %s", m),0);
-		 * 
-		 * phenOld = getPhenome();
-		 * 
-		 * combineMetamaskAndGenotypeMetas(thisState,s);
-		 * 
-		 * m = getArrayString(getMetas());
-		 * //state.output.println(String.format("Masked Meta Genes: %s", m),0);
-		 * 
-		 * m = getArrayString(phenOld);
-		 * //state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
-		 * 
-		 * fixGenes(phenOld, thisState);
-		 * 
-		 * phenNew = getPhenome();
-		 * 
-		 * m = getArrayString(phenNew);
-		 * //state.output.println(String.format("    New Phenotype: %s", m),0);
-		 */	}
+	}
 	
-	public String getArrayString(int[] a)
+	public String getArrayString(double[] a)
 	{
 		StringBuilder m = new StringBuilder();
 		for(int x = 0; x < a.length; x++)
@@ -101,74 +58,11 @@ public class RCHCIndividual extends RCXGAIndividual {
 	
 	public void resetMetas(EvolutionState state, int thread)
 	{
-		metaGenesBeforeReset = getMetas();
-		genotypeBeforeReset = getGenome();
-		phenotypeBeforeReset = getPhenome();
-		
 		HCEvolutionState thisState = (HCEvolutionState)state;
-		RCHCSpecies s = (RCHCSpecies) species;
-		String m = "";
-		int[] phenOld, phenNew;
-		
-		phenOld = getPhenome();
-		
-		for(int x = 0; x < genome.length; x+=2)
-		{
-			genome[x] = thisState.metamask[x/2];
-			//genome[x+1] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-		}
-		
-		/*
-		 * setGenotypeMetasToTwos();
-		 * 
-		 * m = getArrayString(thisState.metamask);
-		 * //state.output.println(String.format("         Metamask: %s", m),0);
-		 * 
-		 * m = getArrayString(getMetas());
-		 * //state.output.println(String.format("       Meta genes: %s", m),0);
-		 * 
-		 * m = getArrayString(getGenome());
-		 * //state.output.println(String.format("  Genotype B4 Rst: %s", m),0);
-		 * 
-		 * m = getArrayString(phenOld);
-		 * //state.output.println(String.format(" Phenotype B4 Rst: %s", m),0);
-		 * 
-		 * //fixGenes(phenOld, thisState);
-		 * 
-		 * phenNew = getPhenome(); m = getArrayString(phenNew);
-		 * //state.output.println(String.format("Phenotype Aft Rst: %s", m),0);
-		 * 
-		 * m = getArrayString(getGenome());
-		 * //state.output.println(String.format(" Genotype Aft Rst: %s", m),0);
-		 * 
-		 * //phenOld = phenNew;
-		 * 
-		 * m = getArrayString(phenOld);
-		 * //state.output.println(String.format(" Phenotype B4 Fix: %s", m),0);
-		 * 
-		 * combineMetamaskAndGenotypeMetas(thisState,s);
-		 * 
-		 * m = getArrayString(getMetas());
-		 * //state.output.println(String.format("Masked Meta Genes: %s", m),0);
-		 * 
-		 * fixGenes(phenOld, thisState);
-		 * 
-		 * phenNew = getPhenome(); m = getArrayString(phenNew);
-		 * //state.output.println(String.format("    New Phenotype: %s", m),0);
-		 */		
-		metaGenesAfterReset = getMetas();
-		genotypeAfterReset = getGenome();
-		phenotypeAfterReset = getPhenome();
-		
-		metaGenesHammingDistanceFromReset = getHammingDistance(metaGenesBeforeReset,metaGenesAfterReset);
-		metaGenesLevenshteinDistanceFromReset = getLevenshteinDistance(metaGenesBeforeReset,metaGenesAfterReset);
-		genotypeHammingDistanceFromReset = getHammingDistance(genotypeBeforeReset,genotypeAfterReset);
-		genotypeLevenshteinDistanceFromReset = getLevenshteinDistance(genotypeBeforeReset,genotypeAfterReset);
-		phenotypeHammingDistanceFromReset = getHammingDistance(phenotypeBeforeReset,phenotypeAfterReset);
-		phenotypeLevenshteinDistanceFromReset = getLevenshteinDistance(phenotypeBeforeReset,phenotypeAfterReset);
+		metagenes = thisState.metamask;
 	}
 	
-	private void checkIfPhenotypesEq(int[] p1,int[] p2) throws Exception
+	private void checkIfPhenotypesEq(double[] p1,double[] p2) throws Exception
 	{
 		if(!Arrays.equals(p1,p2))
 		{
@@ -178,12 +72,12 @@ public class RCHCIndividual extends RCXGAIndividual {
 	
 	private void setGenotypeMetasToTwos()
 	{
-		for(int x = 0; x < genome.length; x+=2) { genome[x] = 2; }
+		for(int x = 0; x < metagenes.length; x++) { metagenes[x] = 2; }
 	}
 	
-	private void fixGenes(int[] OriginalPhenotype, HCEvolutionState state)
+	private void fixGenes(double[] OriginalPhenotype, HCEvolutionState state)
 	{
-		int[] newPhenotype = getPhenome();
+		double[] newPhenotype = getPhenome();
  
 		for (int x = 0; x < OriginalPhenotype.length; x++)
 		{
@@ -225,34 +119,19 @@ public class RCHCIndividual extends RCXGAIndividual {
 	{
 		RCHCSpecies s = (RCHCSpecies) species;
 		
-		metaGenesBeforeMutation = getMetas();
-		genotypeBeforeMutation = getGenome();
-		phenotypeBeforeMutation = getPhenome();
-		
-		for (int x = 0; x < genome.length; x+=2)
+		for (int x = 0; x < genome.length; x++)
 		{
 			if (state.random[thread].nextBoolean(s.mutationProbability(x))) 
 			{
-				int old = genome[x];
+				double old = genome[x];
 				for (int retries = 0; retries < s.duplicateRetries(x) + 1; retries++) 
 				{
 					switch (s.mutationType(x)) 
 					{
 					case RCHCSpecies.C_RESET_MUTATION:
-						//if((x % 2) == 0)
-						//{
-						//	if(genome[x] != 2)
-						//	{
-						//		genome[x] = randomValueFromClosedInterval((int)s.minMetaGene(x), (int)s.maxMetaGene(x), state.random[thread]);
-						//	}
-						//}
-						//else
-						//{
-							genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
-						//}
-						
+						genome[x] = randomValueFromClosedInterval((double)s.minGene(x), (double)s.maxGene(x), state.random[thread]);
 						break;
-					case RCHCSpecies.C_RANDOM_WALK_MUTATION:
+					case RCHCSpecies.C_INTEGER_RANDOM_WALK_MUTATION:
 						int min, max;
 						
 						if((x % 2) == 0)
@@ -293,45 +172,16 @@ public class RCHCIndividual extends RCXGAIndividual {
 			}
 		}
 		
-		metaGenesAfterMutation = getMetas();
-		genotypeAfterMutation = getGenome();
-		phenotypeAfterMutation = getPhenome();
-		
-		metaGenesHammingDistanceFromMutation = getHammingDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
-		metaGenesLevenshteinDistanceFromMutation = getLevenshteinDistance(metaGenesBeforeMutation,metaGenesAfterMutation);
-		genotypeHammingDistanceFromMutation = getHammingDistance(genotypeBeforeMutation,genotypeAfterMutation);
-		genotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(genotypeBeforeMutation,genotypeAfterMutation);
-		phenotypeHammingDistanceFromMutation = getHammingDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
-		phenotypeLevenshteinDistanceFromMutation = getLevenshteinDistance(phenotypeBeforeMutation,phenotypeAfterMutation);
 	}
 	
 	public void defaultCrossover(EvolutionState state, int thread, ec.vector.VectorIndividual ind)
 	{
-		metaGenesBeforeCrossover = getMetas();
-		genotypeBeforeCrossover = getGenome();
-		phenotypeBeforeCrossover = getPhenome();
-		
 		super.defaultCrossover(state, thread, ind);
-		
-		metaGenesAfterCrossover = getMetas();
-		genotypeAfterCrossover = getGenome();
-		phenotypeAfterCrossover = getPhenome();
-		
-		metaGenesHammingDistanceFromCrossover = getHammingDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
-		metaGenesLevenshteinDistanceFromCrossover = getLevenshteinDistance(metaGenesBeforeCrossover,metaGenesAfterCrossover);
-		genotypeHammingDistanceFromCrossover = getHammingDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
-		genotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(genotypeBeforeCrossover,genotypeAfterCrossover);
-		phenotypeHammingDistanceFromCrossover = getHammingDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
-		phenotypeLevenshteinDistanceFromCrossover = getLevenshteinDistance(phenotypeBeforeCrossover,phenotypeAfterCrossover);
 	}
 	
 	public void mirror(EvolutionState state, int thread)
 	{
-		
-		//metaGenesBeforeMirror = getMetas();
-		//genotypeBeforeMirror = getGenome();
-		//phenotypeBeforeMirror = getPhenome();
-		
+	
 		//Probability, then,  
 		//Meta gene values
 		//2 - No meta gene present
@@ -356,13 +206,13 @@ public class RCHCIndividual extends RCXGAIndividual {
 		
 		mirrorString.setLength(0);
 
-		for (int x = 0; x < genome.length; x+=2)
+		for (int x = 0; x < genome.length; x++)
 		{
 			//In this loop x eq the meta gene and x+1 eq the actual gene 
-			currMetaGene = genome[x];
+			currMetaGene = metagenes[x];
 			if(currMetaGene != 2)
 			{
-				lastMetaGene = genome[x];
+				lastMetaGene = metagenes[x];
 				yesMirror = state.random[thread].nextBoolean(s.mirrorProbability);
 				mirrorString.append((yesMirror ? "T" : "F"));
 				mirrorString.append(",");
@@ -377,25 +227,14 @@ public class RCHCIndividual extends RCXGAIndividual {
 				
 				if(lastMetaGene == 0)
 				{
-					genome[x+1] = (genome[x+1]==1 ? 1 : 0);
+					genome[x] = (genome[x]==1 ? 1 : 0);
 				}
 				else
 				{
-					genome[x+1] = (genome[x+1]==1 ? 0 : 1);
+					genome[x] = (genome[x]==1 ? 0 : 1);
 				}
 			}
 		}
-		
-		//metaGenesAfterMirror = getMetas();
-		//genotypeAfterMirror = getGenome();
-		//phenotypeAfterMirror = getPhenome();
-		
-		//metaGenesHammingDistanceFromMirror = getHammingDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
-		//metaGenesLevenshteinDistanceFromMirror = getLevenshteinDistance(metaGenesBeforeMirror,metaGenesAfterMirror);
-		//genotypeHammingDistanceFromMirror = getHammingDistance(genotypeBeforeMirror,genotypeAfterMirror);
-		//genotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(genotypeBeforeMirror,genotypeAfterMirror);
-		//phenotypeHammingDistanceFromMirror = getHammingDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
-		//phenotypeLevenshteinDistanceFromMirror = getLevenshteinDistance(phenotypeBeforeMirror,phenotypeAfterMirror);
 	}
 	
 	public String genotypeToStringForHumans() 
@@ -408,13 +247,13 @@ public class RCHCIndividual extends RCXGAIndividual {
 		s.append("Geno: ");
 		t.append("Phen: ");
 		
-		for (int i = 0; i < genome.length; i+=2) 
+		for (int i = 0; i < genome.length; i++) 
 		{
-			m.append(genome[i]);
-			s.append(genome[i+1]);
+			m.append(metagenes[i]);
+			s.append(genome[i]);
 		}
 		
-		int[] thisPhenome = getPhenome();
+		double[] thisPhenome = getPhenome();
 		
 		for (int i = 0; i < thisPhenome.length; i++) 
 		{
@@ -441,50 +280,36 @@ public class RCHCIndividual extends RCXGAIndividual {
 
 	public int[] getMetas() 
 	{
-		int[] metas = new int[genome.length/2];
-
-		for (int x = 0; x < genome.length; x+=2)
-		{
-			metas[x/2] = genome[(x)];
-		}
-		
-		return metas;
+		return metagenes;
 	}
 	
-	public int[] getGenome() 
+	public double[] getGenome() 
 	{
-		int[] thisGenome = new int[genome.length/2];
-
-		for (int x = 0; x < thisGenome.length; x++)
-		{
-			thisGenome[x] = genome[(x*2)+1];
-		}
-		
-		return thisGenome;
+		return genome;
 	}
 
 	@Override
-	public int[] getPhenome() 
+	public double[] getPhenome() 
 	{
 		int currMetaGene, lastMetaGene = defMetaVal;
-		int[] phenome = new int[genome.length/2];
+		double[] phenome = new double[genome.length];
 		
-		for (int x = 0; x < genome.length; x+=2)
+		for (int x = 0; x < metagenes.length; x++)
 		{
-			//In this loop x eq the meta gene and x+1 eq the actual gene 
-			currMetaGene = genome[x];
+			//In this loop x eq the meta gene and x eq the actual gene 
+			currMetaGene = metagenes[x];
 			if(currMetaGene != 2)
 			{
-				lastMetaGene = genome[x];
+				lastMetaGene = metagenes[x];
 			}
 			
 			if (lastMetaGene == 0) 
 			{
-				phenome[x / 2] = (genome[x + 1] == 1 ? 1 : 0);
+				phenome[x] = (genome[x] == 1 ? 1 : 0);
 			} 
 			else 
 			{
-				phenome[x / 2] = (genome[x + 1] == 1 ? 0 : 1);
+				phenome[x] = (genome[x] == 1 ? 0 : 1);
 			}
 		}
 		
@@ -549,22 +374,22 @@ public class RCHCIndividual extends RCXGAIndividual {
 	@Override
 	public int[] getMetagenesTranslation() {
 		
-		int[] translated = new int[genome.length/2];
+		int[] translated = new int[metagenes.length];
 		int currMetaGene, lastMetaGene = 0;
 		
-		for(int i = 0; i < genome.length; i+=2)
+		for(int i = 0; i < metagenes.length; i+=2)
 		{
-			currMetaGene = genome[i];
+			currMetaGene = metagenes[i];
 			if(currMetaGene != 2)
 			{
-				lastMetaGene = genome[i];
+				lastMetaGene = metagenes[i];
 			}
 			else
 			{
 				//No meta gene so keep lastMetaGene
 			}
 			
-			translated[i/2] = lastMetaGene;
+			translated[i] = lastMetaGene;
 		}
 		
 		return translated;

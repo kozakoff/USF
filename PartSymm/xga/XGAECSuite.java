@@ -256,7 +256,7 @@ public class XGAECSuite extends Problem implements SimpleProblemForm {
 		if (!(ind instanceof DoubleVectorIndividual))
 			state.output.fatal("The individuals for this problem should be DoubleVectorIndividuals.");
 
-		DGADoubleVectorIndividual temp = (DGADoubleVectorIndividual) ind;
+		RCXGAIndividual temp = (RCXGAIndividual) ind;
 		double[] genome = temp.getPhenotype();
 		// int len = genome.length;
 
