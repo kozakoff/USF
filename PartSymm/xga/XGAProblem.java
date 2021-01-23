@@ -10,6 +10,31 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 	private static final long serialVersionUID = 1L;
 	public final static String P_FITNESSCALC = "fitness-calc";
 	public final static String P_RRCHUNKSIZE = "rr-chunk-size";
+	
+	public static final String V_RR = "rr";
+	public static final String V_RR2 = "rr2";
+	public static final String V_RRRP1 = "rrrp1";
+	public static final String V_RRRP2 = "rrrp2";
+	public static final String V_SPHERE = "sphere";
+    public static final String V_ROSENBROC = "rosenbroc";
+    public static final String V_SCHWEFEL = "schwefel";
+    public static final String V_RASTARIGIN = "rastarigin";
+    public static final String V_ACKLEY = "ackley";
+    public static final String V_MPB = "mpb";
+    public static final String V_INV_SPHERE = "inv-sphere";   
+    public static final String V_DEJONG_N5 = "dejongn5";
+    public static final String V_INV_DEJONG_N5 = "inv-dejongn5";
+    
+    public static final int PROB_SPHERE = 1;
+    public static final int PROB_ROSENBROC = 2;
+    public static final int PROB_SCHWEFEL = 3;
+    public static final int PROB_RASTARIGIN = 4;
+    public static final int PROB_ACKLEY = 5;
+       
+    public static final int PROB_INV_SPHERE = 6;    
+    public static final int PROB_DEJONG_N5 = 7;
+    public static final int PROB_INV_DEJONG_N5 = 8;
+    public static final int PROB_MPB = 9;
 	protected String fitnessCalc = "";
 	protected int rrChunkSize = 0;
 	
@@ -23,18 +48,18 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		// Should we use RR for fitness calculation?
 		fitnessCalc = state.parameters.getStringWithDefault(base.push(P_FITNESSCALC), def.push(P_FITNESSCALC),"maxones");
 		
-		switch(fitnessCalc.toUpperCase())
+		switch(fitnessCalc.toLowerCase())
 		{
-			case "RR":
+			case V_RR:
 				rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
 				break;
-			case "RR2":
+			case V_RR2:
 				rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
 				break;
-			case "RRRP1":
+			case V_RRRP1:
 				rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
 				break;
-			case "RRRP2":
+			case V_RRRP2:
 				rrChunkSize = state.parameters.getInt(base.push(P_RRCHUNKSIZE), def.push(P_RRCHUNKSIZE), 0);
 				break;
 			default:
@@ -97,23 +122,38 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		{
 			state.output.fatal("ERROR: XGAProblem requires either a IntegerVectorIndividual or XGAIndividual.",null);
 		}
-
+		
 		//Calculate fitness depending on method
 		try 
 		{
 			switch(fitnessCalc.toUpperCase())
 			{
-			case "RR":
+			case V_RR:
 				fitnessValue = calcRRFitness(genome, genome.length);
 				break;
-			case "RR2":
+			case V_RR2:
 				fitnessValue = calcRR2Fitness(genome, genome.length*4);
 				break;
-			case "RRRP1":
+			case V_RRRP1:
 				fitnessValue = calcRRRPFitness(genome, genome.length, false, state);
 				break;
-			case "RRRP2":
+			case V_RRRP2:
 				fitnessValue = calcRRRPFitness(genome, genome.length + rrChunkSize, true, state);
+				break;
+			case V_SPHERE:
+				
+				break;
+			case V_ROSENBROC:
+				
+				break;
+			case V_SCHWEFEL:
+	
+				break;
+			case V_RASTARIGIN:
+	
+				break;
+			case V_ACKLEY:
+	
 				break;
 			default:
 				fitnessValue = calcMaxOnesFitness(genome, genome.length);
@@ -142,6 +182,41 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
 		((XGAFitness) ind2.fitness).metaGenesTwoCount = twoCount;	
 		
 		ind2.evaluated = true;
+	}
+	
+	private double calcSphere(double[] g) throws Exception
+	{
+		double value = 0;
+		int len = g.length;
+		for( int i = 0 ; i < len ; i++ ) {
+            double gi = g[i] ;
+            value += (gi * gi);
+          }
+		return -value;
+	}
+	
+	private double calcRosenbrock() throws Exception
+	{
+		
+		return 0.0;
+	}
+	
+	private double calcSchwefel() throws Exception
+	{
+		
+		return 0.0;
+	}
+	
+	private double calcRatrigin() throws Exception
+	{
+		
+		return 0.0;
+	}
+	
+	private double calcAckley() throws Exception
+	{
+		
+		return 0.0;
 	}
 	
 	private double calcRR2Fitness(int[] g, int max) throws Exception

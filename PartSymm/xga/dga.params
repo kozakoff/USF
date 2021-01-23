@@ -4,7 +4,7 @@
 
 # The parameters that were laid out in Tutorial 1 (see the documentation)
 
-parent.0 	= shared.params 
+parent.0 	= shared.params
 
 state		= ec.simple.SimpleEvolutionState
 
