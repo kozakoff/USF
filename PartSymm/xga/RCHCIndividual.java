@@ -175,14 +175,14 @@ public class RCHCIndividual extends RCXGAIndividual {
 		for (int i = 0; i < genome.length; i++) 
 		{
 			m.append(metagenes[i]);
-			s.append(genome[i]);
+			s.append(genome[i]+",");
 		}
 		
 		double[] thisPhenome = getPhenome();
 		
 		for (int i = 0; i < thisPhenome.length; i++) 
 		{
-			t.append(thisPhenome[i]);
+			t.append(thisPhenome[i]+",");
 		}
 			
 		m.append("\r\n");
@@ -230,11 +230,11 @@ public class RCHCIndividual extends RCXGAIndividual {
 			
 			if (lastMetaGene == 0) 
 			{
-				phenome[x] = (genome[x] == 1 ? 1 : 0);
+				phenome[x] = genome[x];
 			} 
 			else 
 			{
-				phenome[x] = (genome[x] == 1 ? 0 : 1);
+				phenome[x] = genome[x] * -1.0;
 			}
 		}
 		
