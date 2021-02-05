@@ -1,0 +1,81 @@
+breedthreads= 1
+evalthreads	= 4
+seed.0		= 4357
+seed.1		= 4358
+seed.2		= 4359
+seed.3		= 4360
+jobs 		= 5
+
+generations				= 2499
+quit-on-run-complete	= false
+checkpoint				= false
+checkpoint-prefix		= ec
+checkpoint-modulo		= 1 
+
+state		= xga.HCEvolutionState
+
+pop			= ec.Population
+init		= ec.simple.SimpleInitializer
+finish		= ec.simple.SimpleFinisher
+breed		= xga.XGABreeder
+eval		= xga.XGAEvaluator
+stat		= xga.XGAStatistics
+exch		= xga.XGAExchanger
+
+stat.file				= ../logs/hc.stat
+stat.num-children 		= 1
+stat.child.0 			= xga.XGAShortStatistics
+stat.child.0.file 		= exp/rchc/rchc.out.stat
+
+pop.subpops			= 1
+pop.subpop.0		= ec.Subpopulation
+pop.subpop.0.size 		= 100
+pop.subpop.0.duplicate-retries 	= 0
+pop.subpop.0.species 			= xga.RCHCSpecies
+
+vector.species.min-gene = 0
+vector.species.max-gene = 1
+
+vector.species.min-meta-gene = 0
+vector.species.max-meta-gene = 2
+
+metamask-size 			= 10
+min-metamask-gene 		= 0
+max-metamask-gene 		= 2
+metamask-generations	= 100
+metamask-evolve-prob 	= 0.015625
+metamask-rand-reset		= false
+
+pop.subpop.0.species.min-gene   		= -5.12
+pop.subpop.0.species.max-gene   		= 5.12
+pop.subpop.0.species.fitness 			= ec.simple.SimpleFitness
+pop.subpop.0.species.ind				= xga.RCHCIndividual
+
+pop.subpop.0.species.genome-size		= 10
+
+pop.subpop.0.species.crossover-type		= any
+pop.subpop.0.species.crossover-prob     = 0.1
+pop.subpop.0.species.chunk-size 		= 1
+
+pop.subpop.0.species.mutation-type		= gauss
+pop.subpop.0.species.mutation-stdev    	= 0.5
+pop.subpop.0.species.mutation-bounded   = true
+pop.subpop.0.species.mutation-prob		= 0.1
+
+#Mirror 2 of every 128 individuals
+pop.subpop.0.species.mirror-prob	= 0.015625 
+pop.subpop.0.species.default-meta-value = 0
+
+pop.subpop.0.species.pipe								= xga.RCXGAMirrorPipeline
+pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
+
+select.tournament.size		= 2
+
+eval.problem					= xga.RCProblem
+
+#typec can be: sphere, rosenbroc, schwefel, rastarigin, ackley, mpb
+eval.problem.type 		= rosenbroc
+eval.problem.num-epoch	= 1
