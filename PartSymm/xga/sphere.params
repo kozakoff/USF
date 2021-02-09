@@ -6,7 +6,7 @@ seed.2		= 4359
 seed.3		= 4360
 jobs 		= 1
 
-generations				= 2499
+generations				= 1000
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -81,5 +81,5 @@ select.tournament.size		= 2
 eval.problem					= xga.RCProblem
 
 #typec can be: sphere, rosenbroc, schwefel, rastarigin, ackley, mpb
-eval.problem.type 		= rosenbroc
+eval.problem.type 		= sphere
 eval.problem.num-epoch	= 1

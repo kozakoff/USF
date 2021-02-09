@@ -4,9 +4,9 @@ seed.0		= 4357
 seed.1		= 4358
 seed.2		= 4359
 seed.3		= 4360
-jobs 		= 5
+jobs 		= 1
 
-generations				= 2499
+generations				= 200
 quit-on-run-complete	= false
 checkpoint				= false
 checkpoint-prefix		= ec
@@ -22,10 +22,15 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-stat.file				= ../logs/hc.stat
 stat.num-children 		= 1
-stat.child.0 			= xga.XGAShortStatistics
-stat.child.0.file 		= exp/rchc/rchc.out.stat
+stat.child.0 = xga.CustomStatistics
+stat.child.0.file = $custom.stat
+stat.child.0.do-subpops = true
+
+#stat.file				= ../logs/hc.stat
+#stat.num-children 		= 1
+#stat.child.0 			= xga.XGAShortStatistics
+#stat.child.0.file 		= exp/rchc/rchc.out.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation

@@ -6,6 +6,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ec.*;
 import ec.simple.*;
@@ -108,28 +110,29 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
         DoubleVectorIndividual temp = (DoubleVectorIndividual)ind;
         double[] genome = temp.genome;
 
-        double fit = (function(state, problemType, genome, threadnum));
+        ArrayList<Double> fit = (function(state, problemType, genome, threadnum));
       
-        if (fit < (0.0 - Double.MAX_VALUE))  {
+        if (fit.get(0) < (0.0 - Double.MAX_VALUE))  {
             ((SimpleFitness)(ind.fitness)).setFitness( state, 0.0 - Double.MAX_VALUE, false );
             state.output.warnOnce("'Product' type used: some fitnesses are negative infinity, setting to lowest legal negative number.");
             }
-        else if (fit > Double.MAX_VALUE) {
+        else if (fit.get(0) > Double.MAX_VALUE) {
             ((SimpleFitness)(ind.fitness)).setFitness( state, Double.MAX_VALUE, false );
             state.output.warnOnce("'Product' type used: some fitnesses are negative infinity, setting to lowest legal negative number.");
             }
         else 
-            ((SimpleFitness)(ind.fitness)).setFitness( state, fit, false );
+            ((SimpleFitness)(ind.fitness)).setFitness( state, fit.get(0), false );
             
         ind.evaluated = true;
        }
 
-    public double function(EvolutionState state, int function, double[] genome, int threadnum) {
+    public ArrayList<Double> function(EvolutionState state, int function, double[] genome, int threadnum) {
 
         double value = 0;
         int len = genome.length;
         final double MAX_DEJONG_N5 = 3905.93;
         final double MAX_SPHERE = 10000.0 ;
+        ArrayList<Double> list = new ArrayList<Double>();
         
 //        if (numEpoch > 1) { // Time Dependent Optimization
 //        	environmentID = state.generation / epochLength;
@@ -155,21 +158,28 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
 	    			epochStatus[environmentID] = true;
 	    		} 
         }
-             
+        
+        double maxVal = 0.0;
+        
         switch(problemType) {
             case PROB_SPHERE:
                 for( int i = 0 ; i < len ; i++ ) {
                     double gi = genome[i] ;
                     value += (gi * gi);
+                    maxVal += (100 * 100);
                   }
-                return -value;
+                //list.add(-value);
+                System.out.println("value is: " + value);
+                list.add(1-(Math.abs(value) / maxVal));
+                return list;
             case PROB_ROSENBROC: //rosenbroc
     			for( int i = 1 ; i < len ; i++ ){
     				double gj = genome[i-1] ;
     				double gi = genome[i] ;
     				value += (100 * (gj*gj - gi) * (gj*gj - gi) +  (1-gj) * (1-gj));
     			}
-    			return -value;
+    			list.add(1-(Math.abs(value) / 88209088209.0));
+    			return list;
             case PROB_SCHWEFEL: // schwefel
     			double B = 418.9829 * len;
     			for( int i = 0 ; i < len ; i++ ) {
@@ -177,7 +187,8 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
     				value += (gi * Math.sin(Math.sqrt(Math.abs(gi))));
     			}  
     			value = B - value;
-    			return -value;
+    			list.add(-value);
+    			return list;
             case PROB_RASTARIGIN: //rastargrin
     			final double A = 10.0;
     			for( int i = 0 ; i < len ; i++ )
@@ -186,7 +197,9 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
     				value += (gi*gi - A * Math.cos( 2 * Math.PI * gi ));
     			}
     			value = value + A * len;
-    			return -value;
+    			list.add(-value);
+    			return list
+    					;
             case PROB_ACKLEY: // Ackley
     			double sum1 = 0.0;   
     			double sum2 = 0.0;   
@@ -196,7 +209,8 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
     				sum2 += (Math.cos(2*Math.PI*genome[i]));   
     			}   
     			value = -20.0 * Math.exp(-0.2 * Math.sqrt(sum1 / ((double )len))) -  Math.exp(sum2 / ((double)len)) + 20.0 + Math.E;   
-    			return -value;
+    			list.add(-value);
+    			return list;
             case PROB_INV_SPHERE:
             	
                 for( int i = 0 ; i < len ; i++ ) {
@@ -205,7 +219,8 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
                   }
                 double fx = -value;
                 double invFx = MAX_SPHERE + fx;
-                return -invFx;
+                list.add(-invFx);
+                return list;
                 
             case PROB_DEJONG_N5:
             	 
@@ -215,19 +230,23 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
     				value += (100 * (gj*gj - gi) * (gj*gj - gi) +  (1-gj) * (1-gj));
     			}
     			value = MAX_DEJONG_N5 - value;
-    			return value;
+    			list.add(value);
+    			return list;
            case PROB_INV_DEJONG_N5:
             	for( int i = 1 ; i < len ; i++ ) {
     				double gj = genome[i-1] ;
     				double gi = genome[i] ;
     				value += (100 * (gj*gj - gi) * (gj*gj - gi) +  (1-gj) * (1-gj));
-    			}   			
-    			return value;
+    			}   		
+            	list.add(value);
+    			return list;
            case PROB_MPB:
-        	   return mpb.evaluateASolution(genome); 
+        	   list.add(mpb.evaluateASolution(genome));
+        	   return list; 
             default:
                 state.output.fatal( "ERROR: Invalid problem -- how on earth did that happen?" );
-                return 0;  // never happens
+                list.add(0.0);
+                return list;  // never happens
            }
      }
 
