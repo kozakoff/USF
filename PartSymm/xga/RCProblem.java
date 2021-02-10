@@ -113,15 +113,15 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
         ArrayList<Double> fit = (function(state, problemType, genome, threadnum));
       
         if (fit.get(0) < (0.0 - Double.MAX_VALUE))  {
-            ((SimpleFitness)(ind.fitness)).setFitness( state, 0.0 - Double.MAX_VALUE, false );
+            ((RCXGAFitness)(ind.fitness)).setFitness( state, 0.0 - Double.MAX_VALUE, false );
             state.output.warnOnce("'Product' type used: some fitnesses are negative infinity, setting to lowest legal negative number.");
             }
         else if (fit.get(0) > Double.MAX_VALUE) {
-            ((SimpleFitness)(ind.fitness)).setFitness( state, Double.MAX_VALUE, false );
+            ((RCXGAFitness)(ind.fitness)).setFitness( state, Double.MAX_VALUE, false );
             state.output.warnOnce("'Product' type used: some fitnesses are negative infinity, setting to lowest legal negative number.");
             }
         else 
-            ((SimpleFitness)(ind.fitness)).setFitness( state, fit.get(0), false );
+            ((RCXGAFitness)(ind.fitness)).setFitness( state, fit.get(0), false );
             
         ind.evaluated = true;
        }
@@ -159,18 +159,15 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
 	    		} 
         }
         
-        double maxVal = 0.0;
-        
         switch(problemType) {
             case PROB_SPHERE:
                 for( int i = 0 ; i < len ; i++ ) {
                     double gi = genome[i] ;
                     value += (gi * gi);
-                    maxVal += (100 * 100);
                   }
                 //list.add(-value);
-                System.out.println("value is: " + value);
-                list.add(1-(Math.abs(value) / maxVal));
+                //System.out.println("value is: " + value);
+                list.add(value);
                 return list;
             case PROB_ROSENBROC: //rosenbroc
     			for( int i = 1 ; i < len ; i++ ){
@@ -178,7 +175,7 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
     				double gi = genome[i] ;
     				value += (100 * (gj*gj - gi) * (gj*gj - gi) +  (1-gj) * (1-gj));
     			}
-    			list.add(1-(Math.abs(value) / 88209088209.0));
+    			list.add(value);
     			return list;
             case PROB_SCHWEFEL: // schwefel
     			double B = 418.9829 * len;
