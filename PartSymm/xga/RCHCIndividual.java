@@ -162,46 +162,46 @@ public class RCHCIndividual extends RCXGAIndividual {
 		}
 	}
 	
-	public String genotypeToStringForHumans() 
-	{
-		StringBuilder m = new StringBuilder();
-		StringBuilder s = new StringBuilder();
-		StringBuilder t = new StringBuilder();
-		
-		m.append("Meta: ");
-		s.append("Geno: ");
-		t.append("Phen: ");
-		
-		for (int i = 0; i < genome.length; i++) 
-		{
-			m.append(metagenes[i]);
-			s.append(genome[i]+",");
-		}
-		
-		double[] thisPhenome = getPhenome();
-		
-		for (int i = 0; i < thisPhenome.length; i++) 
-		{
-			t.append(thisPhenome[i]+",");
-		}
-			
-		m.append("\r\n");
-		m.append(s);
-		m.append("\r\n");
-		m.append(t);
-		m.append("\r\nMirror Prob String: ");
-		
-		if(mirrorString.length() > 0)
-		{
-			m.append(mirrorString.substring(0,mirrorString.length()-1));	
-		}
-		else
-		{
-			m.append(mirrorString);
-		}
-		
-		return m.toString();
-	}
+//	public String genotypeToStringForHumans() 
+//	{
+//		StringBuilder m = new StringBuilder();
+//		StringBuilder s = new StringBuilder();
+//		StringBuilder t = new StringBuilder();
+//		
+//		m.append("Meta: ");
+//		s.append("Geno: ");
+//		t.append("Phen: ");
+//		
+//		for (int i = 0; i < genome.length; i++) 
+//		{
+//			m.append(metagenes[i]);
+//			s.append(genome[i]+",");
+//		}
+//		
+//		double[] thisPhenome = getPhenome();
+//		
+//		for (int i = 0; i < thisPhenome.length; i++) 
+//		{
+//			t.append(thisPhenome[i]+",");
+//		}
+//			
+//		m.append("\r\n");
+//		m.append(s);
+//		m.append("\r\n");
+//		m.append(t);
+//		m.append("\r\nMirror Prob String: ");
+//		
+//		if(mirrorString.length() > 0)
+//		{
+//			m.append(mirrorString.substring(0,mirrorString.length()-1));	
+//		}
+//		else
+//		{
+//			m.append(mirrorString);
+//		}
+//		
+//		return m.toString();
+//	}
 
 	public int[] getMetas() 
 	{
