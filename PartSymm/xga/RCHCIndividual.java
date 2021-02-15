@@ -9,7 +9,7 @@ public class RCHCIndividual extends RCXGAIndividual {
 	
 	private static final long serialVersionUID = 1L;
 	private StringBuilder mirrorString = new StringBuilder();
-	private int lastGeneration = -1;
+	//private int lastGeneration = -1;
 	private int defMetaVal;
 	public int[] metagenes;
 	
@@ -27,7 +27,6 @@ public class RCHCIndividual extends RCXGAIndividual {
 		RCHCSpecies s = (RCHCSpecies) species;
     
 		metagenes = new int[s.genomeSize];
-		genome = new double[s.genomeSize];
     }
 	
 	/**
@@ -36,13 +35,13 @@ public class RCHCIndividual extends RCXGAIndividual {
 	 */
 	public void reset(EvolutionState state, int thread) 
 	{	
+		super.reset(state, thread);
+		
 		HCEvolutionState thisState = (HCEvolutionState)state;
-		RCHCSpecies s = (RCHCSpecies) species;
 
-		for(int x = 0; x < genome.length; x+=2)
+		for(int x = 0; x < metagenes.length; x++)
 		{
 			metagenes[x] = thisState.metamask[x];
-			genome[x] = randomValueFromClosedInterval((int)s.minGene(x), (int)s.maxGene(x), state.random[thread]);
 		}
 	}
 	
@@ -70,110 +69,36 @@ public class RCHCIndividual extends RCXGAIndividual {
 		}
 	}
 	
-	private void setGenotypeMetasToTwos()
-	{
-		for(int x = 0; x < metagenes.length; x++) { metagenes[x] = 2; }
-	}
+//	private void setGenotypeMetasToTwos()
+//	{
+//		for(int x = 0; x < metagenes.length; x++) { metagenes[x] = 2; }
+//	}
+//	
+//	private void fixGenes(double[] OriginalPhenotype, HCEvolutionState state)
+//	{
+//		double[] newPhenotype = getPhenome();
+// 
+//		for (int x = 0; x < OriginalPhenotype.length; x++)
+//		{
+//			if(newPhenotype[x] != OriginalPhenotype[x])
+//			{
+//				genome[(x*2)+1] = (genome[(x*2)+1]==1 ? 0 : 1);
+//			}
+//		}
+//		
+//		try
+//		{
+//			checkIfPhenotypesEq(OriginalPhenotype, getPhenome());
+//		}
+//		catch (Exception e)
+//		{
+//			e.printStackTrace();
+//			state.output.fatal(String.format("Org Phenotype: %s\r\nNew Phenotype: %s", getArrayString(OriginalPhenotype), getArrayString(getPhenome())));
+//			System.exit(100);
+//		}
+//	}
 	
-	private void fixGenes(double[] OriginalPhenotype, HCEvolutionState state)
-	{
-		double[] newPhenotype = getPhenome();
- 
-		for (int x = 0; x < OriginalPhenotype.length; x++)
-		{
-			if(newPhenotype[x] != OriginalPhenotype[x])
-			{
-				genome[(x*2)+1] = (genome[(x*2)+1]==1 ? 0 : 1);
-			}
-		}
-		
-		try
-		{
-			checkIfPhenotypesEq(OriginalPhenotype, getPhenome());
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			state.output.fatal(String.format("Org Phenotype: %s\r\nNew Phenotype: %s", getArrayString(OriginalPhenotype), getArrayString(getPhenome())));
-			System.exit(100);
-		}
-	}
-	
-	private void combineMetamaskAndGenotypeMetas(HCEvolutionState thisState, RCHCSpecies species)
-	{
-		for (int x = 0; x < genome.length; x+=2)
-		{
-			//genome[x] = thisState.metamask[x/2];
-			if(thisState.metamask[x/2] == 1)
-			{
-				genome[x] = randomValueFromClosedInterval((int)species.minMetaGene(x), (int)species.maxMetaGene(x), thisState.random[0]);
-			}
-			else
-			{
-				genome[x] = 2;
-			}
-		}
-	}
-	
-	public void defaultMutate(EvolutionState state, int thread) 
-	{
-		RCHCSpecies s = (RCHCSpecies) species;
-		
-		for (int x = 0; x < genome.length; x++)
-		{
-			if (state.random[thread].nextBoolean(s.mutationProbability(x))) 
-			{
-				double old = genome[x];
-				for (int retries = 0; retries < s.duplicateRetries(x) + 1; retries++) 
-				{
-					switch (s.mutationType(x)) 
-					{
-					case RCHCSpecies.C_RESET_MUTATION:
-						genome[x] = randomValueFromClosedInterval((double)s.minGene(x), (double)s.maxGene(x), state.random[thread]);
-						break;
-					case RCHCSpecies.C_INTEGER_RANDOM_WALK_MUTATION:
-						int min, max;
-						
-						if((x % 2) == 0)
-						{
-							min = (int)s.minMetaGene(x);
-							max = (int)s.maxMetaGene(x);
-						}
-						else
-						{
-							min = (int)s.minGene(x);
-							max = (int)s.maxGene(x);
-						}
-						
-						if (!s.mutationIsBounded(x)) 
-						{
-							max = Integer.MAX_VALUE;
-							min = Integer.MIN_VALUE;
-						}
-						do 
-						{
-							int n = (int) (state.random[thread].nextBoolean() ? 1 : -1);
-							int g = genome[x];
-							if ((n == 1 && g < max) || (n == -1 && g > min))
-								genome[x] = g + n;
-							else if ((n == -1 && g < max) || (n == 1 && g > min))
-								genome[x] = g - n;
-						} while (state.random[thread].nextBoolean(s.randomWalkProbability(x)));
-						break;
-					default:
-						state.output.fatal("In HCIndividual.defaultMutate, default case occurred when it shouldn't have");
-						break;
-					}
-					if (genome[x] != old)
-					{
-						break;
-					}
-				}
-			}
-		}
-		
-	}
-	
+
 	public void defaultCrossover(EvolutionState state, int thread, ec.vector.VectorIndividual ind)
 	{
 		super.defaultCrossover(state, thread, ind);
@@ -181,7 +106,6 @@ public class RCHCIndividual extends RCXGAIndividual {
 	
 	public void mirror(EvolutionState state, int thread)
 	{
-	
 		//Probability, then,  
 		//Meta gene values
 		//2 - No meta gene present
@@ -227,56 +151,57 @@ public class RCHCIndividual extends RCXGAIndividual {
 				
 				if(lastMetaGene == 0)
 				{
-					genome[x] = (genome[x]==1 ? 1 : 0);
+					//No change
+					genome[x] = genome[x];
 				}
 				else
 				{
-					genome[x] = (genome[x]==1 ? 0 : 1);
+					genome[x] = genome[x] * -1.0;
 				}
 			}
 		}
 	}
 	
-	public String genotypeToStringForHumans() 
-	{
-		StringBuilder m = new StringBuilder();
-		StringBuilder s = new StringBuilder();
-		StringBuilder t = new StringBuilder();
-		
-		m.append("Meta: ");
-		s.append("Geno: ");
-		t.append("Phen: ");
-		
-		for (int i = 0; i < genome.length; i++) 
-		{
-			m.append(metagenes[i]);
-			s.append(genome[i]);
-		}
-		
-		double[] thisPhenome = getPhenome();
-		
-		for (int i = 0; i < thisPhenome.length; i++) 
-		{
-			t.append(thisPhenome[i]);
-		}
-			
-		m.append("\r\n");
-		m.append(s);
-		m.append("\r\n");
-		m.append(t);
-		m.append("\r\nMirror Prob String: ");
-		
-		if(mirrorString.length() > 0)
-		{
-			m.append(mirrorString.substring(0,mirrorString.length()-1));	
-		}
-		else
-		{
-			m.append(mirrorString);
-		}
-		
-		return m.toString();
-	}
+//	public String genotypeToStringForHumans() 
+//	{
+//		StringBuilder m = new StringBuilder();
+//		StringBuilder s = new StringBuilder();
+//		StringBuilder t = new StringBuilder();
+//		
+//		m.append("Meta: ");
+//		s.append("Geno: ");
+//		t.append("Phen: ");
+//		
+//		for (int i = 0; i < genome.length; i++) 
+//		{
+//			m.append(metagenes[i]);
+//			s.append(genome[i]+",");
+//		}
+//		
+//		double[] thisPhenome = getPhenome();
+//		
+//		for (int i = 0; i < thisPhenome.length; i++) 
+//		{
+//			t.append(thisPhenome[i]+",");
+//		}
+//			
+//		m.append("\r\n");
+//		m.append(s);
+//		m.append("\r\n");
+//		m.append(t);
+//		m.append("\r\nMirror Prob String: ");
+//		
+//		if(mirrorString.length() > 0)
+//		{
+//			m.append(mirrorString.substring(0,mirrorString.length()-1));	
+//		}
+//		else
+//		{
+//			m.append(mirrorString);
+//		}
+//		
+//		return m.toString();
+//	}
 
 	public int[] getMetas() 
 	{
@@ -305,72 +230,17 @@ public class RCHCIndividual extends RCXGAIndividual {
 			
 			if (lastMetaGene == 0) 
 			{
-				phenome[x] = (genome[x] == 1 ? 1 : 0);
+				phenome[x] = genome[x];
 			} 
 			else 
 			{
-				phenome[x] = (genome[x] == 1 ? 0 : 1);
+				phenome[x] = genome[x] * -1.0;
 			}
 		}
 		
 		return phenome;
 	}
 
-	public int getHammingDistance(int[] before, int[] after)
-	{
-		int count = 0;
-		for(int x = 0; x < before.length; x++)
-		{
-			if(before[x] != after[x]) 
-			{
-				count++;
-			}
-		}
-		return count;
-	}
-	
-	public int getLevenshteinDistance(int[] before, int[] after)
-	{
-		int size = before.length, i = size, j = size, subCost = 0;;
-		int distanceMatrix[][] = new int[size][size];
-		
-		for(j = 0; j < size; j++)
-		{
-			for(i = 0; i < size; i++)
-			{
-				distanceMatrix[i][j] = 0;
-			}
-		}
-		
-		for(i = 0; i< size; i++) 
-		{
-			distanceMatrix[i][0] = i;
-			distanceMatrix[0][i] = i;
-		}
-		
-		for(j = 1; j < size; j++)
-		{
-			for(i = 1; i < size; i++)
-			{
-				if(before[i] == after[j]) 
-				{
-					subCost = 0;
-				}
-				else
-				{
-					subCost = 1;
-				}
-				distanceMatrix[i][j] = Math.min(Math.min(
-							distanceMatrix[i-1][j]+1, 			//deletion 
-							distanceMatrix[i][j-1]+1),			//insertion
-							distanceMatrix[i-1][j-1]+subCost);	//substitution
-			}
-		}
-		
-		
-		return distanceMatrix[size-1][size-1];
-	}
-	
 	@Override
 	public int[] getMetagenesTranslation() {
 		

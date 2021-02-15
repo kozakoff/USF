@@ -11,8 +11,6 @@ public abstract class RCXGAIndividual extends DoubleVectorIndividual
 	public abstract double[] getPhenome();
 	public abstract int[] getMetas();
 	public abstract void mirror(EvolutionState state, int thread);
-	public abstract int getHammingDistance(int[] before, int[] after);
-	public abstract int getLevenshteinDistance(int[] before, int[] after);
 
 	public String getArrayString(int[] a)
 	{

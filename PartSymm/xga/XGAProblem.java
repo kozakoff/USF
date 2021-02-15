@@ -1,5 +1,9 @@
 package xga;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 import ec.EvolutionState;
 import ec.simple.*;
 import ec.util.Parameter;
@@ -35,6 +39,18 @@ public class XGAProblem extends ec.Problem implements SimpleProblemForm
     public static final int PROB_DEJONG_N5 = 7;
     public static final int PROB_INV_DEJONG_N5 = 8;
     public static final int PROB_MPB = 9;
+    
+    public int problemType = PROB_MPB;  
+    public int epochLength;
+    public int numEpoch;
+    public static int environmentID = -1;
+    private MovingPeaks mpb;
+    private boolean [] epochStatus;
+    private String FILE_MAX_PEAK = "max_peak.txt";
+    File file = null;
+    FileWriter fw = null;
+    BufferedWriter bw =  null;
+    
 	protected String fitnessCalc = "";
 	protected int rrChunkSize = 0;
 	
