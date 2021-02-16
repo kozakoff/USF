@@ -149,8 +149,17 @@ public class HCEvolutionState extends EvolutionState
 			{
 				for (Individual i : s.individuals)
 				{
-					HCIndividual thisInd = (HCIndividual) i;
-					thisInd.resetMetas(this, 0);
+					if(s.individuals[0] instanceof HCIndividual)
+					{
+						HCIndividual thisInd = (HCIndividual) i;
+						thisInd.resetMetas(this, 0);
+					}
+					else if(s.individuals[0] instanceof RCHCIndividual)
+					{
+						RCHCIndividual thisInd = (RCHCIndividual) i;
+						thisInd.resetMetas(this, 0);
+					}
+					
 				}
 			}
 		}

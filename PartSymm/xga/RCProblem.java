@@ -104,11 +104,23 @@ public class RCProblem extends Problem implements SimpleProblemForm  {
         final int subpopulation,
         final int threadnum) {
 
-    	if( !( ind instanceof DoubleVectorIndividual ) )
-            state.output.fatal( "The individuals for this problem should be DoubleVectorIndividuals." );
-
-        DoubleVectorIndividual temp = (DoubleVectorIndividual)ind;
-        double[] genome = temp.genome;
+    	Individual temp;
+    	double[] genome = null;
+    	
+    	if((ind instanceof RCXGAIndividual))
+    	{
+    		temp = (RCXGAIndividual)ind;
+            genome = ((RCXGAIndividual)temp).getPhenome();
+    	}
+    	else if(ind instanceof DoubleVectorIndividual)
+    	{
+    		temp = (DoubleVectorIndividual)ind;
+            genome = ((DoubleVectorIndividual)temp).genome;
+    	}
+    	else
+    	{
+    		state.output.fatal( "The individuals for this problem should be DoubleVectorIndividuals." );
+    	}
 
         ArrayList<Double> fit = (function(state, problemType, genome, threadnum));
       

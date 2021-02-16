@@ -61,6 +61,14 @@ public class RCHCIndividual extends RCXGAIndividual {
 		metagenes = thisState.metamask;
 	}
 	
+	private static double[] copyIntArrayToDoubleArray(int[] intArray) {
+	    double[] doubleArray = new double[intArray.length];
+	    for(int i = 0; i < intArray.length; i++) {
+	    	doubleArray[i] = intArray[i];
+	    }
+	    return doubleArray;
+	}
+	
 	private void checkIfPhenotypesEq(double[] p1,double[] p2) throws Exception
 	{
 		if(!Arrays.equals(p1,p2))
