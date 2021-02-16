@@ -4,7 +4,7 @@ seed.0		= 4357
 seed.1		= 4358
 seed.2		= 4359
 seed.3		= 4360
-jobs 		= 1
+jobs 		= 30
 
 generations				= 2500
 quit-on-run-complete	= false
@@ -27,10 +27,10 @@ exch		= xga.XGAExchanger
 #stat.child.0.file = $custom.stat
 #stat.child.0.do-subpops = true
 
-stat.file				= ../logs/hc_rosenbroc.stat
+stat.file				= ../logs/hc_rastarigin.stat
 stat.num-children 		= 1
 stat.child.0 			= xga.XGAShortStatistics
-stat.child.0.file 		= exp/hc_rosenbroc/hc_rosenbroc.out.stat
+stat.child.0.file 		= exp/hc_rastarigin/hc_rastarigin.out.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
@@ -38,8 +38,8 @@ pop.subpop.0.size 		= 100
 pop.subpop.0.duplicate-retries 	= 0
 pop.subpop.0.species 			= xga.RCHCSpecies
 
-vector.species.min-gene = -100
-vector.species.max-gene = 100
+vector.species.min-gene = -5.12
+vector.species.max-gene = 5.12
 
 vector.species.min-meta-gene = 0
 vector.species.max-meta-gene = 2
@@ -48,11 +48,11 @@ metamask-size 			= 10
 min-metamask-gene 		= 0
 max-metamask-gene 		= 2
 metamask-generations	= 100
-metamask-evolve-prob 	= 0.1
+metamask-evolve-prob 	= 0.0
 metamask-rand-reset		= false
 
-pop.subpop.0.species.min-gene   		= -100
-pop.subpop.0.species.max-gene   		= 100
+pop.subpop.0.species.min-gene   		= -5.12
+pop.subpop.0.species.max-gene   		= 5.12
 pop.subpop.0.species.fitness 			= xga.RCXGAFitness
 pop.subpop.0.species.ind				= xga.RCHCIndividual
 
@@ -83,5 +83,5 @@ select.tournament.size		= 5
 eval.problem					= xga.RCProblem
 
 #typec can be: sphere, rosenbroc, schwefel, rastarigin, ackley, mpb
-eval.problem.type 		= rosenbroc
+eval.problem.type 		= rastarigin
 eval.problem.num-epoch	= 1

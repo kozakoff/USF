@@ -22,24 +22,29 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-stat.file				= ../logs/sga_rosenbroc.stat
+#stat.num-children 		= 1
+#stat.child.0 = xga.CustomStatistics
+#stat.child.0.file = $custom.stat
+#stat.child.0.do-subpops = true
+
+stat.file				= ../logs/dga_rastarigin.stat
 stat.num-children 		= 1
 stat.child.0 			= xga.XGAShortStatistics
-stat.child.0.file 		= exp/sga_rosenbroc/sga_rosenbroc.out.stat
+stat.child.0.file 		= exp/dga_rastarigin/dga_rastarigin.out.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
 pop.subpop.0.size 		= 100
 pop.subpop.0.duplicate-retries 	= 0
-pop.subpop.0.species 			= ec.vector.FloatVectorSpecies
+pop.subpop.0.species 			= xga.RCXGASpecies
 
-vector.species.min-gene = -100
-vector.species.max-gene = 100
+vector.species.min-gene = -5.12
+vector.species.max-gene = 5.12
 
-pop.subpop.0.species.min-gene   		= -100
-pop.subpop.0.species.max-gene   		= 100
+pop.subpop.0.species.min-gene   		= -5.12
+pop.subpop.0.species.max-gene   		= 5.12
 pop.subpop.0.species.fitness 			= xga.RCXGAFitness
-pop.subpop.0.species.ind				= ec.vector.DoubleVectorIndividual
+pop.subpop.0.species.ind				= xga.RCDGAIndividual
 
 pop.subpop.0.species.genome-size		= 10
 
@@ -54,18 +59,19 @@ pop.subpop.0.species.mutation-prob		= 0.1
 
 #Mirror 2 of every 128 individuals
 #pop.subpop.0.species.mirror-prob	= 0.015625 
-#pop.subpop.0.species.mirror-prob	= 0.1
-#pop.subpop.0.species.default-meta-value = -1
+pop.subpop.0.species.mirror-prob	= 0.1
+pop.subpop.0.species.default-meta-value = -1
 
-pop.subpop.0.species.pipe					= ec.vector.breed.VectorMutationPipeline
-pop.subpop.0.species.pipe.source.0			= ec.vector.breed.VectorCrossoverPipeline
-pop.subpop.0.species.pipe.source.0.source.0	= ec.select.TournamentSelection
-pop.subpop.0.species.pipe.source.0.source.1	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe								= xga.RCXGAMirrorPipeline
+pop.subpop.0.species.pipe.source.0						= ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0.source.0				= ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0.source.0	= ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.0.source.0.source.1	= ec.select.TournamentSelection
 
 select.tournament.size		= 5
 
 eval.problem					= xga.RCProblem
 
 #typec can be: sphere, rosenbroc, schwefel, rastarigin, ackley, mpb
-eval.problem.type 		= rosenbroc
+eval.problem.type 		= rastarigin
 eval.problem.num-epoch	= 1

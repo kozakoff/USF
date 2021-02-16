@@ -1,6 +1,9 @@
 # Auth: Stephen Kozakoff
 # Desc: Utilities for aggregating and evaluating ECJ Short Statistics output files.
 
+library(ggplot2)
+library(dplyr)
+
 doAnalysis <- function(files) 
 {
   s <- strsplit(names(files)[1],".",fixed=TRUE)
@@ -401,8 +404,159 @@ runCompareAllFitness <- function()
   doPlots(fga=fga,dga=dga,sga=sga,hc=hc,title="Fitness Comparison - RR2",c(0.0, 1.0))
 }
 
+runCompareAllFitnessRosenbrock <- function()
+{
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga_rosenbroc")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga_rosenbroc")
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga_rosenbroc")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc_rosenbroc")
+  
+  hc <- doAnalysis(hcFiles)
+  sga <- doAnalysis(sgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  fga <- doAnalysis(fgaFiles)
+  
+  doPlots(fga=fga,dga=dga,sga=sga,hc=hc,title="HC, DGA, FGA, SGA Average Fitness Comparison for Rosenbrock Function",c(0.0, 100000000.0))
+}
+
 runHistogram <- function(thisFile,title)
 {
   f <- read.csv(thisFile,header=FALSE)
   hist(f$V2,main=title,xlab="Bit Position",ylab="Count of 1's",col="darkmagenta",freq=TRUE,breaks=seq(1,64,by=1),right=FALSE)
+}
+
+doSphere <- function()
+{
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga_sphere")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga_sphere")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga_sphere")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc_sphere")
+  
+  fga <- doAnalysis(fgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  sga <- doAnalysis(sgaFiles)
+  hc <- doAnalysis(hcFiles)
+  
+  fga$Algo <- "FGA"
+  dga$Algo <- "DGA"
+  sga$Algo <- "SGA"
+  hc$Algo <- "HC"
+  
+  all <- bind_rows(sga, dga, fga, hc)
+  
+  ggplot(all, aes(x=Gen, y=rowMeans, group=Algo, color=Algo)) + geom_line() + scale_y_continuous(trans = "log2") + ggtitle("Average Fitness Comparison for Sphere Function") + xlab("Generation") + ylab("Average Over All Jobs")
+}
+  
+doRosenbrock <- function()
+{
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga_rosenbroc")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga_rosenbroc")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga_rosenbroc")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc_rosenbroc")
+  
+  fga <- doAnalysis(fgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  sga <- doAnalysis(sgaFiles)
+  hc <- doAnalysis(hcFiles)
+  
+  fga$Algo <- "FGA"
+  dga$Algo <- "DGA"
+  sga$Algo <- "SGA"
+  hc$Algo <- "HC"
+  
+  all <- bind_rows(sga, dga, fga, hc)
+  
+  ggplot(all, aes(x=Gen, y=rowMeans, group=Algo, color=Algo)) + geom_line() + scale_y_continuous(trans = "log2") + ggtitle("Average Fitness Comparison for Rosenbrock Function") + xlab("Generation") + ylab("Average Over All Jobs")
+}
+
+doAckley <- function()
+{
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga_ackley")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga_ackley")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga_ackley")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc_ackley")
+  
+  fga <- doAnalysis(fgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  sga <- doAnalysis(sgaFiles)
+  hc <- doAnalysis(hcFiles)
+  
+  fga$rowMeans[] <- fga$rowMeans[] * -1
+  dga$rowMeans[] <- dga$rowMeans[] * -1
+  sga$rowMeans[] <- sga$rowMeans[] * -1
+  hc$rowMeans[] <- hc$rowMeans[] * -1
+  
+  fga$Algo <- "FGA"
+  dga$Algo <- "DGA"
+  sga$Algo <- "SGA"
+  hc$Algo <- "HC"
+  
+  all <- bind_rows(sga, dga, fga, hc)
+  
+  ggplot(all, aes(x=Gen, y=rowMeans, group=Algo, color=Algo)) + geom_line() + scale_y_continuous(trans = "log2") + ggtitle("Average Fitness Comparison for Ackley Function") + xlab("Generation") + ylab("Average Over All Jobs")
+}
+
+doRastarigin <- function()
+{
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga_rastarigin")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga_rastarigin")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga_rastarigin")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc_rastarigin")
+  
+  fga <- doAnalysis(fgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  sga <- doAnalysis(sgaFiles)
+  hc <- doAnalysis(hcFiles)
+  
+  fga$rowMeans[] <- fga$rowMeans[] * -1
+  dga$rowMeans[] <- dga$rowMeans[] * -1
+  sga$rowMeans[] <- sga$rowMeans[] * -1
+  hc$rowMeans[] <- hc$rowMeans[] * -1
+  
+  fga$Algo <- "FGA"
+  dga$Algo <- "DGA"
+  sga$Algo <- "SGA"
+  hc$Algo <- "HC"
+  
+  all <- bind_rows(sga, dga, fga, hc)
+  
+  ggplot(all, aes(x=Gen, y=rowMeans, group=Algo, color=Algo)) + geom_line() + scale_y_continuous(trans = "log2") + ggtitle("Average Fitness Comparison for Rastarigin Function") + xlab("Generation") + ylab("Average Over All Jobs")
+  
+}
+
+doSchwefel <- function()
+{
+  fgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/fga_schwefel")
+  dgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/dga_schwefel")
+  sgaFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/sga_schwefel")
+  hcFiles <- readFiles("C:/Users/kozaksj/git/USF/PartSymm/xga/exp/hc_schwefel")
+  
+  fga <- doAnalysis(fgaFiles)
+  dga <- doAnalysis(dgaFiles)
+  sga <- doAnalysis(sgaFiles)
+  hc <- doAnalysis(hcFiles)
+  
+  fga$rowMeans[] <- fga$rowMeans[] * -1
+  dga$rowMeans[] <- dga$rowMeans[] * -1
+  sga$rowMeans[] <- sga$rowMeans[] * -1
+  hc$rowMeans[] <- hc$rowMeans[] * -1
+  
+  fga$Algo <- "FGA"
+  dga$Algo <- "DGA"
+  sga$Algo <- "SGA"
+  hc$Algo <- "HC"
+  
+  all <- bind_rows(sga, dga, fga, hc)
+  
+  ggplot(all, aes(x=Gen, y=rowMeans, group=Algo, color=Algo)) + geom_line() + scale_y_continuous(trans = "log2") + ggtitle("Average Fitness Comparison for Schwefel Function") + xlab("Generation") + ylab("Average Over All Jobs")
+  
+}
+
+doPlotRCAlgos <- function() 
+{
+  doAckley()
+  doSphere()
+  doRastarigin()
+  doRosenbrock()
+  doSchwefel()
 }

@@ -22,10 +22,10 @@ eval		= xga.XGAEvaluator
 stat		= xga.XGAStatistics
 exch		= xga.XGAExchanger
 
-stat.file				= ../logs/sga_rosenbroc.stat
+stat.file				= ../logs/sga_sphere.stat
 stat.num-children 		= 1
 stat.child.0 			= xga.XGAShortStatistics
-stat.child.0.file 		= exp/sga_rosenbroc/sga_rosenbroc.out.stat
+stat.child.0.file 		= exp/sga_sphere/sga_sphere.out.stat
 
 pop.subpops			= 1
 pop.subpop.0		= ec.Subpopulation
@@ -67,5 +67,5 @@ select.tournament.size		= 5
 eval.problem					= xga.RCProblem
 
 #typec can be: sphere, rosenbroc, schwefel, rastarigin, ackley, mpb
-eval.problem.type 		= rosenbroc
+eval.problem.type 		= sphere
 eval.problem.num-epoch	= 1
