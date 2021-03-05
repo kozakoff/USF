@@ -1,6 +1,0 @@
-
-
-R-command for histograms
-
-> h <- hist(h0$V2,main="Histogram of 1's in HC Metagenes",xlab="Bit Position",ylab="Count of 1's",col="darkmagenta",freq=TRUE,breaks=seq(1,64,by=1),right=FALSE)
-> h$counts
